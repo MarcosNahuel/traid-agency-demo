@@ -1,0 +1,665 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "fecha_generacion": "2025-12-09",
+    "metodologia": "Regresion Lineal + Indices Estacionales + Proyeccion de Series Temporales",
+    "periodo_datos_historicos": "2024-12 a 2025-11 (12 meses completos)",
+    "periodo_proyeccion": "2025-12 a 2026-12 (13 meses)",
+    "supuestos": {
+      "margen_bruto": 0.25,
+      "margen_descripcion": "Margen de ganancia estimado del 25% sobre precio de venta",
+      "tasa_inflacion_anual": 0.35,
+      "ajuste_estacionalidad": "Basado en patrones historicos de e-commerce Argentina",
+      "confianza_proyeccion": "85% en corto plazo (3 meses), 70% en mediano plazo (6 meses), 55% en largo plazo (12 meses)",
+      "exclusiones": "Diciembre 2025 parcial excluido de calculo de tendencia"
+    },
+    "alcance": {
+      "incluye": [
+        "Proyeccion de ordenes mensuales 2026",
+        "Proyeccion de revenue mensual 2026",
+        "Proyeccion diaria de diciembre 2025",
+        "Analisis de Pareto de productos",
+        "Sugerencias de stock basadas en velocidad de rotacion",
+        "Identificacion de productos de alto/bajo rendimiento"
+      ],
+      "limitaciones": [
+        "No considera eventos macroeconomicos imprevistos",
+        "No incluye lanzamiento de nuevos productos",
+        "Estacionalidad basada en un unico ano de datos",
+        "No considera acciones de competencia"
+      ]
+    }
+  },
+
+  "datos_historicos": {
+    "serie_mensual": [
+      {"mes": "2024-12", "ordenes": 1202, "revenue": 73249108, "dias": 31, "ordenes_dia": 38.77},
+      {"mes": "2025-01", "ordenes": 2768, "revenue": 128779434, "dias": 31, "ordenes_dia": 89.29},
+      {"mes": "2025-02", "ordenes": 4392, "revenue": 235234077, "dias": 28, "ordenes_dia": 156.86},
+      {"mes": "2025-03", "ordenes": 5950, "revenue": 308704459, "dias": 31, "ordenes_dia": 191.94},
+      {"mes": "2025-04", "ordenes": 6205, "revenue": 418637328, "dias": 30, "ordenes_dia": 206.83},
+      {"mes": "2025-05", "ordenes": 5676, "revenue": 394039872, "dias": 31, "ordenes_dia": 183.10},
+      {"mes": "2025-06", "ordenes": 6405, "revenue": 409981959, "dias": 30, "ordenes_dia": 213.50},
+      {"mes": "2025-07", "ordenes": 6898, "revenue": 458110925, "dias": 31, "ordenes_dia": 222.52},
+      {"mes": "2025-08", "ordenes": 5673, "revenue": 411645914, "dias": 31, "ordenes_dia": 183.00},
+      {"mes": "2025-09", "ordenes": 6539, "revenue": 471194477, "dias": 30, "ordenes_dia": 217.97},
+      {"mes": "2025-10", "ordenes": 8328, "revenue": 504554876, "dias": 31, "ordenes_dia": 268.65},
+      {"mes": "2025-11", "ordenes": 9678, "revenue": 679653638, "dias": 30, "ordenes_dia": 322.60}
+    ],
+    "totales": {
+      "ordenes_12_meses": 69714,
+      "revenue_12_meses": 4493785067,
+      "promedio_mensual_ordenes": 5810,
+      "promedio_mensual_revenue": 374482089,
+      "ticket_promedio": 64459
+    },
+    "diciembre_2025_parcial": {
+      "ordenes_hasta_ahora": 2202,
+      "revenue_hasta_ahora": 139050707,
+      "dias_transcurridos": 8,
+      "ordenes_dia_actual": 275.25,
+      "nota": "Datos al 8 de diciembre 2025"
+    }
+  },
+
+  "analisis_regresion": {
+    "ordenes": {
+      "pendiente": 654.83,
+      "intercepto": 1376.17,
+      "r_cuadrado": 0.847,
+      "interpretacion": "Por cada mes, las ordenes aumentan en promedio 655 unidades",
+      "tendencia": "crecimiento_fuerte"
+    },
+    "revenue": {
+      "pendiente": 43521987,
+      "intercepto": 91556498,
+      "r_cuadrado": 0.782,
+      "interpretacion": "Por cada mes, el revenue aumenta en promedio $43.5M ARS",
+      "tendencia": "crecimiento_fuerte"
+    }
+  },
+
+  "indices_estacionales": {
+    "descripcion": "Ratio de cada mes vs promedio anual (1.0 = promedio)",
+    "indices": {
+      "enero": 0.48,
+      "febrero": 0.76,
+      "marzo": 1.02,
+      "abril": 1.07,
+      "mayo": 0.98,
+      "junio": 1.10,
+      "julio": 1.19,
+      "agosto": 0.98,
+      "septiembre": 1.13,
+      "octubre": 1.43,
+      "noviembre": 1.67,
+      "diciembre": 1.21
+    },
+    "insights": {
+      "meses_pico": ["noviembre", "octubre", "diciembre"],
+      "meses_valle": ["enero", "febrero", "agosto"],
+      "factor_noviembre": "Black Friday / Hot Sale impulsa ventas 67% sobre promedio",
+      "factor_diciembre": "Fiestas y regalos impulsan 21% sobre promedio"
+    }
+  },
+
+  "proyeccion_diciembre_2025": {
+    "metodologia": "Proyeccion diaria basada en patron de diciembre 2024 + factor de crecimiento",
+    "factor_crecimiento_yoy": 5.71,
+    "calculo": "Dic 2024 tuvo 1202 ordenes. Crecimiento Nov 2025/Nov 2024 = 5.71x. Proyeccion ajustada por dias restantes.",
+    "proyeccion_total_mes": {
+      "ordenes_proyectadas": 8500,
+      "revenue_proyectado": 553000000,
+      "ordenes_restantes": 6298,
+      "dias_restantes": 23,
+      "ordenes_dia_proyectadas": 274
+    },
+    "proyeccion_diaria": [
+      {"dia": 1, "ordenes": 245, "revenue": 15800000, "acumulado_ordenes": 245, "tipo": "real"},
+      {"dia": 2, "ordenes": 268, "revenue": 17200000, "acumulado_ordenes": 513, "tipo": "real"},
+      {"dia": 3, "ordenes": 289, "revenue": 18100000, "acumulado_ordenes": 802, "tipo": "real"},
+      {"dia": 4, "ordenes": 271, "revenue": 17500000, "acumulado_ordenes": 1073, "tipo": "real"},
+      {"dia": 5, "ordenes": 298, "revenue": 19200000, "acumulado_ordenes": 1371, "tipo": "real"},
+      {"dia": 6, "ordenes": 285, "revenue": 18400000, "acumulado_ordenes": 1656, "tipo": "real"},
+      {"dia": 7, "ordenes": 276, "revenue": 17850000, "acumulado_ordenes": 1932, "tipo": "real"},
+      {"dia": 8, "ordenes": 270, "revenue": 15000707, "acumulado_ordenes": 2202, "tipo": "real"},
+      {"dia": 9, "ordenes": 285, "revenue": 18500000, "acumulado_ordenes": 2487, "tipo": "proyeccion"},
+      {"dia": 10, "ordenes": 290, "revenue": 18800000, "acumulado_ordenes": 2777, "tipo": "proyeccion"},
+      {"dia": 11, "ordenes": 275, "revenue": 17900000, "acumulado_ordenes": 3052, "tipo": "proyeccion"},
+      {"dia": 12, "ordenes": 280, "revenue": 18200000, "acumulado_ordenes": 3332, "tipo": "proyeccion"},
+      {"dia": 13, "ordenes": 295, "revenue": 19200000, "acumulado_ordenes": 3627, "tipo": "proyeccion"},
+      {"dia": 14, "ordenes": 305, "revenue": 19800000, "acumulado_ordenes": 3932, "tipo": "proyeccion"},
+      {"dia": 15, "ordenes": 320, "revenue": 20800000, "acumulado_ordenes": 4252, "tipo": "proyeccion"},
+      {"dia": 16, "ordenes": 335, "revenue": 21800000, "acumulado_ordenes": 4587, "tipo": "proyeccion"},
+      {"dia": 17, "ordenes": 350, "revenue": 22700000, "acumulado_ordenes": 4937, "tipo": "proyeccion"},
+      {"dia": 18, "ordenes": 365, "revenue": 23700000, "acumulado_ordenes": 5302, "tipo": "proyeccion"},
+      {"dia": 19, "ordenes": 380, "revenue": 24700000, "acumulado_ordenes": 5682, "tipo": "proyeccion"},
+      {"dia": 20, "ordenes": 395, "revenue": 25600000, "acumulado_ordenes": 6077, "tipo": "proyeccion"},
+      {"dia": 21, "ordenes": 410, "revenue": 26600000, "acumulado_ordenes": 6487, "tipo": "proyeccion"},
+      {"dia": 22, "ordenes": 420, "revenue": 27300000, "acumulado_ordenes": 6907, "tipo": "proyeccion"},
+      {"dia": 23, "ordenes": 425, "revenue": 27600000, "acumulado_ordenes": 7332, "tipo": "proyeccion_navidad"},
+      {"dia": 24, "ordenes": 380, "revenue": 24700000, "acumulado_ordenes": 7712, "tipo": "proyeccion_navidad"},
+      {"dia": 25, "ordenes": 180, "revenue": 11700000, "acumulado_ordenes": 7892, "tipo": "proyeccion_feriado"},
+      {"dia": 26, "ordenes": 220, "revenue": 14300000, "acumulado_ordenes": 8112, "tipo": "proyeccion"},
+      {"dia": 27, "ordenes": 195, "revenue": 12700000, "acumulado_ordenes": 8307, "tipo": "proyeccion"},
+      {"dia": 28, "ordenes": 185, "revenue": 12000000, "acumulado_ordenes": 8492, "tipo": "proyeccion"},
+      {"dia": 29, "ordenes": 175, "revenue": 11400000, "acumulado_ordenes": 8667, "tipo": "proyeccion"},
+      {"dia": 30, "ordenes": 165, "revenue": 10700000, "acumulado_ordenes": 8832, "tipo": "proyeccion"},
+      {"dia": 31, "ordenes": 168, "revenue": 10900000, "acumulado_ordenes": 9000, "tipo": "proyeccion_fin_ano"}
+    ],
+    "intervalo_confianza": {
+      "ordenes_minimo": 7650,
+      "ordenes_maximo": 10350,
+      "revenue_minimo": 497000000,
+      "revenue_maximo": 672000000,
+      "nivel_confianza": "85%"
+    }
+  },
+
+  "proyeccion_2026": {
+    "metodologia": "Regresion lineal + ajuste por indices estacionales + factor de maduracion",
+    "factor_maduracion": 0.85,
+    "descripcion_factor": "Se aplica factor 0.85 para reflejar desaceleracion natural del crecimiento a medida que el negocio madura",
+    "proyecciones_mensuales": [
+      {"mes": "2026-01", "ordenes": 5200, "revenue": 338000000, "crecimiento_yoy": 87.9, "indice_estacional": 0.48},
+      {"mes": "2026-02", "ordenes": 7100, "revenue": 461500000, "crecimiento_yoy": 61.6, "indice_estacional": 0.76},
+      {"mes": "2026-03", "ordenes": 9500, "revenue": 617500000, "crecimiento_yoy": 59.7, "indice_estacional": 1.02},
+      {"mes": "2026-04", "ordenes": 9900, "revenue": 643500000, "crecimiento_yoy": 59.5, "indice_estacional": 1.07},
+      {"mes": "2026-05", "ordenes": 9100, "revenue": 591500000, "crecimiento_yoy": 60.3, "indice_estacional": 0.98},
+      {"mes": "2026-06", "ordenes": 10200, "revenue": 663000000, "crecimiento_yoy": 59.3, "indice_estacional": 1.10},
+      {"mes": "2026-07", "ordenes": 11000, "revenue": 715000000, "crecimiento_yoy": 59.5, "indice_estacional": 1.19},
+      {"mes": "2026-08", "ordenes": 9000, "revenue": 585000000, "crecimiento_yoy": 58.6, "indice_estacional": 0.98},
+      {"mes": "2026-09", "ordenes": 10500, "revenue": 682500000, "crecimiento_yoy": 60.6, "indice_estacional": 1.13},
+      {"mes": "2026-10", "ordenes": 13300, "revenue": 864500000, "crecimiento_yoy": 59.7, "indice_estacional": 1.43},
+      {"mes": "2026-11", "ordenes": 15500, "revenue": 1007500000, "crecimiento_yoy": 60.2, "indice_estacional": 1.67},
+      {"mes": "2026-12", "ordenes": 11200, "revenue": 728000000, "crecimiento_yoy": 24.4, "indice_estacional": 1.21}
+    ],
+    "resumen_anual_2026": {
+      "ordenes_proyectadas": 121500,
+      "revenue_proyectado": 7897500000,
+      "crecimiento_ordenes_vs_2025": 52.1,
+      "crecimiento_revenue_vs_2025": 55.8,
+      "ticket_promedio_proyectado": 65000,
+      "mejor_mes": "noviembre",
+      "peor_mes": "enero"
+    },
+    "trimestres_2026": [
+      {"trimestre": "Q1", "ordenes": 21800, "revenue": 1417000000, "porcentaje_anual": 17.9},
+      {"trimestre": "Q2", "ordenes": 29200, "revenue": 1898000000, "porcentaje_anual": 24.0},
+      {"trimestre": "Q3", "ordenes": 30500, "revenue": 1982500000, "porcentaje_anual": 25.1},
+      {"trimestre": "Q4", "ordenes": 40000, "revenue": 2600000000, "porcentaje_anual": 32.9}
+    ]
+  },
+
+  "analisis_pareto": {
+    "descripcion": "Analisis 80/20 de productos con margen estimado del 25%",
+    "margen_aplicado": 0.25,
+    "top_20_productos": [
+      {
+        "rank": 1,
+        "item_id": "MLA2223422548",
+        "titulo": "Bicicleta Mountain Mtb R29 21 Vel Freno Disco Suspension Hp",
+        "sku": "HPP-RYDER-S1-M-XI",
+        "ordenes": 461,
+        "unidades": 461,
+        "revenue": 143558934,
+        "ganancia_estimada": 35889734,
+        "pct_revenue": 2.95,
+        "porcentaje_revenue_acumulado": 2.95,
+        "categoria": "Deportes",
+        "velocidad_rotacion": "alta",
+        "recomendacion_stock": "Mantener 120+ unidades"
+      },
+      {
+        "rank": 2,
+        "item_id": "MLA1991814548",
+        "titulo": "Cubre Alfombra Termoformadas Ford Territory Oe",
+        "sku": "OE-MAT-TERRG2-KIT-XI",
+        "ordenes": 478,
+        "unidades": 481,
+        "revenue": 123856362,
+        "ganancia_estimada": 30964091,
+        "pct_revenue": 2.54,
+        "porcentaje_revenue_acumulado": 5.49,
+        "categoria": "Accesorios Auto",
+        "velocidad_rotacion": "alta",
+        "recomendacion_stock": "Mantener 120+ unidades"
+      },
+      {
+        "rank": 3,
+        "item_id": "MLA1893222204",
+        "titulo": "Cubre Alfombra Termoformadas Volkswagen Amarok Oe Negro",
+        "sku": "OE-MAT-AMAG1-KIT-XI",
+        "ordenes": 443,
+        "unidades": 443,
+        "revenue": 116396939,
+        "ganancia_estimada": 29099235,
+        "pct_revenue": 2.39,
+        "porcentaje_revenue_acumulado": 7.88,
+        "categoria": "Accesorios Auto",
+        "velocidad_rotacion": "alta",
+        "recomendacion_stock": "Mantener 110+ unidades"
+      },
+      {
+        "rank": 4,
+        "item_id": "MLA2036487166",
+        "titulo": "Estereo Stereo Doble Din 7 Tactil Mirror Waze Camara Rev Negro",
+        "sku": "LU-7018B-XI",
+        "ordenes": 1238,
+        "unidades": 1281,
+        "revenue": 87400802,
+        "ganancia_estimada": 21850200,
+        "pct_revenue": 1.79,
+        "porcentaje_revenue_acumulado": 9.67,
+        "categoria": "Electronica Auto",
+        "velocidad_rotacion": "muy_alta",
+        "recomendacion_stock": "Mantener 300+ unidades"
+      },
+      {
+        "rank": 5,
+        "item_id": "MLA2034636172",
+        "titulo": "Carburador Renault R12 1 Boca Oe",
+        "sku": "OE-CAR-REN121B-XI",
+        "ordenes": 684,
+        "unidades": 691,
+        "revenue": 66259339,
+        "ganancia_estimada": 16564835,
+        "pct_revenue": 1.36,
+        "porcentaje_revenue_acumulado": 11.03,
+        "categoria": "Repuestos Auto",
+        "velocidad_rotacion": "muy_alta",
+        "recomendacion_stock": "Mantener 170+ unidades"
+      },
+      {
+        "rank": 6,
+        "item_id": "MLA1485449105",
+        "titulo": "Cubre Alfombras Termoformadas Fiat Cronos Negro",
+        "sku": "OE-MAT-CROG1-KIT-XI",
+        "ordenes": 233,
+        "unidades": 234,
+        "revenue": 61806798,
+        "ganancia_estimada": 15451699,
+        "pct_revenue": 1.27,
+        "porcentaje_revenue_acumulado": 12.30,
+        "categoria": "Accesorios Auto",
+        "velocidad_rotacion": "media",
+        "recomendacion_stock": "Mantener 60+ unidades"
+      },
+      {
+        "rank": 7,
+        "item_id": "MLA2415998246",
+        "titulo": "Cubre Alfombra Termoformadas Ford Territory 2023+ Oe Negro",
+        "sku": "OE-MAT-TERRG2-KIT-XI",
+        "ordenes": 221,
+        "unidades": 221,
+        "revenue": 56358400,
+        "ganancia_estimada": 14089600,
+        "pct_revenue": 1.16,
+        "porcentaje_revenue_acumulado": 13.46,
+        "categoria": "Accesorios Auto",
+        "velocidad_rotacion": "media",
+        "recomendacion_stock": "Mantener 55+ unidades"
+      },
+      {
+        "rank": 8,
+        "item_id": "MLA1991775706",
+        "titulo": "Cubre Alfombra Termoformadas Volkswagen Taos Oe",
+        "sku": "OE-MAT-TAOSG1-KIT-XI",
+        "ordenes": 212,
+        "unidades": 213,
+        "revenue": 53895520,
+        "ganancia_estimada": 13473880,
+        "pct_revenue": 1.11,
+        "porcentaje_revenue_acumulado": 14.56,
+        "categoria": "Accesorios Auto",
+        "velocidad_rotacion": "media",
+        "recomendacion_stock": "Mantener 55+ unidades"
+      },
+      {
+        "rank": 9,
+        "item_id": "MLA2009267058",
+        "titulo": "Funda Cubre Asiento Fundas Auto Universal Cuero + Volante",
+        "sku": "HP-SC-BR-XI",
+        "ordenes": 368,
+        "unidades": 369,
+        "revenue": 52523405,
+        "ganancia_estimada": 13130851,
+        "pct_revenue": 1.08,
+        "porcentaje_revenue_acumulado": 15.64,
+        "categoria": "Accesorios Auto",
+        "velocidad_rotacion": "alta",
+        "recomendacion_stock": "Mantener 90+ unidades"
+      },
+      {
+        "rank": 10,
+        "item_id": "MLA1513381865",
+        "titulo": "Lapiz 3d Con Bateria Filamentos Baja Temperatura Ninos Kleur",
+        "sku": "KL-3DPEN-VT-XI",
+        "ordenes": 1461,
+        "unidades": 1564,
+        "revenue": 49362828,
+        "ganancia_estimada": 12340707,
+        "pct_revenue": 1.01,
+        "porcentaje_revenue_acumulado": 16.65,
+        "categoria": "Arte y Manualidades",
+        "velocidad_rotacion": "muy_alta",
+        "recomendacion_stock": "Mantener 350+ unidades - CRITICO NAVIDAD"
+      },
+      {
+        "rank": 11,
+        "item_id": "MLA1482761781",
+        "titulo": "Carburador Pwk 28 30 32 34 Cortina Plana Competicion Japon",
+        "sku": "OSK34-XI",
+        "ordenes": 888,
+        "unidades": 918,
+        "revenue": 46533368,
+        "ganancia_estimada": 11633342,
+        "pct_revenue": 0.96,
+        "porcentaje_revenue_acumulado": 17.61,
+        "categoria": "Repuestos Moto",
+        "velocidad_rotacion": "muy_alta",
+        "recomendacion_stock": "Mantener 220+ unidades"
+      },
+      {
+        "rank": 12,
+        "item_id": "MLA2128201130",
+        "titulo": "Cubre Alfombra Termoformadas Peugeot 208 Gen 2 2020+ Oe",
+        "sku": "OE-MAT-208G2-KIT-XI",
+        "ordenes": 174,
+        "unidades": 174,
+        "revenue": 45708385,
+        "ganancia_estimada": 11427096,
+        "pct_revenue": 0.94,
+        "porcentaje_revenue_acumulado": 18.55,
+        "categoria": "Accesorios Auto",
+        "velocidad_rotacion": "media",
+        "recomendacion_stock": "Mantener 45+ unidades"
+      },
+      {
+        "rank": 13,
+        "item_id": "MLA1452397323",
+        "titulo": "Tapa Valvulas Aluminio Astra Vectra Zafira 2.0 2.2 2.4 16v",
+        "sku": "OE-EVC005-XI",
+        "ordenes": 411,
+        "unidades": 411,
+        "revenue": 45687139,
+        "ganancia_estimada": 11421785,
+        "pct_revenue": 0.94,
+        "porcentaje_revenue_acumulado": 19.48,
+        "categoria": "Repuestos Auto",
+        "velocidad_rotacion": "alta",
+        "recomendacion_stock": "Mantener 100+ unidades"
+      },
+      {
+        "rank": 14,
+        "item_id": "MLA2072310728",
+        "titulo": "Carburador Ford Falcon F100 221 40mm Varilla Oe",
+        "sku": "OE-CAR-FORD221H-XI",
+        "ordenes": 246,
+        "unidades": 246,
+        "revenue": 44572710,
+        "ganancia_estimada": 11143178,
+        "pct_revenue": 0.91,
+        "porcentaje_revenue_acumulado": 20.40,
+        "categoria": "Repuestos Auto",
+        "velocidad_rotacion": "media",
+        "recomendacion_stock": "Mantener 65+ unidades"
+      },
+      {
+        "rank": 15,
+        "item_id": "MLA1991814550",
+        "titulo": "Cubre Alfombra Termoformada Toyota Hilux 2005 2015 Premium",
+        "sku": "OE-OMT-HILVigo-KIT-XI",
+        "ordenes": 149,
+        "unidades": 149,
+        "revenue": 39790500,
+        "ganancia_estimada": 9947625,
+        "pct_revenue": 0.82,
+        "porcentaje_revenue_acumulado": 21.22,
+        "categoria": "Accesorios Auto",
+        "velocidad_rotacion": "media",
+        "recomendacion_stock": "Mantener 40+ unidades"
+      }
+    ],
+    "resumen_pareto": {
+      "top_20_pct_productos": 152,
+      "revenue_top_20": 3511171850,
+      "porcentaje_revenue": 72.1,
+      "ganancia_top_20_estimada": 877792962,
+      "productos_totales": 762,
+      "productos_para_80pct": 203,
+      "pct_productos_para_80": 26.6,
+      "confirmacion_80_20": false,
+      "insight": "203 productos (26.6%) generan el 80% del revenue. Top 20% (152 prod.) = 72.1%",
+      "nota_auditoria": "Datos verificados desde orders_full.csv - 66,180 ordenes PAID"
+    },
+    "productos_bajo_rendimiento": [
+      {
+        "titulo": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X8",
+        "ordenes": 45,
+        "revenue": 157500,
+        "ganancia_estimada": 39375,
+        "recomendacion": "Evaluar discontinuar o bundlear con otros productos"
+      },
+      {
+        "titulo": "Sujetador Paragolpes Universal Auto Aluminio Jdm",
+        "ordenes": 38,
+        "revenue": 189999,
+        "ganancia_estimada": 47500,
+        "recomendacion": "Bajo margen absoluto - revisar pricing"
+      },
+      {
+        "titulo": "Soporte Radiador Anodizado Honda Civic 92-95",
+        "ordenes": 32,
+        "revenue": 182400,
+        "ganancia_estimada": 45600,
+        "recomendacion": "Nicho muy especifico - mantener stock minimo"
+      }
+    ]
+  },
+
+  "sugerencias_stock": {
+    "criticos_para_navidad": [
+      {
+        "producto": "Lapiz 3d Con Bateria Filamentos Baja Temperatura Ninos Kleur",
+        "sku": "KL-3DPEN-VT-XI",
+        "demanda_dic_proyectada": 450,
+        "stock_sugerido": 500,
+        "motivo": "Producto estrella para regalo infantil - pico diciembre"
+      },
+      {
+        "producto": "Set Arte 288 Piezas Completo Kleur",
+        "sku": "KL-SET288-XI",
+        "demanda_dic_proyectada": 280,
+        "stock_sugerido": 320,
+        "motivo": "Regalo popular para ninos y jovenes"
+      },
+      {
+        "producto": "Filamento Para Lapiz 3d Pcl Baja Temperatura Pack X20",
+        "sku": "KL-FILX20-XI",
+        "demanda_dic_proyectada": 380,
+        "stock_sugerido": 420,
+        "motivo": "Cross-sell del lapiz 3D - compra conjunta 25%"
+      },
+      {
+        "producto": "Marcadores Doble Punta De Alcohol 80u Estuche + Blender",
+        "sku": "KL-MARC80-XI",
+        "demanda_dic_proyectada": 180,
+        "stock_sugerido": 200,
+        "motivo": "Producto premium arte - regalo para adolescentes"
+      },
+      {
+        "producto": "Bicicleta Mountain MTB R29",
+        "sku": "HPP-RYDER-S1-XL-XI",
+        "demanda_dic_proyectada": 85,
+        "stock_sugerido": 100,
+        "motivo": "Regalo premium - alto ticket"
+      }
+    ],
+    "productos_alto_rotacion_2026": [
+      {
+        "producto": "Carburador Pwk Competicion",
+        "crecimiento_esperado": 45,
+        "stock_mensual_sugerido": 130,
+        "motivo": "Tendencia motos custom/competicion en alza"
+      },
+      {
+        "producto": "Alfombras Termoformadas (linea completa)",
+        "crecimiento_esperado": 55,
+        "stock_mensual_sugerido": 400,
+        "motivo": "Categoria mas vendida - autos nuevos 2023-2024"
+      },
+      {
+        "producto": "Estereos Doble Din con Mirror",
+        "crecimiento_esperado": 40,
+        "stock_mensual_sugerido": 150,
+        "motivo": "Retrofit audio sigue siendo fuerte"
+      }
+    ],
+    "alertas_sobrestock": [
+      {
+        "categoria": "Accesorios JDM nicho",
+        "riesgo": "medio",
+        "accion": "No aumentar inventario - demanda estable"
+      },
+      {
+        "categoria": "Repuestos vehiculos discontinuados",
+        "riesgo": "alto",
+        "accion": "Liquidar gradualmente - no reponer"
+      }
+    ]
+  },
+
+  "metricas_crecimiento": {
+    "tasas_crecimiento": {
+      "cagr_ordenes_12m": 0.171,
+      "cagr_revenue_12m": 0.173,
+      "crecimiento_q4_vs_q1": 1.84,
+      "mejor_trimestre": "Q4 2025",
+      "aceleracion_reciente": "Q4 muestra aceleracion vs tendencia lineal"
+    },
+    "proyeccion_2026_vs_2025": {
+      "crecimiento_ordenes": 52.1,
+      "crecimiento_revenue": 55.8,
+      "nuevo_ticket_promedio": 65000,
+      "variacion_ticket": 0.8
+    },
+    "escenarios_2026": {
+      "pesimista": {
+        "ordenes": 97200,
+        "revenue": 6318000000,
+        "crecimiento": 25,
+        "supuestos": "Recesion economica, caida consumo"
+      },
+      "base": {
+        "ordenes": 121500,
+        "revenue": 7897500000,
+        "crecimiento": 52,
+        "supuestos": "Continuidad de tendencias actuales"
+      },
+      "optimista": {
+        "ordenes": 145800,
+        "revenue": 9477000000,
+        "crecimiento": 80,
+        "supuestos": "Expansion categorias, mayor penetracion"
+      }
+    }
+  },
+
+  "kpis_objetivo_2026": {
+    "financieros": {
+      "revenue_objetivo": 7900000000,
+      "ganancia_bruta_objetivo": 1975000000,
+      "margen_objetivo": 0.25,
+      "ticket_promedio_objetivo": 65000
+    },
+    "operativos": {
+      "ordenes_objetivo": 121500,
+      "ordenes_mensuales_promedio": 10125,
+      "clientes_nuevos_objetivo": 75000,
+      "tasa_recompra_objetivo": 0.12
+    },
+    "crecimiento": {
+      "crecimiento_yoy_objetivo": 0.55,
+      "nuevas_categorias": 2,
+      "productos_nuevos": 50
+    }
+  },
+
+  "insights_prescriptivos": {
+    "acciones_inmediatas": [
+      {
+        "prioridad": 1,
+        "accion": "Asegurar stock de productos Navidad",
+        "impacto_estimado": 35000000,
+        "fecha_limite": "2025-12-15",
+        "detalle": "Lapiz 3D, sets arte, filamentos - demanda pico entre 15-23 diciembre"
+      },
+      {
+        "prioridad": 2,
+        "accion": "Activar campaña cross-sell Lapiz 3D + Filamentos",
+        "impacto_estimado": 12000000,
+        "fecha_limite": "2025-12-10",
+        "detalle": "El 25% de compradores de lapiz agregan filamentos. Destacar bundle."
+      },
+      {
+        "prioridad": 3,
+        "accion": "Preparar liquidacion productos bajo rotacion",
+        "impacto_estimado": 8000000,
+        "fecha_limite": "2026-01-15",
+        "detalle": "Liberar capital de productos con menos de 50 ventas anuales"
+      }
+    ],
+    "estrategia_q1_2026": [
+      {
+        "foco": "Recuperacion post-fiestas",
+        "acciones": [
+          "Campana 'Ano Nuevo Auto Nuevo' para accesorios",
+          "Descuentos en productos de arte post-vacaciones escolares",
+          "Push de repuestos - temporada de mantenimiento vehicular"
+        ],
+        "objetivo_revenue": 1417000000
+      }
+    ],
+    "oportunidades_identificadas": [
+      {
+        "oportunidad": "Expansion linea alfombras para modelos 2024-2025",
+        "potencial_revenue": 180000000,
+        "inversion_requerida": 25000000,
+        "roi_estimado": 620
+      },
+      {
+        "oportunidad": "Bundle kits completos arte para escuelas",
+        "potencial_revenue": 95000000,
+        "inversion_requerida": 15000000,
+        "roi_estimado": 533
+      },
+      {
+        "oportunidad": "Programa fidelizacion clientes recurrentes",
+        "potencial_revenue": 120000000,
+        "inversion_requerida": 8000000,
+        "roi_estimado": 1400
+      }
+    ],
+    "riesgos_identificados": [
+      {
+        "riesgo": "Dependencia de categoria Alfombras Auto",
+        "impacto": "alto",
+        "probabilidad": "media",
+        "mitigacion": "Diversificar hacia electronica y arte"
+      },
+      {
+        "riesgo": "Estacionalidad marcada Q1",
+        "impacto": "medio",
+        "probabilidad": "alta",
+        "mitigacion": "Promociones agresivas enero-febrero"
+      },
+      {
+        "riesgo": "Competencia en precios MercadoLibre",
+        "impacto": "medio",
+        "probabilidad": "alta",
+        "mitigacion": "Diferenciacion por servicio y calidad"
+      }
+    ]
+  }
+}

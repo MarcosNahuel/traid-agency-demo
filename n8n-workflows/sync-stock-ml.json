@@ -1,0 +1,310 @@
+{
+  "name": "Sync Stock MercadoLibre → Supabase",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Cada 6 horas",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "melipablo",
+        "options": {}
+      },
+      "id": "redis-get-token",
+      "name": "Redis - Get Token ML",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "credentials": {
+        "redis": {
+          "id": "HQzKm3HsLa8ODBdx",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.mercadolibre.com/users/1074767186/items/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.propertyName }}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "search_type", "value": "scan" },
+            { "name": "limit", "value": "100" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-items-list",
+      "name": "1. Listar Items ML",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer IDs de items y pasar el token\nconst token = $('Redis - Get Token ML').first().json.propertyName;\nconst items = $input.first().json.results || [];\nreturn items.map(id => ({ json: { item_id: id, token: token } }));"
+      },
+      "id": "extract-ids",
+      "name": "Extraer IDs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 20,
+        "options": {}
+      },
+      "id": "batch-items",
+      "name": "Batch 20 items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Preparar IDs para la llamada batch\nconst items = $input.all();\nconst ids = items.map(i => i.json.item_id).join(',');\nconst token = items[0]?.json.token || '';\nreturn [{ json: { ids: ids, token: token } }];"
+      },
+      "id": "prepare-batch",
+      "name": "Preparar Batch",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.mercadolibre.com/items?ids={{ $json.ids }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-items-detail",
+      "name": "2. Detalle Items (batch)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Transformar items de ML al formato de Supabase\nconst items = $input.all();\nconst result = [];\n\nfor (const batch of items) {\n  const batchItems = batch.json.body || batch.json;\n  if (Array.isArray(batchItems)) {\n    for (const item of batchItems) {\n      const body = item.body || item;\n      if (body && body.id) {\n        result.push({\n          json: {\n            item_id: body.id,\n            title: body.title,\n            permalink: body.permalink,\n            thumbnail: body.thumbnail,\n            price: body.price,\n            available_quantity: body.available_quantity || 0,\n            status: body.status,\n            sku: body.seller_custom_field || null,\n            category_id: body.category_id,\n            seller_id: body.seller_id?.toString()\n          }\n        });\n      }\n    }\n  }\n}\n\nreturn result;"
+      },
+      "id": "transform-items",
+      "name": "Transformar a Supabase",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1780, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://horsepower-supabase.e5l6dk.easypanel.host/rest/v1/ml_items",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "upsert-supabase",
+      "name": "3. Upsert ml_items",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2000, 300]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "melipablo",
+        "options": {}
+      },
+      "id": "redis-get-token-2",
+      "name": "Redis - Get Token ML (Orders)",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [2220, 300],
+      "credentials": {
+        "redis": {
+          "id": "HQzKm3HsLa8ODBdx",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.mercadolibre.com/orders/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.propertyName }}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "seller", "value": "1074767186" },
+            { "name": "order.status", "value": "paid" },
+            { "name": "order.date_created.from", "value": "={{ $now.minus(90, 'days').toISO() }}" },
+            { "name": "limit", "value": "50" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-orders",
+      "name": "4. Obtener Ordenes 90d",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2440, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer items de ordenes\nconst orders = $input.first().json.results || [];\nconst result = [];\n\nfor (const order of orders) {\n  if (order.order_items) {\n    for (const item of order.order_items) {\n      result.push({\n        json: {\n          order_id: order.id.toString(),\n          item_id: item.item.id,\n          quantity: item.quantity,\n          unit_price: item.unit_price,\n          order_date: order.date_created\n        }\n      });\n    }\n  }\n}\n\nreturn result;"
+      },
+      "id": "extract-order-items",
+      "name": "Extraer Items de Ordenes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2660, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://horsepower-supabase.e5l6dk.easypanel.host/rest/v1/ml_orders_items",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "upsert-orders",
+      "name": "5. Upsert Ventas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2880, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://horsepower-supabase.e5l6dk.easypanel.host/rest/v1/rpc/refresh_stock_metrics",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgCiAgICAicm9sZSI6ICJzZXJ2aWNlX3JvbGUiLAogICAgImlzcyI6ICJzdXBhYmFzZS1kZW1vIiwKICAgICJpYXQiOiAxNjQxNzY5MjAwLAogICAgImV4cCI6IDE3OTk1MzU2MDAKfQ.DaYlNEoUrrEn2Ig7tqibS-PHK5vgusbcbo7X36XVt4Q"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "recalc-metrics",
+      "name": "6. Recalcular Métricas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [3100, 300]
+    }
+  ],
+  "connections": {
+    "Cada 6 horas": { "main": [[{ "node": "Redis - Get Token ML", "type": "main", "index": 0 }]] },
+    "Redis - Get Token ML": { "main": [[{ "node": "1. Listar Items ML", "type": "main", "index": 0 }]] },
+    "1. Listar Items ML": { "main": [[{ "node": "Extraer IDs", "type": "main", "index": 0 }]] },
+    "Extraer IDs": { "main": [[{ "node": "Batch 20 items", "type": "main", "index": 0 }]] },
+    "Batch 20 items": { "main": [[{ "node": "Preparar Batch", "type": "main", "index": 0 }]] },
+    "Preparar Batch": { "main": [[{ "node": "2. Detalle Items (batch)", "type": "main", "index": 0 }]] },
+    "2. Detalle Items (batch)": { "main": [[{ "node": "Transformar a Supabase", "type": "main", "index": 0 }]] },
+    "Transformar a Supabase": { "main": [[{ "node": "3. Upsert ml_items", "type": "main", "index": 0 }]] },
+    "3. Upsert ml_items": { "main": [[{ "node": "Redis - Get Token ML (Orders)", "type": "main", "index": 0 }]] },
+    "Redis - Get Token ML (Orders)": { "main": [[{ "node": "4. Obtener Ordenes 90d", "type": "main", "index": 0 }]] },
+    "4. Obtener Ordenes 90d": { "main": [[{ "node": "Extraer Items de Ordenes", "type": "main", "index": 0 }]] },
+    "Extraer Items de Ordenes": { "main": [[{ "node": "5. Upsert Ventas", "type": "main", "index": 0 }]] },
+    "5. Upsert Ventas": { "main": [[{ "node": "6. Recalcular Métricas", "type": "main", "index": 0 }]] }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "total_revenue": 4872302555,
+  "active_products": 762,
+  "unique_customers": 57297,
+  "total_orders": 66180,
+  "answered_questions": 1046,
+  "total_products": 762,
+  "repeat_customers": 4540,
+  "total_questions": 1050,
+  "extraction_date": "2025-12-08 22:47:17",
+  "_metadata": {
+    "source": "MercadoLibre Orders API",
+    "filter": "status = 'paid' only",
+    "period": {
+      "from": "2024-12-08",
+      "to": "2025-12-08",
+      "months": 13
+    },
+    "seller_id": "1074767186",
+    "seller_name": "Tienda Lubbi",
+    "extraction_method": "OAuth2 API + PowerShell Script",
+    "original_rows": 71916,
+    "paid_rows": 66180,
+    "cancelled_rows": 5636,
+    "repeat_rate": 7.92,
+    "avg_ticket": 73622,
+    "notes": [
+      "Solo ordenes con status='paid'",
+      "Excluye cancelled (5,636) y partially_refunded (100)",
+      "Revenue total de ordenes pagadas",
+      "Clientes recurrentes = 2+ compras en el periodo"
+    ]
+  }
+}

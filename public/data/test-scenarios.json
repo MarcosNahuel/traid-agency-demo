@@ -1,0 +1,233 @@
+{
+  "scenarios": [
+    {
+      "id": "normal_delivered",
+      "name": "Orden Normal - Entregada",
+      "description": "Compra típica ya entregada sin problemas",
+      "icon": "✅",
+      "shipping_status": "delivered",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": 5,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "¿Llegó bien mi pedido?",
+        "¿Pueden enviarme el comprobante?",
+        "Gracias por todo!"
+      ]
+    },
+    {
+      "id": "pending_shipping",
+      "name": "Pendiente de Envío",
+      "description": "Orden pagada esperando despacho",
+      "icon": "📦",
+      "shipping_status": "pending",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": null,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "¿Cuándo despachan mi pedido?",
+        "¿Ya salió el envío?",
+        "¿Cuánto tarda en llegar?"
+      ]
+    },
+    {
+      "id": "in_transit",
+      "name": "En Tránsito",
+      "description": "Envío en camino al destino",
+      "icon": "🚚",
+      "shipping_status": "in_transit",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": null,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "¿Dónde está mi pedido?",
+        "¿Cuándo llega?",
+        "El tracking no actualiza"
+      ]
+    },
+    {
+      "id": "flex_treggo",
+      "name": "Envío Flex (Treggo)",
+      "description": "Entrega rápida con Treggo",
+      "icon": "🚀",
+      "shipping_status": "in_transit",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": null,
+      "has_claim": false,
+      "carrier": "flex",
+      "is_flex": true,
+      "suggested_questions": [
+        "¿Cuándo llega el envío Flex?",
+        "El repartidor no vino",
+        "Dice entregado pero no llegó"
+      ]
+    },
+    {
+      "id": "flex_2_visits",
+      "name": "Flex - 2 Visitas Fallidas",
+      "description": "Treggo intentó 2 veces sin éxito → Debe cancelarse",
+      "icon": "❌",
+      "shipping_status": "not_delivered",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": null,
+      "has_claim": false,
+      "carrier": "flex",
+      "is_flex": true,
+      "failed_attempts": 2,
+      "suggested_questions": [
+        "¿Por qué no me llegó?",
+        "Quiero reprogramar la entrega",
+        "No estaba en casa"
+      ]
+    },
+    {
+      "id": "factura_a_cuit",
+      "name": "Quiere Factura A (CUIT)",
+      "description": "Comprador monotributista solicita Factura A",
+      "icon": "🧾",
+      "shipping_status": "delivered",
+      "billing_type": "CUIT",
+      "can_receive_factura_a": true,
+      "days_since_delivery": 3,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "Necesito factura A",
+        "¿Me pueden hacer factura A?",
+        "Soy monotributista"
+      ]
+    },
+    {
+      "id": "factura_b_dni",
+      "name": "Pide Factura A (solo DNI)",
+      "description": "Comprador con DNI pide Factura A (no corresponde)",
+      "icon": "📄",
+      "shipping_status": "delivered",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": 3,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "Necesito factura A",
+        "¿Me pueden hacer factura A?",
+        "¿Cómo cargo mi CUIT?"
+      ]
+    },
+    {
+      "id": "devolucion_dentro_plazo",
+      "name": "Devolución (< 28 días)",
+      "description": "Quiere devolver dentro del plazo permitido",
+      "icon": "↩️",
+      "shipping_status": "delivered",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": 10,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "Quiero devolver el producto",
+        "No me sirve, quiero devolverlo",
+        "El producto vino fallado"
+      ]
+    },
+    {
+      "id": "devolucion_fuera_plazo",
+      "name": "Devolución (> 28 días)",
+      "description": "Quiere devolver fuera del plazo permitido",
+      "icon": "⏰",
+      "shipping_status": "delivered",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": 45,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "Quiero devolver el producto",
+        "No funciona, quiero mi dinero",
+        "Recién ahora lo pude probar"
+      ]
+    },
+    {
+      "id": "incompatibilidad",
+      "name": "Problema de Compatibilidad",
+      "description": "El repuesto no es compatible con el vehículo",
+      "icon": "🔧",
+      "shipping_status": "delivered",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": 7,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "No es compatible con mi auto",
+        "No le sirve a mi Bora 2010",
+        "¿Es compatible con mi vehículo?"
+      ]
+    },
+    {
+      "id": "instalacion",
+      "name": "Consulta de Instalación",
+      "description": "Pregunta cómo instalar el repuesto",
+      "icon": "🛠️",
+      "shipping_status": "delivered",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": 2,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "¿Cómo se instala?",
+        "¿Tienen instrucciones?",
+        "¿Dónde puedo llevarlo a instalar?"
+      ]
+    },
+    {
+      "id": "producto_equivocado",
+      "name": "Producto Equivocado",
+      "description": "Enviaron un producto diferente al comprado",
+      "icon": "⚠️",
+      "shipping_status": "delivered",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": 1,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "Me enviaron otro producto",
+        "Esto no es lo que compré",
+        "El código no coincide"
+      ]
+    },
+    {
+      "id": "agradecimiento",
+      "name": "Agradecimiento",
+      "description": "Cliente satisfecho agradece (no debería responder)",
+      "icon": "🙏",
+      "shipping_status": "delivered",
+      "billing_type": "DNI",
+      "can_receive_factura_a": false,
+      "days_since_delivery": 5,
+      "has_claim": false,
+      "carrier": "mercadoenvios",
+      "suggested_questions": [
+        "Gracias por todo!",
+        "Excelente atención!",
+        "Todo perfecto, gracias!"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "created_at": "2024-12-03",
+    "description": "Escenarios de prueba para el simulador de postventa"
+  }
+}

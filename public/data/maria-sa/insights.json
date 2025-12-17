@@ -1,0 +1,181 @@
+{
+  "data_source": "MarIA S.A. - Supabase Analytics",
+  "generated_at": "2025-12-17 10:00:00",
+  "resumen_general": {
+    "titulo": "Resumen Ejecutivo - MarIA S.A.",
+    "periodo": "Dic 2024 - Dic 2025",
+    "total_ordenes": 2500,
+    "revenue_total": 180000000,
+    "ticket_promedio": 72000,
+    "productos_activos": 65,
+    "total_clientes": 2100,
+    "clientes_recurrentes": 336,
+    "tasa_fidelizacion": 16,
+    "tasa_recurrencia": "16%",
+    "tendencia": "crecimiento",
+    "crecimiento_mensual": "3.5%"
+  },
+  "productos_estrella": [
+    {
+      "rank": 1,
+      "sku": "PC-HIGH-001",
+      "title": "PC Gamer Pro - RTX 4070 | Ryzen 7 5800X | 32GB RAM",
+      "orders": 85,
+      "revenue": 102000000,
+      "margin": "18%",
+      "trend": "up"
+    },
+    {
+      "rank": 2,
+      "sku": "GPU-4070-001",
+      "title": "NVIDIA GeForce RTX 4070 12GB - Gigabyte Gaming OC",
+      "orders": 120,
+      "revenue": 90000000,
+      "margin": "15%",
+      "trend": "stable"
+    },
+    {
+      "rank": 3,
+      "sku": "NB-PRO-001",
+      "title": "MacBook Air M2 - 8GB RAM | 256GB SSD",
+      "orders": 45,
+      "revenue": 63000000,
+      "margin": "12%",
+      "trend": "up"
+    },
+    {
+      "rank": 4,
+      "sku": "PC-MID-001",
+      "title": "PC Gamer Mid - RTX 4060 | Ryzen 5 5600 | 16GB RAM",
+      "orders": 95,
+      "revenue": 80750000,
+      "margin": "20%",
+      "trend": "up"
+    },
+    {
+      "rank": 5,
+      "sku": "GPU-4060-001",
+      "title": "NVIDIA GeForce RTX 4060 8GB - MSI Ventus 2X",
+      "orders": 150,
+      "revenue": 67500000,
+      "margin": "14%",
+      "trend": "stable"
+    }
+  ],
+  "productos_frecuentemente_juntos": [
+    {
+      "producto_1": "PC Gamer Pro RTX 4070",
+      "producto_2": "Monitor ASUS 27\" 144Hz",
+      "veces": 45,
+      "precio_combo": 170000
+    },
+    {
+      "producto_1": "GPU RTX 4060/4070",
+      "producto_2": "Fuente Corsair 750W",
+      "veces": 78,
+      "precio_combo": 195000
+    },
+    {
+      "producto_1": "Notebook Gamer ASUS",
+      "producto_2": "Mouse Logitech G Pro",
+      "veces": 32,
+      "precio_combo": 145000
+    },
+    {
+      "producto_1": "Teclado HyperX Alloy",
+      "producto_2": "Mouse + Mousepad Gaming",
+      "veces": 95,
+      "precio_combo": 45000
+    },
+    {
+      "producto_1": "PC Gamer Mid/Pro",
+      "producto_2": "Silla Secretlab Titan",
+      "veces": 28,
+      "precio_combo": 250000
+    },
+    {
+      "producto_1": "Monitor ASUS QHD",
+      "producto_2": "Brazo Articulado Monitor",
+      "veces": 42,
+      "precio_combo": 95000
+    }
+  ],
+  "segmentos_clientes": [
+    {
+      "segmento": "Gamers Hardcore",
+      "clientes": 420,
+      "porcentaje": 20,
+      "ticket_promedio": 95000,
+      "caracteristicas": ["Compran hardware premium", "Alta frecuencia de compra", "Buscan ultimas novedades"]
+    },
+    {
+      "segmento": "Streamers/Creadores",
+      "clientes": 315,
+      "porcentaje": 15,
+      "ticket_promedio": 110000,
+      "caracteristicas": ["Priorizan calidad de video", "Compran accesorios de streaming", "Presupuesto alto"]
+    },
+    {
+      "segmento": "Gamers Casual",
+      "clientes": 840,
+      "porcentaje": 40,
+      "ticket_promedio": 55000,
+      "caracteristicas": ["Buscan buena relacion precio/calidad", "Compran perifericos mid-range", "Sensibles a ofertas"]
+    },
+    {
+      "segmento": "Profesionales",
+      "clientes": 315,
+      "porcentaje": 15,
+      "ticket_promedio": 85000,
+      "caracteristicas": ["Notebooks para trabajo", "Valoran garantia", "Compran para empresas"]
+    },
+    {
+      "segmento": "Estudiantes",
+      "clientes": 210,
+      "porcentaje": 10,
+      "ticket_promedio": 45000,
+      "caracteristicas": ["Presupuesto limitado", "Buscan ofertas", "Compran en fechas especiales"]
+    }
+  ],
+  "recomendaciones_venta": [
+    "Potenciar ventas de perifericos con PCs - El 65% de compradores de PCs no agregan perifericos. Implementar sugerencias automaticas en checkout. Impacto: +12% ticket promedio.",
+    "Expandir catalogo de monitores ultrawide - Alta demanda no satisfecha de monitores 34\". Agregar 5-8 SKUs nuevos. Impacto: +$8M revenue potencial.",
+    "Programa de fidelizacion gamers - 16% de recurrencia es bajo para el segmento. Implementar programa de puntos/descuentos. Impacto: +25% recurrencia.",
+    "Bundles pre-armados por uso - Crear packs: Setup Streamer, Setup Gamer Competitivo, Setup Trabajo Remoto. Impacto: +15% conversion.",
+    "Financiacion en 12 cuotas sin interes - Productos premium (+$500k) tienen menor conversion. Habilitar cuotas para ticket alto. Impacto: +20% conversion PCs Pro.",
+    "Garantia extendida premium - Ofrecer garantia de 2 anos (+$15k) en GPUs y PCs. Margen adicional del 40%. Impacto: +$3M revenue anual."
+  ],
+  "alertas": [
+    {
+      "tipo": "stock",
+      "mensaje": "RTX 4060 con stock bajo (8 unidades). Reponer antes de fin de semana.",
+      "urgencia": "alta"
+    },
+    {
+      "tipo": "tendencia",
+      "mensaje": "Caida del 15% en ventas de sillas gaming vs mes anterior. Revisar precios.",
+      "urgencia": "media"
+    },
+    {
+      "tipo": "oportunidad",
+      "mensaje": "Hot Sale en 2 semanas. Preparar stock de productos estrella.",
+      "urgencia": "alta"
+    }
+  ],
+  "metricas_ia": {
+    "total_conversaciones": 3200,
+    "resueltas_por_ia": 2720,
+    "escaladas_humano": 480,
+    "tasa_resolucion_ia": 85,
+    "tiempo_respuesta_promedio": "1.2 segundos",
+    "satisfaccion_cliente": 4.6,
+    "principales_consultas": [
+      {"tipo": "tracking", "cantidad": 1280, "porcentaje": 40},
+      {"tipo": "compatibilidad", "cantidad": 640, "porcentaje": 20},
+      {"tipo": "facturacion", "cantidad": 480, "porcentaje": 15},
+      {"tipo": "garantia", "cantidad": 384, "porcentaje": 12},
+      {"tipo": "devolucion", "cantidad": 256, "porcentaje": 8},
+      {"tipo": "otros", "cantidad": 160, "porcentaje": 5}
+    ]
+  }
+}

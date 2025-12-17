@@ -1,0 +1,49 @@
+{
+  "name": "crm-postventa-demo",
+  "version": "1.0.0",
+  "description": "CRM Postventa Multi-Canal con IA - Demo MarIA S.A.",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.87.1",
+    "@tanstack/react-query": "^5.90.12",
+    "clsx": "^2.1.0",
+    "date-fns": "^3.6.0",
+    "ioredis": "^5.8.2",
+    "lucide-react": "^0.378.0",
+    "next": "^14.1.0",
+    "papaparse": "^5.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recharts": "^2.15.2",
+    "tailwind-merge": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/papaparse": "^5.3.14",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  },
+  "keywords": [
+    "crm",
+    "postventa",
+    "mercadolibre",
+    "shopify",
+    "tiendanube",
+    "ia",
+    "nextjs",
+    "supabase"
+  ],
+  "author": "TraidAgency",
+  "license": "MIT"
+}

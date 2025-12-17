@@ -1,0 +1,321 @@
+{
+  "orders": [
+    {
+      "id": "2000010039409178",
+      "product": {
+        "id": "MLA1575488578",
+        "title": "Carburador Keihin Pwk Cortina Plana Moto Japón 36mm - 42mm",
+        "price": 78500,
+        "sku": "PWK36-XI",
+        "category": "MLA22655"
+      },
+      "buyer": {
+        "id": "3909057",
+        "nickname": "MARIANOFRANCESCHI",
+        "first_name": "Mariano Andres",
+        "last_name": "Franceschi"
+      },
+      "shipping": {
+        "id": "44171781349",
+        "status": "delivered",
+        "logistic_type": "fulfillment",
+        "carrier": "mercadoenvios",
+        "tracking_number": "MEL44171781349LMFFF01",
+        "date_shipped": "2024-12-04T00:57:03.392-04:00",
+        "date_delivered": "2024-12-04T18:20:03.000-04:00",
+        "receiver_city": "cañada de gomez",
+        "receiver_state": "Santa Fe"
+      },
+      "billing_info": {
+        "doc_type": "DNI",
+        "doc_number": "29351322",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-03T04:58:35.000-04:00",
+      "tags": ["paid", "delivered"]
+    },
+    {
+      "id": "2000010040054648",
+      "product": {
+        "id": "MLA1924352882",
+        "title": "Kit X4 Inyector Chevrolet Corsa 1.4 1.6 Classic Mpfi Oe",
+        "price": 76833,
+        "sku": "OE-FIN090-X4-XI",
+        "category": "MLA61201"
+      },
+      "buyer": {
+        "id": "435647618",
+        "nickname": "VENTURAAGOSTINA",
+        "first_name": "Agostina",
+        "last_name": "Ventura"
+      },
+      "shipping": {
+        "id": "44172088895",
+        "status": "delivered",
+        "logistic_type": "cross_docking",
+        "carrier": "mercadoenvios",
+        "date_shipped": "2024-12-04T10:00:00.000-04:00",
+        "date_delivered": "2024-12-05T14:30:00.000-04:00"
+      },
+      "billing_info": {
+        "doc_type": "DNI",
+        "doc_number": "40123456",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-03T07:30:01.000-04:00",
+      "tags": ["paid", "delivered"]
+    },
+    {
+      "id": "2000010040170024",
+      "product": {
+        "id": "MLA1920041222",
+        "title": "Bobina Encendido Chevrolet Corsa Classic 1.4 1.6 8v 4 Pines",
+        "price": 27700,
+        "sku": "OE-IC001-XI",
+        "category": "MLA60957"
+      },
+      "buyer": {
+        "id": "1011316983",
+        "nickname": "VERGARAGUILLERMO",
+        "first_name": "Guillermo",
+        "last_name": "Vergara"
+      },
+      "shipping": {
+        "id": "44172142011",
+        "status": "delivered",
+        "logistic_type": "cross_docking",
+        "carrier": "mercadoenvios",
+        "date_delivered": "2024-12-06T16:00:00.000-04:00"
+      },
+      "billing_info": {
+        "doc_type": "DNI",
+        "doc_number": "35789012",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-03T07:44:52.000-04:00",
+      "tags": ["paid", "delivered"],
+      "has_mediation": true,
+      "mediation_id": "5322599612"
+    },
+    {
+      "id": "2000010040482752",
+      "product": {
+        "id": "MLA1532569508",
+        "title": "Carburador Tipo Weber Vw Gacel Gol Senda Saveiro 1.6 2 Bocas",
+        "price": 191963,
+        "sku": "C10-1-XI",
+        "category": "MLA6980"
+      },
+      "buyer": {
+        "id": "247203460",
+        "nickname": "NESTOTLLAMPA",
+        "first_name": "Nestor",
+        "last_name": "Llampa"
+      },
+      "shipping": {
+        "id": "44172490538",
+        "status": "delivered",
+        "logistic_type": "fulfillment",
+        "carrier": "mercadoenvios"
+      },
+      "billing_info": {
+        "doc_type": "CUIT",
+        "doc_number": "20-24720346-9",
+        "taxpayer_type": "Responsable Monotributo",
+        "can_receive_factura_a": true
+      },
+      "date_created": "2024-12-03T08:22:47.000-04:00",
+      "tags": ["paid", "delivered"]
+    },
+    {
+      "id": "2000010040532960",
+      "product": {
+        "id": "MLA1891871958",
+        "title": "Tecla Comando Levantavidrios Vw Bora Golf Bastidor Completo",
+        "price": 16300,
+        "sku": "OE-WS003-XI",
+        "category": "MLA376668"
+      },
+      "buyer": {
+        "id": "25525716",
+        "nickname": "JRS.ACCESORIOS",
+        "first_name": "Jorge",
+        "last_name": "Rodriguez"
+      },
+      "shipping": {
+        "id": "44172318195",
+        "status": "delivered",
+        "logistic_type": "cross_docking",
+        "carrier": "mercadoenvios"
+      },
+      "billing_info": {
+        "doc_type": "CUIT",
+        "doc_number": "20-25525716-8",
+        "taxpayer_type": "Responsable Inscripto",
+        "can_receive_factura_a": true
+      },
+      "date_created": "2024-12-03T08:28:22.000-04:00",
+      "tags": ["paid", "delivered"]
+    },
+    {
+      "id": "2000010040687124",
+      "product": {
+        "id": "MLA1435923909",
+        "title": "Kit 4 Bobina Ecs + Bujía Bkr7eix Vw Bora 1.8 T 180cv",
+        "price": 262625,
+        "sku": "ES-2763740-2667",
+        "category": "MLA60957"
+      },
+      "buyer": {
+        "id": "572261202",
+        "nickname": "BUAR6028996",
+        "first_name": "Carlos",
+        "last_name": "Buarque"
+      },
+      "shipping": {
+        "id": "44172395739",
+        "status": "delivered",
+        "logistic_type": "fulfillment",
+        "carrier": "mercadoenvios"
+      },
+      "billing_info": {
+        "doc_type": "DNI",
+        "doc_number": "32456789",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-03T08:45:32.000-04:00",
+      "tags": ["paid", "delivered"]
+    },
+    {
+      "id": "2000010041198748",
+      "product": {
+        "id": "MLA1446868615",
+        "title": "Alfombras Termoformadas Ford Ranger Linea Nueva Oe",
+        "price": 305050,
+        "sku": "OE-MAT-RAN-XI",
+        "category": "MLA2219"
+      },
+      "buyer": {
+        "id": "29821169",
+        "nickname": "RAURIGANTI",
+        "first_name": "Raul",
+        "last_name": "Riganti"
+      },
+      "shipping": {
+        "id": "44172831524",
+        "status": "delivered",
+        "logistic_type": "cross_docking",
+        "carrier": "mercadoenvios"
+      },
+      "billing_info": {
+        "doc_type": "CUIT",
+        "doc_number": "27-29821169-4",
+        "taxpayer_type": "Responsable Monotributo",
+        "can_receive_factura_a": true
+      },
+      "date_created": "2024-12-03T09:34:06.000-04:00",
+      "tags": ["paid", "delivered"]
+    },
+    {
+      "id": "2000010040595372",
+      "product": {
+        "id": "MLA1445232839",
+        "title": "Cable Cinta Espiral Airbag Volante Nissan Tiida Frontier",
+        "price": 21200,
+        "sku": "OE-ASC002-XI",
+        "category": "MLA373358"
+      },
+      "buyer": {
+        "id": "219049848",
+        "nickname": "CAS.94",
+        "first_name": "Casimiro",
+        "last_name": "Lopez"
+      },
+      "shipping": {
+        "id": "44172352355",
+        "status": "delivered",
+        "logistic_type": "cross_docking",
+        "carrier": "mercadoenvios"
+      },
+      "billing_info": {
+        "doc_type": "DNI",
+        "doc_number": "38901234",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-03T08:36:14.000-04:00",
+      "tags": ["paid", "delivered"]
+    },
+    {
+      "id": "2000010040974698",
+      "product": {
+        "id": "MLA1445294099",
+        "title": "Tecla Levantavidrios Vw Bora Golf Mk4 Passat Borde Cromado",
+        "price": 16300,
+        "sku": "OE-WS002-XI",
+        "category": "MLA376668"
+      },
+      "buyer": {
+        "id": "222250026",
+        "nickname": "CABEACHE",
+        "first_name": "Carlos",
+        "last_name": "Beache"
+      },
+      "shipping": {
+        "id": "44172727554",
+        "status": "delivered",
+        "logistic_type": "cross_docking",
+        "carrier": "mercadoenvios"
+      },
+      "billing_info": {
+        "doc_type": "DNI",
+        "doc_number": "27654321",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-03T09:13:24.000-04:00",
+      "tags": ["paid", "delivered"]
+    },
+    {
+      "id": "2000010040542284",
+      "product": {
+        "id": "MLA1924352882",
+        "title": "Kit X4 Inyector Chevrolet Corsa 1.4 1.6 Classic Mpfi Oe",
+        "price": 76833,
+        "sku": "OE-FIN090-X4-XI",
+        "category": "MLA61201"
+      },
+      "buyer": {
+        "id": "167702318",
+        "nickname": "GUJU3000378",
+        "first_name": "Gustavo",
+        "last_name": "Juarez"
+      },
+      "shipping": {
+        "id": "44172519110",
+        "status": "delivered",
+        "logistic_type": "cross_docking",
+        "carrier": "mercadoenvios"
+      },
+      "billing_info": {
+        "doc_type": "DNI",
+        "doc_number": "33567890",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-03T08:29:17.000-04:00",
+      "tags": ["paid", "delivered"]
+    }
+  ],
+  "metadata": {
+    "seller_id": "1074767186",
+    "seller_nickname": "TIENDALUBBI",
+    "extracted_at": "2024-12-03",
+    "total_orders": 10,
+    "note": "Datos reales anonimizados para simulación de pruebas"
+  }
+}

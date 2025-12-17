@@ -1,0 +1,144 @@
+{
+  "agents": [
+    {
+      "id": "agent-001",
+      "name": "Barbi",
+      "type": "preventa",
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Barbi&backgroundColor=7c3aed",
+      "description": "Agente de preventa especializada en asesoramiento de productos gaming y tecnologia",
+      "channels": ["mercadolibre", "shopify", "tiendanube"],
+      "is_active": true,
+      "config": {
+        "personality": "Amigable, entusiasta del gaming, conocedora de specs tecnicas",
+        "greeting": "Hola! Soy Barbi de MarIA S.A. En que te puedo ayudar hoy?",
+        "escalation_triggers": [
+          "precio_especial",
+          "financiacion_custom",
+          "producto_no_listado",
+          "reclamo"
+        ],
+        "tools": [
+          "product_search",
+          "stock_check",
+          "compatibility_check",
+          "price_lookup"
+        ],
+        "response_style": "casual_profesional",
+        "max_response_length": 500
+      },
+      "metrics": {
+        "total_conversations": 1250,
+        "resolved_without_escalation": 1100,
+        "resolution_rate": 0.88,
+        "avg_response_time_ms": 2500,
+        "satisfaction_score": 4.7,
+        "last_30_days": {
+          "conversations": 180,
+          "escalations": 15,
+          "avg_messages_per_conv": 3.2
+        }
+      },
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-12-16T00:00:00Z"
+    },
+    {
+      "id": "agent-002",
+      "name": "Tomi",
+      "type": "postventa",
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Tomi&backgroundColor=10b981",
+      "description": "Agente de postventa especializado en seguimiento de pedidos, garantias y devoluciones",
+      "channels": ["mercadolibre", "shopify", "tiendanube"],
+      "is_active": true,
+      "config": {
+        "personality": "Empatico, solucionador, paciente con reclamos",
+        "greeting": "Hola! Soy Tomi de MarIA S.A. Como puedo ayudarte con tu compra?",
+        "escalation_triggers": [
+          "producto_danado",
+          "paquete_extraviado",
+          "reclamo_reembolso",
+          "garantia_compleja",
+          "mediacion_ml"
+        ],
+        "tools": [
+          "order_lookup",
+          "tracking_lookup",
+          "billing_check",
+          "return_policy_check",
+          "escalation"
+        ],
+        "response_style": "profesional_empatico",
+        "max_response_length": 600
+      },
+      "metrics": {
+        "total_conversations": 2100,
+        "resolved_without_escalation": 1850,
+        "resolution_rate": 0.88,
+        "avg_response_time_ms": 3200,
+        "satisfaction_score": 4.5,
+        "last_30_days": {
+          "conversations": 320,
+          "escalations": 35,
+          "avg_messages_per_conv": 4.1
+        }
+      },
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-12-16T00:00:00Z"
+    },
+    {
+      "id": "agent-003",
+      "name": "Sofi",
+      "type": "soporte",
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Sofi&backgroundColor=f59e0b",
+      "description": "Agente de soporte tecnico especializada en troubleshooting de hardware gaming",
+      "channels": ["mercadolibre", "shopify", "tiendanube"],
+      "is_active": true,
+      "config": {
+        "personality": "Tecnica, detallista, orientada a soluciones",
+        "greeting": "Hola! Soy Sofi del soporte tecnico de MarIA S.A. Contame que problema tenes!",
+        "escalation_triggers": [
+          "rma_confirmado",
+          "defecto_fabrica",
+          "problema_no_documentado",
+          "multiples_intentos_fallidos"
+        ],
+        "tools": [
+          "knowledge_base",
+          "diagnostic_guide",
+          "warranty_check",
+          "rma_initiate"
+        ],
+        "response_style": "tecnico_amigable",
+        "max_response_length": 800
+      },
+      "metrics": {
+        "total_conversations": 850,
+        "resolved_without_escalation": 680,
+        "resolution_rate": 0.80,
+        "avg_response_time_ms": 4500,
+        "satisfaction_score": 4.6,
+        "last_30_days": {
+          "conversations": 95,
+          "escalations": 18,
+          "avg_messages_per_conv": 5.5
+        }
+      },
+      "created_at": "2024-03-01T10:00:00Z",
+      "updated_at": "2024-12-16T00:00:00Z"
+    }
+  ],
+  "global_metrics": {
+    "total_conversations_all_time": 4200,
+    "total_escalations_all_time": 520,
+    "overall_resolution_rate": 0.876,
+    "avg_first_response_time_ms": 3000,
+    "avg_resolution_time_minutes": 15,
+    "customer_satisfaction_avg": 4.6,
+    "channels_breakdown": {
+      "mercadolibre": 0.60,
+      "shopify": 0.25,
+      "tiendanube": 0.15
+    },
+    "peak_hours": ["10:00", "11:00", "15:00", "16:00", "20:00", "21:00"],
+    "busiest_day": "lunes"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "name": "Full Sync Ordenes ML (1 vez)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Ejecutar Manual",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "melipablo",
+        "options": {}
+      },
+      "id": "redis-token",
+      "name": "Redis - Get Token ML",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [400, 300],
+      "credentials": {
+        "redis": {
+          "id": "HQzKm3HsLa8ODBdx",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// =============================================\n// FULL SYNC: TODAS LAS ORDENES (365 días)\n// Ejecutar UNA SOLA VEZ para cargar historial\n// =============================================\n\nconst token = $input.first().json.propertyName;\nconst sellerId = '1074767186';\nconst baseUrl = 'https://api.mercadolibre.com/orders/search';\n\n// 365 días de historial\nconst fromDate = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000).toISOString();\n\nlet allOrderItems = [];\nlet offset = 0;\nconst limit = 50;\nlet hasMore = true;\nlet pageCount = 0;\n\nconsole.log('Iniciando Full Sync de órdenes...');\n\nwhile (hasMore) {\n  const url = `${baseUrl}?seller=${sellerId}&order.status=paid&order.date_created.from=${fromDate}&limit=${limit}&offset=${offset}`;\n  \n  const response = await this.helpers.httpRequest({\n    method: 'GET',\n    url: url,\n    headers: { 'Authorization': `Bearer ${token}` }\n  });\n  \n  const orders = response.results || [];\n  const total = response.paging?.total || 0;\n  \n  console.log(`Página ${pageCount + 1}: ${orders.length} órdenes (offset: ${offset}, total: ${total})`);\n  \n  // Extraer items de cada orden\n  for (const order of orders) {\n    if (order.order_items) {\n      for (const item of order.order_items) {\n        allOrderItems.push({\n          order_id: order.id.toString(),\n          item_id: item.item.id,\n          quantity: item.quantity,\n          unit_price: item.unit_price,\n          order_date: order.date_created\n        });\n      }\n    }\n  }\n  \n  offset += limit;\n  pageCount++;\n  \n  // Verificar si hay más\n  hasMore = orders.length === limit && offset < total;\n  \n  // Pausa para no saturar API (0.5 seg entre llamadas)\n  await new Promise(r => setTimeout(r, 500));\n  \n  // Safety: max 50 páginas = 2500 órdenes\n  if (pageCount >= 50) {\n    console.log('Límite de seguridad alcanzado (50 páginas)');\n    break;\n  }\n}\n\nconsole.log(`Full Sync completado: ${allOrderItems.length} items de órdenes`);\n\nreturn allOrderItems.map(item => ({ json: item }));"
+      },
+      "id": "get-all-orders",
+      "name": "1. Obtener TODAS las Ordenes (365d)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [600, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 100,
+        "options": {}
+      },
+      "id": "batch-orders",
+      "name": "Batch 100 ordenes",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [800, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://horsepower-supabase.e5l6dk.easypanel.host/rest/v1/ml_orders_items?on_conflict=order_id,item_id",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=minimal,resolution=merge-duplicates"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "upsert-orders",
+      "name": "2. Upsert Ordenes (batch)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1000, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "Bjo1rbDdp4dLUimX",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://horsepower-supabase.e5l6dk.easypanel.host/rest/v1/rpc/refresh_stock_metrics",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "recalc-metrics",
+      "name": "3. Recalcular Métricas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "Bjo1rbDdp4dLUimX",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Ejecutar Manual": {
+      "main": [[{ "node": "Redis - Get Token ML", "type": "main", "index": 0 }]]
+    },
+    "Redis - Get Token ML": {
+      "main": [[{ "node": "1. Obtener TODAS las Ordenes (365d)", "type": "main", "index": 0 }]]
+    },
+    "1. Obtener TODAS las Ordenes (365d)": {
+      "main": [[{ "node": "Batch 100 ordenes", "type": "main", "index": 0 }]]
+    },
+    "Batch 100 ordenes": {
+      "main": [
+        [{ "node": "3. Recalcular Métricas", "type": "main", "index": 0 }],
+        [{ "node": "2. Upsert Ordenes (batch)", "type": "main", "index": 0 }]
+      ]
+    },
+    "2. Upsert Ordenes (batch)": {
+      "main": [[{ "node": "Batch 100 ordenes", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

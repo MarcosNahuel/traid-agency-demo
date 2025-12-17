@@ -1,0 +1,620 @@
+{
+  "orders": [
+    {
+      "id": "ML-2000010050001001",
+      "external_id": "2000010050001001",
+      "channel": "mercadolibre",
+      "status": "delivered",
+      "product": {
+        "sku": "GPU-4060-001",
+        "title": "NVIDIA GeForce RTX 4060 8GB - MSI Ventus 2X",
+        "price": 450000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/76B900/white?text=RTX+4060"
+      },
+      "buyer": {
+        "id": "123456001",
+        "first_name": "Martin",
+        "last_name": "Rodriguez",
+        "nickname": "MARTINR_GAMER",
+        "email": "martin.rodriguez@gmail.com",
+        "phone": "+5491155551001"
+      },
+      "shipping": {
+        "id": "44180001001",
+        "status": "delivered",
+        "carrier": "mercadoenvios",
+        "logistic_type": "fulfillment",
+        "tracking_number": "MEL100001001AR",
+        "date_created": "2024-12-10T10:30:00Z",
+        "date_shipped": "2024-12-11T08:00:00Z",
+        "date_delivered": "2024-12-13T14:30:00Z",
+        "receiver_city": "CABA",
+        "receiver_state": "Capital Federal"
+      },
+      "billing": {
+        "doc_type": "DNI",
+        "doc_number": "35123001",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-10T10:30:00Z",
+      "tags": ["gaming", "gpu", "nvidia"]
+    },
+    {
+      "id": "ML-2000010050001002",
+      "external_id": "2000010050001002",
+      "channel": "mercadolibre",
+      "status": "delivered",
+      "product": {
+        "sku": "PC-MID-001",
+        "title": "PC Gamer Mid - RTX 4060 | Ryzen 5 5600 | 16GB RAM",
+        "price": 850000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/7C3AED/white?text=PC+Mid"
+      },
+      "buyer": {
+        "id": "123456002",
+        "first_name": "Lucia",
+        "last_name": "Fernandez",
+        "nickname": "LUCIAF_TECH",
+        "email": "lucia.fernandez@hotmail.com",
+        "phone": "+5491155551002"
+      },
+      "shipping": {
+        "id": "44180001002",
+        "status": "delivered",
+        "carrier": "mercadoenvios",
+        "logistic_type": "cross_docking",
+        "tracking_number": "MEL100001002AR",
+        "date_created": "2024-12-08T15:20:00Z",
+        "date_shipped": "2024-12-09T09:00:00Z",
+        "date_delivered": "2024-12-12T16:45:00Z",
+        "receiver_city": "Cordoba",
+        "receiver_state": "Cordoba"
+      },
+      "billing": {
+        "doc_type": "CUIT",
+        "doc_number": "20-35123002-9",
+        "taxpayer_type": "Responsable Monotributo",
+        "can_receive_factura_a": true
+      },
+      "date_created": "2024-12-08T15:20:00Z",
+      "tags": ["gaming", "pc", "custom"]
+    },
+    {
+      "id": "ML-2000010050001003",
+      "external_id": "2000010050001003",
+      "channel": "mercadolibre",
+      "status": "in_transit",
+      "product": {
+        "sku": "NB-GAME-002",
+        "title": "Notebook Gamer ASUS TUF Gaming - RTX 4050 | Ryzen 7 | 16GB RAM",
+        "price": 920000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/F59E0B/white?text=TUF+Gaming"
+      },
+      "buyer": {
+        "id": "123456003",
+        "first_name": "Carlos",
+        "last_name": "Mendez",
+        "nickname": "CARLOSM_2024",
+        "email": "carlos.mendez@gmail.com",
+        "phone": "+5491155551003"
+      },
+      "shipping": {
+        "id": "44180001003",
+        "status": "in_transit",
+        "carrier": "andreani",
+        "logistic_type": "cross_docking",
+        "tracking_number": "AND100001003AR",
+        "date_created": "2024-12-14T11:00:00Z",
+        "date_shipped": "2024-12-15T07:30:00Z",
+        "date_delivered": null,
+        "receiver_city": "Rosario",
+        "receiver_state": "Santa Fe"
+      },
+      "billing": {
+        "doc_type": "DNI",
+        "doc_number": "38123003",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-14T11:00:00Z",
+      "tags": ["gaming", "notebook", "asus"]
+    },
+    {
+      "id": "SH-1001",
+      "external_id": "SH-1001",
+      "channel": "shopify",
+      "status": "delivered",
+      "product": {
+        "sku": "TEC-MEM-002",
+        "title": "Teclado Mecanico HyperX Alloy Origins Core RGB - Switch Red",
+        "price": 85000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/FF0000/white?text=HyperX+Origins"
+      },
+      "buyer": {
+        "id": "SH-123456004",
+        "first_name": "Ana",
+        "last_name": "Garcia",
+        "nickname": null,
+        "email": "ana.garcia@outlook.com",
+        "phone": "+5491155551004"
+      },
+      "shipping": {
+        "id": "SH-SHIP-1001",
+        "status": "delivered",
+        "carrier": "oca",
+        "logistic_type": "standard",
+        "tracking_number": "OCA100001004AR",
+        "date_created": "2024-12-05T09:15:00Z",
+        "date_shipped": "2024-12-06T10:00:00Z",
+        "date_delivered": "2024-12-10T11:30:00Z",
+        "receiver_city": "La Plata",
+        "receiver_state": "Buenos Aires"
+      },
+      "billing": {
+        "doc_type": "DNI",
+        "doc_number": "32123004",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-05T09:15:00Z",
+      "tags": ["periferico", "teclado", "hyperx"]
+    },
+    {
+      "id": "SH-1002",
+      "external_id": "SH-1002",
+      "channel": "shopify",
+      "status": "delivered",
+      "product": {
+        "sku": "MOU-GAM-003",
+        "title": "Mouse Logitech G Pro X Superlight 2 Wireless",
+        "price": 120000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/00B8FC/white?text=Superlight+2"
+      },
+      "buyer": {
+        "id": "SH-123456005",
+        "first_name": "Diego",
+        "last_name": "Lopez",
+        "nickname": null,
+        "email": "diego.lopez.gamer@gmail.com",
+        "phone": "+5491155551005"
+      },
+      "shipping": {
+        "id": "SH-SHIP-1002",
+        "status": "delivered",
+        "carrier": "andreani",
+        "logistic_type": "express",
+        "tracking_number": "AND100001005AR",
+        "date_created": "2024-12-11T14:30:00Z",
+        "date_shipped": "2024-12-11T18:00:00Z",
+        "date_delivered": "2024-12-12T10:00:00Z",
+        "receiver_city": "CABA",
+        "receiver_state": "Capital Federal"
+      },
+      "billing": {
+        "doc_type": "CUIT",
+        "doc_number": "20-28123005-7",
+        "taxpayer_type": "Responsable Inscripto",
+        "can_receive_factura_a": true
+      },
+      "date_created": "2024-12-11T14:30:00Z",
+      "tags": ["periferico", "mouse", "logitech"]
+    },
+    {
+      "id": "TN-5001",
+      "external_id": "TN-5001",
+      "channel": "tiendanube",
+      "status": "delivered",
+      "product": {
+        "sku": "RAM-32-001",
+        "title": "RAM Corsair Vengeance RGB Pro 32GB (2x16GB) DDR4 3600MHz",
+        "price": 85000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/F3C300/black?text=Vengeance+32GB"
+      },
+      "buyer": {
+        "id": "TN-123456006",
+        "first_name": "Pablo",
+        "last_name": "Martinez",
+        "nickname": null,
+        "email": "pablo.martinez@yahoo.com",
+        "phone": "+5491155551006"
+      },
+      "shipping": {
+        "id": "TN-SHIP-5001",
+        "status": "delivered",
+        "carrier": "correo_argentino",
+        "logistic_type": "standard",
+        "tracking_number": "CA100001006AR",
+        "date_created": "2024-12-01T16:45:00Z",
+        "date_shipped": "2024-12-02T11:00:00Z",
+        "date_delivered": "2024-12-07T15:20:00Z",
+        "receiver_city": "Mendoza",
+        "receiver_state": "Mendoza"
+      },
+      "billing": {
+        "doc_type": "DNI",
+        "doc_number": "40123006",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-01T16:45:00Z",
+      "tags": ["componente", "ram", "corsair"]
+    },
+    {
+      "id": "TN-5002",
+      "external_id": "TN-5002",
+      "channel": "tiendanube",
+      "status": "pending",
+      "product": {
+        "sku": "SSD-1TB-001",
+        "title": "SSD Samsung 980 PRO 1TB NVMe PCIe 4.0",
+        "price": 85000,
+        "quantity": 2,
+        "image_url": "https://placehold.co/400x400/1428A0/white?text=980+PRO+1TB"
+      },
+      "buyer": {
+        "id": "TN-123456007",
+        "first_name": "Sofia",
+        "last_name": "Ruiz",
+        "nickname": null,
+        "email": "sofia.ruiz.dev@gmail.com",
+        "phone": "+5491155551007"
+      },
+      "shipping": {
+        "id": "TN-SHIP-5002",
+        "status": "pending",
+        "carrier": "andreani",
+        "logistic_type": "standard",
+        "tracking_number": null,
+        "date_created": "2024-12-15T20:00:00Z",
+        "date_shipped": null,
+        "date_delivered": null,
+        "receiver_city": "San Miguel de Tucuman",
+        "receiver_state": "Tucuman"
+      },
+      "billing": {
+        "doc_type": "CUIT",
+        "doc_number": "27-35123007-4",
+        "taxpayer_type": "Responsable Monotributo",
+        "can_receive_factura_a": true
+      },
+      "date_created": "2024-12-15T20:00:00Z",
+      "tags": ["componente", "ssd", "samsung"]
+    },
+    {
+      "id": "ML-2000010050001004",
+      "external_id": "2000010050001004",
+      "channel": "mercadolibre",
+      "status": "delivered",
+      "product": {
+        "sku": "MON-27-144",
+        "title": "Monitor ASUS 27\" QHD 144Hz IPS - VG27AQ1A",
+        "price": 280000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/7C3AED/white?text=ASUS+27+QHD"
+      },
+      "buyer": {
+        "id": "123456008",
+        "first_name": "Joaquin",
+        "last_name": "Alvarez",
+        "nickname": "JOACO_STREAM",
+        "email": "joaquin.alvarez.stream@gmail.com",
+        "phone": "+5491155551008"
+      },
+      "shipping": {
+        "id": "44180001004",
+        "status": "delivered",
+        "carrier": "mercadoenvios",
+        "logistic_type": "fulfillment",
+        "tracking_number": "MEL100001008AR",
+        "date_created": "2024-12-02T12:00:00Z",
+        "date_shipped": "2024-12-03T08:30:00Z",
+        "date_delivered": "2024-12-05T13:15:00Z",
+        "receiver_city": "CABA",
+        "receiver_state": "Capital Federal"
+      },
+      "billing": {
+        "doc_type": "CUIT",
+        "doc_number": "20-33123008-1",
+        "taxpayer_type": "Responsable Monotributo",
+        "can_receive_factura_a": true
+      },
+      "date_created": "2024-12-02T12:00:00Z",
+      "tags": ["monitor", "gaming", "asus"]
+    },
+    {
+      "id": "ML-2000010050001005",
+      "external_id": "2000010050001005",
+      "channel": "mercadolibre",
+      "status": "cancelled",
+      "product": {
+        "sku": "GPU-4070-001",
+        "title": "NVIDIA GeForce RTX 4070 12GB - Gigabyte Gaming OC",
+        "price": 750000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/76B900/white?text=RTX+4070"
+      },
+      "buyer": {
+        "id": "123456009",
+        "first_name": "Romina",
+        "last_name": "Peralta",
+        "nickname": "ROMI_GAMER99",
+        "email": "romina.peralta@live.com",
+        "phone": "+5491155551009"
+      },
+      "shipping": {
+        "id": "44180001005",
+        "status": "cancelled",
+        "carrier": "mercadoenvios",
+        "logistic_type": "cross_docking",
+        "tracking_number": null,
+        "date_created": "2024-12-12T18:30:00Z",
+        "date_shipped": null,
+        "date_delivered": null,
+        "receiver_city": "Mar del Plata",
+        "receiver_state": "Buenos Aires"
+      },
+      "billing": {
+        "doc_type": "DNI",
+        "doc_number": "36123009",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-12T18:30:00Z",
+      "cancellation_reason": "buyer_requested",
+      "tags": ["gpu", "nvidia", "cancelled"]
+    },
+    {
+      "id": "ML-2000010050001006",
+      "external_id": "2000010050001006",
+      "channel": "mercadolibre",
+      "status": "delivered",
+      "product": {
+        "sku": "SIL-PRO-001",
+        "title": "Silla Gamer Secretlab Titan Evo 2024 - Stealth",
+        "price": 450000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/1A1A2E/white?text=Titan+Evo"
+      },
+      "buyer": {
+        "id": "123456010",
+        "first_name": "Federico",
+        "last_name": "Sanchez",
+        "nickname": "FEDE_ESPORTS",
+        "email": "fede.sanchez.esports@gmail.com",
+        "phone": "+5491155551010"
+      },
+      "shipping": {
+        "id": "44180001006",
+        "status": "delivered",
+        "carrier": "flex",
+        "logistic_type": "same_day",
+        "tracking_number": "FLX100001010AR",
+        "date_created": "2024-11-28T09:00:00Z",
+        "date_shipped": "2024-11-28T10:30:00Z",
+        "date_delivered": "2024-11-28T17:45:00Z",
+        "receiver_city": "CABA",
+        "receiver_state": "Capital Federal"
+      },
+      "billing": {
+        "doc_type": "DNI",
+        "doc_number": "29123010",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-11-28T09:00:00Z",
+      "tags": ["silla", "secretlab", "premium"]
+    },
+    {
+      "id": "SH-1003",
+      "external_id": "SH-1003",
+      "channel": "shopify",
+      "status": "in_transit",
+      "product": {
+        "sku": "AUR-GAM-003",
+        "title": "Auriculares SteelSeries Arctis Nova 7 Wireless",
+        "price": 150000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/FF5500/white?text=Arctis+Nova+7"
+      },
+      "buyer": {
+        "id": "SH-123456011",
+        "first_name": "Valentina",
+        "last_name": "Torres",
+        "nickname": null,
+        "email": "vale.torres.music@gmail.com",
+        "phone": "+5491155551011"
+      },
+      "shipping": {
+        "id": "SH-SHIP-1003",
+        "status": "in_transit",
+        "carrier": "oca",
+        "logistic_type": "standard",
+        "tracking_number": "OCA100001011AR",
+        "date_created": "2024-12-14T16:20:00Z",
+        "date_shipped": "2024-12-15T09:00:00Z",
+        "date_delivered": null,
+        "receiver_city": "Neuquen",
+        "receiver_state": "Neuquen"
+      },
+      "billing": {
+        "doc_type": "DNI",
+        "doc_number": "41123011",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-14T16:20:00Z",
+      "tags": ["auriculares", "steelseries", "wireless"]
+    },
+    {
+      "id": "ML-2000010050001007",
+      "external_id": "2000010050001007",
+      "channel": "mercadolibre",
+      "status": "delivered",
+      "product": {
+        "sku": "PC-HIGH-001",
+        "title": "PC Gamer Pro - RTX 4070 | Ryzen 7 5800X | 32GB RAM",
+        "price": 1200000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/7C3AED/white?text=PC+Pro"
+      },
+      "buyer": {
+        "id": "123456012",
+        "first_name": "Gonzalo",
+        "last_name": "Ramirez",
+        "nickname": "GONZA_BUILDS",
+        "email": "gonzalo.ramirez.tech@gmail.com",
+        "phone": "+5491155551012"
+      },
+      "shipping": {
+        "id": "44180001007",
+        "status": "delivered",
+        "carrier": "mercadoenvios",
+        "logistic_type": "fulfillment",
+        "tracking_number": "MEL100001012AR",
+        "date_created": "2024-11-20T14:00:00Z",
+        "date_shipped": "2024-11-21T08:00:00Z",
+        "date_delivered": "2024-11-25T11:30:00Z",
+        "receiver_city": "San Juan",
+        "receiver_state": "San Juan"
+      },
+      "billing": {
+        "doc_type": "CUIT",
+        "doc_number": "20-30123012-5",
+        "taxpayer_type": "Responsable Inscripto",
+        "can_receive_factura_a": true
+      },
+      "date_created": "2024-11-20T14:00:00Z",
+      "tags": ["pc", "gaming", "custom"]
+    },
+    {
+      "id": "TN-5003",
+      "external_id": "TN-5003",
+      "channel": "tiendanube",
+      "status": "delivered",
+      "product": {
+        "sku": "PSU-750-001",
+        "title": "Fuente Corsair RM750 750W 80+ Gold Full Modular",
+        "price": 120000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/F3C300/black?text=RM750"
+      },
+      "buyer": {
+        "id": "TN-123456013",
+        "first_name": "Mariana",
+        "last_name": "Vega",
+        "nickname": null,
+        "email": "mariana.vega@outlook.com",
+        "phone": "+5491155551013"
+      },
+      "shipping": {
+        "id": "TN-SHIP-5003",
+        "status": "delivered",
+        "carrier": "andreani",
+        "logistic_type": "standard",
+        "tracking_number": "AND100001013AR",
+        "date_created": "2024-12-03T11:30:00Z",
+        "date_shipped": "2024-12-04T10:00:00Z",
+        "date_delivered": "2024-12-09T14:45:00Z",
+        "receiver_city": "Salta",
+        "receiver_state": "Salta"
+      },
+      "billing": {
+        "doc_type": "DNI",
+        "doc_number": "37123013",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-12-03T11:30:00Z",
+      "tags": ["fuente", "corsair", "modular"]
+    },
+    {
+      "id": "ML-2000010050001008",
+      "external_id": "2000010050001008",
+      "channel": "mercadolibre",
+      "status": "delivered",
+      "product": {
+        "sku": "NB-PRO-001",
+        "title": "MacBook Air M2 - 8GB RAM | 256GB SSD",
+        "price": 1400000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/374151/white?text=MacBook+Air"
+      },
+      "buyer": {
+        "id": "123456014",
+        "first_name": "Camila",
+        "last_name": "Ortiz",
+        "nickname": "CAMI_DESIGN",
+        "email": "camila.ortiz.design@gmail.com",
+        "phone": "+5491155551014"
+      },
+      "shipping": {
+        "id": "44180001008",
+        "status": "delivered",
+        "carrier": "mercadoenvios",
+        "logistic_type": "fulfillment",
+        "tracking_number": "MEL100001014AR",
+        "date_created": "2024-12-06T10:15:00Z",
+        "date_shipped": "2024-12-07T07:30:00Z",
+        "date_delivered": "2024-12-09T12:00:00Z",
+        "receiver_city": "CABA",
+        "receiver_state": "Capital Federal"
+      },
+      "billing": {
+        "doc_type": "CUIT",
+        "doc_number": "27-34123014-8",
+        "taxpayer_type": "Responsable Monotributo",
+        "can_receive_factura_a": true
+      },
+      "date_created": "2024-12-06T10:15:00Z",
+      "tags": ["notebook", "apple", "macbook"]
+    },
+    {
+      "id": "ML-2000010050001009",
+      "external_id": "2000010050001009",
+      "channel": "mercadolibre",
+      "status": "delivered",
+      "product": {
+        "sku": "GPU-RX7800-001",
+        "title": "AMD Radeon RX 7800 XT 16GB - PowerColor Red Devil",
+        "price": 650000,
+        "quantity": 1,
+        "image_url": "https://placehold.co/400x400/ED1C24/white?text=RX+7800XT"
+      },
+      "buyer": {
+        "id": "123456015",
+        "first_name": "Nicolas",
+        "last_name": "Herrera",
+        "nickname": "NICO_AMD_FAN",
+        "email": "nicolas.herrera.tech@gmail.com",
+        "phone": "+5491155551015"
+      },
+      "shipping": {
+        "id": "44180001009",
+        "status": "delivered",
+        "carrier": "mercadoenvios",
+        "logistic_type": "cross_docking",
+        "tracking_number": "MEL100001015AR",
+        "date_created": "2024-11-15T16:00:00Z",
+        "date_shipped": "2024-11-16T09:00:00Z",
+        "date_delivered": "2024-11-20T15:30:00Z",
+        "receiver_city": "Bahia Blanca",
+        "receiver_state": "Buenos Aires"
+      },
+      "billing": {
+        "doc_type": "DNI",
+        "doc_number": "31123015",
+        "taxpayer_type": "Consumidor Final",
+        "can_receive_factura_a": false
+      },
+      "date_created": "2024-11-15T16:00:00Z",
+      "tags": ["gpu", "amd", "radeon"]
+    }
+  ]
+}

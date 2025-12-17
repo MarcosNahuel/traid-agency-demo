@@ -1,0 +1,524 @@
+{
+  "orders": [
+    {
+      "id": "DEMO-001",
+      "product": { "id": "MLA1924352882", "title": "Kit X4 Inyector Chevrolet Corsa 1.4 1.6 Classic Mpfi", "price": 76833, "sku": "OE-FIN090-X4-XI", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_924352882-O.webp" },
+      "buyer": { "id": "435647618", "name": "Agostina Ventura", "nickname": "VENTURAAGOSTINA" },
+      "billing": { "docType": "DNI", "docNumber": "40123456", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088895", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-01T14:30:00.000Z", "dateShipped": "2025-11-29T10:00:00.000Z" },
+      "scenario": { "id": "normal_delivered", "name": "Orden Entregada", "description": "Compra entregada normalmente", "icon": "✅" },
+      "createdAt": "2025-11-28T07:30:01.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-002",
+      "product": { "id": "MLA1460243001", "title": "Radiador VW Bora 1.8T/2.0 con Aire Acondicionado", "price": 125000, "sku": "RAD-BORA-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1460243001-O.webp" },
+      "buyer": { "id": "333333", "name": "Roberto Autopartes SRL", "nickname": "AUTOPARTES_ROB" },
+      "billing": { "docType": "CUIT", "docNumber": "30-71234567-9", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088003", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-03T14:30:00.000Z", "dateShipped": "2025-12-01T10:00:00.000Z" },
+      "scenario": { "id": "factura_a_cuit", "name": "Factura A (CUIT)", "description": "Puede recibir Factura A", "icon": "🧾" },
+      "createdAt": "2025-11-30T10:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-003",
+      "product": { "id": "MLA1924352004", "title": "Alternador Renault Clio 1.2 16v 75A", "price": 95000, "sku": "ALT-CLIO-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352004-O.webp" },
+      "buyer": { "id": "444444", "name": "Laura Martinez", "nickname": "LAURAMTZ90" },
+      "billing": { "docType": "DNI", "docNumber": "35678901", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088004", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-11-25T14:30:00.000Z", "dateShipped": "2025-11-23T10:00:00.000Z" },
+      "scenario": { "id": "devolucion_dentro_plazo", "name": "Devolucion (< 30 dias)", "description": "Dentro del plazo de devolucion", "icon": "↩️" },
+      "createdAt": "2025-11-22T08:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-004",
+      "product": { "id": "MLA1924352005", "title": "Compresor Aire Acondicionado Ford Focus 2.0", "price": 280000, "sku": "COMP-FOCUS-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352005-O.webp" },
+      "buyer": { "id": "555555", "name": "Pedro Sanchez", "nickname": "PEDROSANCHEZ_MLA" },
+      "billing": { "docType": "DNI", "docNumber": "29876543", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088005", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-09-15T14:30:00.000Z", "dateShipped": "2025-09-13T10:00:00.000Z" },
+      "scenario": { "id": "devolucion_fuera_plazo", "name": "Devolucion (> 30 dias)", "description": "Fuera del plazo de devolucion", "icon": "⏰" },
+      "createdAt": "2025-09-12T08:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-005",
+      "product": { "id": "MLA1924352006", "title": "Sensor MAF Volkswagen Suran 1.6", "price": 38000, "sku": "SENS-MAF-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352006-O.webp" },
+      "buyer": { "id": "666666", "name": "Ana Garcia", "nickname": "ANAGARCIA_FLEX" },
+      "billing": { "docType": "DNI", "docNumber": "33456789", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088006", "status": "delivered", "carrier": "flex", "logisticType": "flex", "dateDelivered": "2025-12-05T14:30:00.000Z", "dateShipped": "2025-12-05T08:00:00.000Z" },
+      "scenario": { "id": "flex_treggo", "name": "Envio Flex", "description": "Entrega rapida Flex/Treggo", "icon": "🚀" },
+      "createdAt": "2025-12-05T06:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-006",
+      "product": { "id": "MLA1924352007", "title": "Kit Bujias NGK Iridium Ford Fiesta Kinetic 1.6", "price": 42000, "sku": "BUJ-NGK-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352007-O.webp" },
+      "buyer": { "id": "777777", "name": "Diego Fernandez", "nickname": "DIEGOFERNANDEZ99" },
+      "billing": { "docType": "DNI", "docNumber": "31234567", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088007", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-03T14:30:00.000Z", "dateShipped": "2025-12-01T10:00:00.000Z" },
+      "scenario": { "id": "instalacion", "name": "Consulta Instalacion", "description": "Pregunta como instalar", "icon": "🛠️" },
+      "createdAt": "2025-11-30T08:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-007",
+      "product": { "id": "MLA1924352008", "title": "Amortiguador Delantero Peugeot 208 1.6 - Par", "price": 130000, "sku": "AMORT-208-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352008-O.webp" },
+      "buyer": { "id": "888888", "name": "Lucia Romero", "nickname": "LUCIAROMERO_AR" },
+      "billing": { "docType": "DNI", "docNumber": "34567890", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088008", "status": "pending", "carrier": "mercadoenvios", "logisticType": "cross_docking" },
+      "scenario": { "id": "pending_shipping", "name": "Pendiente de Envio", "description": "Esperando despacho", "icon": "📦" },
+      "createdAt": "2025-12-06T02:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-008",
+      "product": { "id": "MLA1924352002", "title": "Kit Embrague Sachs Volkswagen Gol 1.6", "price": 185000, "sku": "EMB-VW-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352002-O.webp" },
+      "buyer": { "id": "222222", "name": "Maria Lopez", "nickname": "MARIALOPEZ_OK" },
+      "billing": { "docType": "DNI", "docNumber": "28765432", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088002", "status": "in_transit", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateShipped": "2025-12-04T10:00:00.000Z" },
+      "scenario": { "id": "in_transit", "name": "En Transito", "description": "Envio en camino", "icon": "🚚" },
+      "createdAt": "2025-12-03T08:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-009",
+      "product": { "id": "MLA1924352009", "title": "Filtro de Aire KN Toyota Hilux 2.8 Diesel", "price": 28000, "sku": "FILT-KN-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352009-O.webp" },
+      "buyer": { "id": "999999", "name": "Martin Perez", "nickname": "MARTINPEREZ_TOP" },
+      "billing": { "docType": "DNI", "docNumber": "30123456", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088009", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-02T14:30:00.000Z", "dateShipped": "2025-11-30T10:00:00.000Z" },
+      "scenario": { "id": "agradecimiento", "name": "Agradecimiento", "description": "Cliente satisfecho", "icon": "🙏" },
+      "createdAt": "2025-11-29T08:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-010",
+      "product": { "id": "MLA1924352010", "title": "Bobina Encendido Chevrolet Sonic 1.6", "price": 52000, "sku": "BOB-SONIC-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352010-O.webp" },
+      "buyer": { "id": "101010", "name": "Juan Rodriguez", "nickname": "JUANRODRIGUEZ_MEC" },
+      "billing": { "docType": "DNI", "docNumber": "27654321", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088010", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-04T14:30:00.000Z", "dateShipped": "2025-12-02T10:00:00.000Z" },
+      "scenario": { "id": "incompatibilidad", "name": "Compatibilidad", "description": "Consulta tecnica", "icon": "🔧" },
+      "createdAt": "2025-12-01T08:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-011",
+      "product": { "id": "MLA1924352011", "title": "Termostato Fiat Punto 1.4 Fire", "price": 15000, "sku": "TERM-PUNTO-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352011-O.webp" },
+      "buyer": { "id": "111112", "name": "Sofia Gimenez", "nickname": "SOFIAGIMENEZ_AR" },
+      "billing": { "docType": "DNI", "docNumber": "36789012", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088011", "status": "not_delivered", "carrier": "flex", "logisticType": "flex", "failedAttempts": 2 },
+      "scenario": { "id": "flex_2_visits", "name": "Flex 2 Visitas", "description": "2 intentos fallidos - Cancelar", "icon": "❌" },
+      "createdAt": "2025-12-05T08:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-012",
+      "product": { "id": "MLA1924352012", "title": "Bomba de Agua Fiat Palio 1.6 16v", "price": 45000, "sku": "BA-FIAT-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352012-O.webp" },
+      "buyer": { "id": "111111", "name": "Carlos Gonzalez", "nickname": "CARLOSG2024" },
+      "billing": { "docType": "DNI", "docNumber": "32456789", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088001", "status": "shipped", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateShipped": "2025-12-05T10:00:00.000Z" },
+      "scenario": { "id": "in_transit", "name": "Despachado", "description": "Recien despachado", "icon": "🚚" },
+      "createdAt": "2025-12-04T08:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-013",
+      "product": { "id": "MLA1924352013", "title": "Correa Distribucion Gates Fiat Uno 1.3", "price": 22000, "sku": "CORR-GATES-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352013-O.webp" },
+      "buyer": { "id": "121212", "name": "Fernando Diaz", "nickname": "FERNANDODIAZ_AR" },
+      "billing": { "docType": "DNI", "docNumber": "38901234", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088013", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-04T16:00:00.000Z", "dateShipped": "2025-12-02T09:00:00.000Z" },
+      "scenario": { "id": "normal_delivered", "name": "Orden Entregada", "description": "Compra entregada normalmente", "icon": "✅" },
+      "createdAt": "2025-12-01T10:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-014",
+      "product": { "id": "MLA1924352014", "title": "Tensor Correa Poly V Renault Megane 2.0", "price": 35000, "sku": "TENS-POLY-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352014-O.webp" },
+      "buyer": { "id": "131313", "name": "Taller Mecanico Los Hermanos", "nickname": "TALLERLOSHNOS" },
+      "billing": { "docType": "CUIT", "docNumber": "30-65432198-7", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088014", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-05T11:00:00.000Z", "dateShipped": "2025-12-03T08:00:00.000Z" },
+      "scenario": { "id": "factura_a_cuit", "name": "Factura A (CUIT)", "description": "Puede recibir Factura A", "icon": "🧾" },
+      "createdAt": "2025-12-02T14:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-015",
+      "product": { "id": "MLA1924352015", "title": "Pastillas de Freno Delanteras Chevrolet Cruze", "price": 28500, "sku": "PAST-CRUZE-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352015-O.webp" },
+      "buyer": { "id": "141414", "name": "Ricardo Sosa", "nickname": "RICARDOSOSA99" },
+      "billing": { "docType": "DNI", "docNumber": "25678901", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088015", "status": "delivered", "carrier": "treggo", "logisticType": "flex", "dateDelivered": "2025-12-05T18:00:00.000Z", "dateShipped": "2025-12-05T14:00:00.000Z" },
+      "scenario": { "id": "flex_treggo", "name": "Envio Treggo", "description": "Entrega rapida Treggo", "icon": "🚀" },
+      "createdAt": "2025-12-05T12:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-016",
+      "product": { "id": "MLA1924352016", "title": "Sensor Oxigeno Lambda Ford EcoSport 1.6", "price": 45000, "sku": "SENS-O2-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352016-O.webp" },
+      "buyer": { "id": "151515", "name": "Patricia Acosta", "nickname": "PATRIACOSTA_MLA" },
+      "billing": { "docType": "DNI", "docNumber": "32109876", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088016", "status": "not_delivered", "carrier": "flex", "logisticType": "flex", "failedAttempts": 1 },
+      "scenario": { "id": "flex_1_visit", "name": "Flex 1 Visita", "description": "1 intento fallido", "icon": "⚠️" },
+      "createdAt": "2025-12-05T09:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-017",
+      "product": { "id": "MLA1924352017", "title": "Discos de Freno Traseros Peugeot 307", "price": 68000, "sku": "DISC-307-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352017-O.webp" },
+      "buyer": { "id": "161616", "name": "Gustavo Mendez", "nickname": "GUSTAVOMENDEZ88" },
+      "billing": { "docType": "DNI", "docNumber": "29876543", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088017", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-11-20T15:00:00.000Z", "dateShipped": "2025-11-18T10:00:00.000Z" },
+      "scenario": { "id": "devolucion_dentro_plazo", "name": "Devolucion (< 30 dias)", "description": "Dentro del plazo de devolucion", "icon": "↩️" },
+      "createdAt": "2025-11-17T08:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-018",
+      "product": { "id": "MLA1924352018", "title": "Bomba Combustible Volkswagen Golf GTI 2.0", "price": 125000, "sku": "BOMB-GOLF-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352018-O.webp" },
+      "buyer": { "id": "171717", "name": "Alejandro Ruiz", "nickname": "ALERUIZ_RACING" },
+      "billing": { "docType": "DNI", "docNumber": "27654321", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088018", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-08-10T14:00:00.000Z", "dateShipped": "2025-08-08T09:00:00.000Z" },
+      "scenario": { "id": "devolucion_fuera_plazo", "name": "Devolucion (> 30 dias)", "description": "Fuera del plazo de devolucion", "icon": "⏰" },
+      "createdAt": "2025-08-07T10:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-019",
+      "product": { "id": "MLA1924352019", "title": "Kit Suspension Completo Fiat Siena", "price": 165000, "sku": "SUSP-SIENA-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352019-O.webp" },
+      "buyer": { "id": "181818", "name": "Autopartes del Centro SA", "nickname": "AUTOCENTRO_SA" },
+      "billing": { "docType": "CUIT", "docNumber": "30-87654321-0", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088019", "status": "pending", "carrier": "mercadoenvios", "logisticType": "cross_docking" },
+      "scenario": { "id": "pending_shipping", "name": "Pendiente de Envio", "description": "Esperando despacho", "icon": "📦" },
+      "createdAt": "2025-12-06T06:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-020",
+      "product": { "id": "MLA1924352020", "title": "Electroventilador Radiador Chevrolet Aveo", "price": 89000, "sku": "ELEC-AVEO-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352020-O.webp" },
+      "buyer": { "id": "191919", "name": "Daniela Torres", "nickname": "DANIELATORRES_OK" },
+      "billing": { "docType": "DNI", "docNumber": "34567890", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088020", "status": "in_transit", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateShipped": "2025-12-05T08:00:00.000Z" },
+      "scenario": { "id": "in_transit", "name": "En Transito", "description": "Envio en camino", "icon": "🚚" },
+      "createdAt": "2025-12-04T15:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-021",
+      "product": { "id": "MLA1924352021", "title": "Bombin Embrague Toyota Etios 1.5", "price": 32000, "sku": "BOMB-ETIOS-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352021-O.webp" },
+      "buyer": { "id": "202020", "name": "Marcelo Vega", "nickname": "MARCELOVEGA_AR" },
+      "billing": { "docType": "DNI", "docNumber": "28901234", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088021", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-03T12:00:00.000Z", "dateShipped": "2025-12-01T10:00:00.000Z" },
+      "scenario": { "id": "instalacion", "name": "Consulta Instalacion", "description": "Pregunta como instalar", "icon": "🛠️" },
+      "createdAt": "2025-11-30T14:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-022",
+      "product": { "id": "MLA1924352022", "title": "Caja Direccion Hidraulica Ford Ka", "price": 195000, "sku": "CAJA-KA-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352022-O.webp" },
+      "buyer": { "id": "212121", "name": "Repuestos Martinez SRL", "nickname": "REPMARTINEZ" },
+      "billing": { "docType": "CUIT", "docNumber": "30-12345678-5", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088022", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-02T16:00:00.000Z", "dateShipped": "2025-11-30T09:00:00.000Z" },
+      "scenario": { "id": "factura_a_cuit", "name": "Factura A (CUIT)", "description": "Puede recibir Factura A", "icon": "🧾" },
+      "createdAt": "2025-11-29T11:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-023",
+      "product": { "id": "MLA1924352023", "title": "Sensor Posicion Ciguenal Nissan March 1.6", "price": 28000, "sku": "SENS-CIG-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352023-O.webp" },
+      "buyer": { "id": "222223", "name": "Romina Flores", "nickname": "ROMIFLORES_MEC" },
+      "billing": { "docType": "DNI", "docNumber": "35678901", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088023", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-04T10:00:00.000Z", "dateShipped": "2025-12-02T08:00:00.000Z" },
+      "scenario": { "id": "agradecimiento", "name": "Agradecimiento", "description": "Cliente satisfecho", "icon": "🙏" },
+      "createdAt": "2025-12-01T09:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-024",
+      "product": { "id": "MLA1924352024", "title": "Rotula Suspension Delantera Honda Civic", "price": 18500, "sku": "ROT-CIVIC-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352024-O.webp" },
+      "buyer": { "id": "232323", "name": "Nicolas Castro", "nickname": "NICOCASTRO_TOP" },
+      "billing": { "docType": "DNI", "docNumber": "31234567", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088024", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-05T14:00:00.000Z", "dateShipped": "2025-12-03T10:00:00.000Z" },
+      "scenario": { "id": "incompatibilidad", "name": "Compatibilidad", "description": "Consulta tecnica", "icon": "🔧" },
+      "createdAt": "2025-12-02T16:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-025",
+      "product": { "id": "MLA1924352025", "title": "Modulo Encendido Fiat Duna 1.6", "price": 55000, "sku": "MOD-DUNA-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352025-O.webp" },
+      "buyer": { "id": "242424", "name": "Sergio Paz", "nickname": "SERGIOPAZ_AR" },
+      "billing": { "docType": "DNI", "docNumber": "26789012", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088025", "status": "shipped", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateShipped": "2025-12-06T07:00:00.000Z" },
+      "scenario": { "id": "in_transit", "name": "Despachado", "description": "Recien despachado", "icon": "🚚" },
+      "createdAt": "2025-12-05T18:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-026",
+      "product": { "id": "MLA1924352026", "title": "Valvula EGR Peugeot Partner 1.9 Diesel", "price": 78000, "sku": "EGR-PART-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352026-O.webp" },
+      "buyer": { "id": "252525", "name": "Transporte Rapido SA", "nickname": "TRANSP_RAPIDO" },
+      "billing": { "docType": "CUIT", "docNumber": "30-98765432-1", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088026", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-01T11:00:00.000Z", "dateShipped": "2025-11-29T08:00:00.000Z" },
+      "scenario": { "id": "factura_a_cuit", "name": "Factura A (CUIT)", "description": "Puede recibir Factura A", "icon": "🧾" },
+      "createdAt": "2025-11-28T14:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-027",
+      "product": { "id": "MLA1924352027", "title": "Turbo Compresor Volkswagen Amarok 2.0 TDI", "price": 485000, "sku": "TURBO-AMAR-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352027-O.webp" },
+      "buyer": { "id": "262626", "name": "Agro Maquinas del Norte", "nickname": "AGROMAQ_NORTE" },
+      "billing": { "docType": "CUIT", "docNumber": "30-54321098-6", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088027", "status": "in_transit", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateShipped": "2025-12-04T10:00:00.000Z" },
+      "scenario": { "id": "in_transit", "name": "En Transito", "description": "Envio en camino", "icon": "🚚" },
+      "createdAt": "2025-12-03T09:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-028",
+      "product": { "id": "MLA1924352028", "title": "Inyector Common Rail Chevrolet S10 2.8", "price": 145000, "sku": "INY-S10-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352028-O.webp" },
+      "buyer": { "id": "272727", "name": "Eduardo Blanco", "nickname": "EDUARDOBLANCO88" },
+      "billing": { "docType": "DNI", "docNumber": "24567890", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088028", "status": "delivered", "carrier": "flex", "logisticType": "flex", "dateDelivered": "2025-12-06T10:00:00.000Z", "dateShipped": "2025-12-06T07:00:00.000Z" },
+      "scenario": { "id": "flex_treggo", "name": "Envio Flex", "description": "Entrega rapida Flex", "icon": "🚀" },
+      "createdAt": "2025-12-06T05:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-029",
+      "product": { "id": "MLA1924352029", "title": "Columna Direccion Renault Sandero", "price": 78000, "sku": "COL-SAND-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352029-O.webp" },
+      "buyer": { "id": "282828", "name": "Veronica Luna", "nickname": "VEROLUNA_MLA" },
+      "billing": { "docType": "DNI", "docNumber": "33456789", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088029", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-11-28T15:00:00.000Z", "dateShipped": "2025-11-26T10:00:00.000Z" },
+      "scenario": { "id": "devolucion_dentro_plazo", "name": "Devolucion (< 30 dias)", "description": "Dentro del plazo de devolucion", "icon": "↩️" },
+      "createdAt": "2025-11-25T11:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-030",
+      "product": { "id": "MLA1924352030", "title": "Motor Limpiaparabrisas Fiat Cronos", "price": 42000, "sku": "LIMP-CRON-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352030-O.webp" },
+      "buyer": { "id": "292929", "name": "Pablo Herrera", "nickname": "PABLOHERRERA_AR" },
+      "billing": { "docType": "DNI", "docNumber": "30123456", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088030", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-07-15T14:00:00.000Z", "dateShipped": "2025-07-13T09:00:00.000Z" },
+      "scenario": { "id": "devolucion_fuera_plazo", "name": "Devolucion (> 30 dias)", "description": "Fuera del plazo de devolucion", "icon": "⏰" },
+      "createdAt": "2025-07-12T10:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-031",
+      "product": { "id": "MLA1924352031", "title": "Cremallera Direccion Toyota Corolla", "price": 225000, "sku": "CREM-COROL-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352031-O.webp" },
+      "buyer": { "id": "303030", "name": "Silvia Moreno", "nickname": "SILVIAMORENO_OK" },
+      "billing": { "docType": "DNI", "docNumber": "28901234", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088031", "status": "pending", "carrier": "mercadoenvios", "logisticType": "cross_docking" },
+      "scenario": { "id": "pending_shipping", "name": "Pendiente de Envio", "description": "Esperando despacho", "icon": "📦" },
+      "createdAt": "2025-12-06T04:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-032",
+      "product": { "id": "MLA1924352032", "title": "Bomba Direccion Hidraulica Chevrolet Meriva", "price": 95000, "sku": "BOMB-MERIV-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352032-O.webp" },
+      "buyer": { "id": "313131", "name": "Taller Integral Autos", "nickname": "TALLERINTEGRAL" },
+      "billing": { "docType": "CUIT", "docNumber": "30-76543210-8", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088032", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-04T13:00:00.000Z", "dateShipped": "2025-12-02T10:00:00.000Z" },
+      "scenario": { "id": "factura_a_cuit", "name": "Factura A (CUIT)", "description": "Puede recibir Factura A", "icon": "🧾" },
+      "createdAt": "2025-12-01T15:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-033",
+      "product": { "id": "MLA1924352033", "title": "Sensor Temperatura Agua Ford Ranger 3.2", "price": 18000, "sku": "SENS-TEMP-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352033-O.webp" },
+      "buyer": { "id": "323232", "name": "Guillermo Ortiz", "nickname": "GUILLEORTIZ_TOP" },
+      "billing": { "docType": "DNI", "docNumber": "29876543", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088033", "status": "not_delivered", "carrier": "flex", "logisticType": "flex", "failedAttempts": 2 },
+      "scenario": { "id": "flex_2_visits", "name": "Flex 2 Visitas", "description": "2 intentos fallidos - Cancelar", "icon": "❌" },
+      "createdAt": "2025-12-05T07:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-034",
+      "product": { "id": "MLA1924352034", "title": "Cuerpo Mariposa Volkswagen Polo 1.6", "price": 85000, "sku": "MARIP-POLO-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352034-O.webp" },
+      "buyer": { "id": "333334", "name": "Claudia Rios", "nickname": "CLAUDIARIOS_AR" },
+      "billing": { "docType": "DNI", "docNumber": "32109876", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088034", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-05T16:00:00.000Z", "dateShipped": "2025-12-03T09:00:00.000Z" },
+      "scenario": { "id": "instalacion", "name": "Consulta Instalacion", "description": "Pregunta como instalar", "icon": "🛠️" },
+      "createdAt": "2025-12-02T11:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-035",
+      "product": { "id": "MLA1924352035", "title": "Juego Juntas Motor Completo Fiat 147", "price": 45000, "sku": "JUNT-147-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352035-O.webp" },
+      "buyer": { "id": "343434", "name": "Raul Medina", "nickname": "RAULMEDINA_MEC" },
+      "billing": { "docType": "DNI", "docNumber": "25678901", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088035", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-03T11:00:00.000Z", "dateShipped": "2025-12-01T08:00:00.000Z" },
+      "scenario": { "id": "agradecimiento", "name": "Agradecimiento", "description": "Cliente satisfecho", "icon": "🙏" },
+      "createdAt": "2025-11-30T12:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-036",
+      "product": { "id": "MLA1924352036", "title": "Alternador Bosch Peugeot 206 1.6 16v", "price": 145000, "sku": "ALT-206-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352036-O.webp" },
+      "buyer": { "id": "353535", "name": "Andrea Vargas", "nickname": "ANDREAVARGAS_OK" },
+      "billing": { "docType": "DNI", "docNumber": "34567890", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088036", "status": "delivered", "carrier": "treggo", "logisticType": "flex", "dateDelivered": "2025-12-05T19:00:00.000Z", "dateShipped": "2025-12-05T15:00:00.000Z" },
+      "scenario": { "id": "flex_treggo", "name": "Envio Treggo", "description": "Entrega rapida Treggo", "icon": "🚀" },
+      "createdAt": "2025-12-05T13:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-037",
+      "product": { "id": "MLA1924352037", "title": "Arbol de Levas Renault Logan 1.6 8v", "price": 178000, "sku": "ARBOL-LOG-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352037-O.webp" },
+      "buyer": { "id": "363636", "name": "Oscar Fuentes", "nickname": "OSCARFUENTES_AR" },
+      "billing": { "docType": "DNI", "docNumber": "27654321", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088037", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-04T17:00:00.000Z", "dateShipped": "2025-12-02T11:00:00.000Z" },
+      "scenario": { "id": "incompatibilidad", "name": "Compatibilidad", "description": "Consulta tecnica", "icon": "🔧" },
+      "createdAt": "2025-12-01T16:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-038",
+      "product": { "id": "MLA1924352038", "title": "Radiador Calefaccion Chevrolet Classic", "price": 38000, "sku": "RAD-CAL-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352038-O.webp" },
+      "buyer": { "id": "373737", "name": "Monica Silva", "nickname": "MONICASILVA_MLA" },
+      "billing": { "docType": "DNI", "docNumber": "31234567", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088038", "status": "shipped", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateShipped": "2025-12-06T06:00:00.000Z" },
+      "scenario": { "id": "in_transit", "name": "Despachado", "description": "Recien despachado", "icon": "🚚" },
+      "createdAt": "2025-12-05T17:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-039",
+      "product": { "id": "MLA1924352039", "title": "Bomba Aceite Ford Fiesta Max 1.6", "price": 52000, "sku": "BOMB-ACE-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352039-O.webp" },
+      "buyer": { "id": "383838", "name": "Repuestos del Sur SRL", "nickname": "REPSUR_SRL" },
+      "billing": { "docType": "CUIT", "docNumber": "30-43210987-3", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088039", "status": "in_transit", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateShipped": "2025-12-05T10:00:00.000Z" },
+      "scenario": { "id": "in_transit", "name": "En Transito", "description": "Envio en camino", "icon": "🚚" },
+      "createdAt": "2025-12-04T14:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-040",
+      "product": { "id": "MLA1924352040", "title": "Kit Cadena Distribucion Nissan Frontier 2.5", "price": 195000, "sku": "CAD-FRONT-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352040-O.webp" },
+      "buyer": { "id": "393939", "name": "Hugo Navarro", "nickname": "HUGONAVARRO_TOP" },
+      "billing": { "docType": "DNI", "docNumber": "26789012", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088040", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-11-22T14:00:00.000Z", "dateShipped": "2025-11-20T09:00:00.000Z" },
+      "scenario": { "id": "devolucion_dentro_plazo", "name": "Devolucion (< 30 dias)", "description": "Dentro del plazo de devolucion", "icon": "↩️" },
+      "createdAt": "2025-11-19T10:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-041",
+      "product": { "id": "MLA1924352041", "title": "Soporte Motor Trasero Peugeot 308", "price": 35000, "sku": "SOP-308-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352041-O.webp" },
+      "buyer": { "id": "404040", "name": "Fabian Aguirre", "nickname": "FABIANAGUIRRE88" },
+      "billing": { "docType": "DNI", "docNumber": "30123456", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088041", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-06-20T15:00:00.000Z", "dateShipped": "2025-06-18T10:00:00.000Z" },
+      "scenario": { "id": "devolucion_fuera_plazo", "name": "Devolucion (> 30 dias)", "description": "Fuera del plazo de devolucion", "icon": "⏰" },
+      "createdAt": "2025-06-17T11:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-042",
+      "product": { "id": "MLA1924352042", "title": "Valvula Termostatica Fiat Strada 1.4", "price": 22000, "sku": "TERM-STRA-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352042-O.webp" },
+      "buyer": { "id": "414141", "name": "Lorena Ponce", "nickname": "LORENAPONCE_AR" },
+      "billing": { "docType": "DNI", "docNumber": "33456789", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088042", "status": "not_delivered", "carrier": "flex", "logisticType": "flex", "failedAttempts": 1 },
+      "scenario": { "id": "flex_1_visit", "name": "Flex 1 Visita", "description": "1 intento fallido", "icon": "⚠️" },
+      "createdAt": "2025-12-05T14:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-043",
+      "product": { "id": "MLA1924352043", "title": "Espejo Retrovisor Electrico Chevrolet Onix", "price": 48000, "sku": "ESP-ONIX-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352043-O.webp" },
+      "buyer": { "id": "424242", "name": "Jorge Peralta", "nickname": "JORGEPERALTA_OK" },
+      "billing": { "docType": "DNI", "docNumber": "28901234", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088043", "status": "pending", "carrier": "mercadoenvios", "logisticType": "cross_docking" },
+      "scenario": { "id": "pending_shipping", "name": "Pendiente de Envio", "description": "Esperando despacho", "icon": "📦" },
+      "createdAt": "2025-12-06T03:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-044",
+      "product": { "id": "MLA1924352044", "title": "Regulador Alternador Ford Focus II 2.0", "price": 28000, "sku": "REG-FOC2-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352044-O.webp" },
+      "buyer": { "id": "434343", "name": "Mecanica Express SA", "nickname": "MECEXPRESS_SA" },
+      "billing": { "docType": "CUIT", "docNumber": "30-21098765-4", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088044", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-05T12:00:00.000Z", "dateShipped": "2025-12-03T08:00:00.000Z" },
+      "scenario": { "id": "factura_a_cuit", "name": "Factura A (CUIT)", "description": "Puede recibir Factura A", "icon": "🧾" },
+      "createdAt": "2025-12-02T10:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-045",
+      "product": { "id": "MLA1924352045", "title": "Cilindro Freno Rueda Renault Kangoo", "price": 15000, "sku": "CIL-KANG-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352045-O.webp" },
+      "buyer": { "id": "444445", "name": "Gabriela Costa", "nickname": "GABICOSTA_MLA" },
+      "billing": { "docType": "DNI", "docNumber": "35678901", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088045", "status": "delivered", "carrier": "flex", "logisticType": "flex", "dateDelivered": "2025-12-06T11:00:00.000Z", "dateShipped": "2025-12-06T08:00:00.000Z" },
+      "scenario": { "id": "flex_treggo", "name": "Envio Flex", "description": "Entrega rapida Flex", "icon": "🚀" },
+      "createdAt": "2025-12-06T06:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-046",
+      "product": { "id": "MLA1924352046", "title": "Sonda Lambda Universal 4 Cables", "price": 32000, "sku": "SOND-UNIV-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352046-O.webp" },
+      "buyer": { "id": "454545", "name": "Matias Romero", "nickname": "MATIASROMERO99" },
+      "billing": { "docType": "DNI", "docNumber": "32109876", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088046", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-04T14:00:00.000Z", "dateShipped": "2025-12-02T09:00:00.000Z" },
+      "scenario": { "id": "instalacion", "name": "Consulta Instalacion", "description": "Pregunta como instalar", "icon": "🛠️" },
+      "createdAt": "2025-12-01T13:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-047",
+      "product": { "id": "MLA1924352047", "title": "Filtro Combustible Diesel Toyota Hilux", "price": 18500, "sku": "FILT-HILUX-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352047-O.webp" },
+      "buyer": { "id": "464646", "name": "Transporte Rural SA", "nickname": "TRANSRURAL_SA" },
+      "billing": { "docType": "CUIT", "docNumber": "30-10987654-2", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088047", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-03T10:00:00.000Z", "dateShipped": "2025-12-01T08:00:00.000Z" },
+      "scenario": { "id": "agradecimiento", "name": "Agradecimiento", "description": "Cliente satisfecho", "icon": "🙏" },
+      "createdAt": "2025-11-30T09:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-048",
+      "product": { "id": "MLA1924352048", "title": "Volante Motor Bimasa Volkswagen Vento", "price": 320000, "sku": "VOL-VENTO-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352048-O.webp" },
+      "buyer": { "id": "474747", "name": "Roberto Jimenez", "nickname": "ROBJIMENEZ_AR" },
+      "billing": { "docType": "DNI", "docNumber": "25678901", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088048", "status": "delivered", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateDelivered": "2025-12-05T15:00:00.000Z", "dateShipped": "2025-12-03T10:00:00.000Z" },
+      "scenario": { "id": "incompatibilidad", "name": "Compatibilidad", "description": "Consulta tecnica", "icon": "🔧" },
+      "createdAt": "2025-12-02T12:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-049",
+      "product": { "id": "MLA1924352049", "title": "Bomba Agua Electrica BMW Serie 3 E90", "price": 185000, "sku": "BOMB-BMW-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352049-O.webp" },
+      "buyer": { "id": "484848", "name": "Premium Cars Service", "nickname": "PREMIUMCARS_SVC" },
+      "billing": { "docType": "CUIT", "docNumber": "30-09876543-1", "taxpayerType": "Responsable Inscripto", "canReceiveFacturaA": true },
+      "shipping": { "id": "44172088049", "status": "shipped", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateShipped": "2025-12-06T08:00:00.000Z" },
+      "scenario": { "id": "in_transit", "name": "Despachado", "description": "Recien despachado", "icon": "🚚" },
+      "createdAt": "2025-12-05T19:00:00.000Z",
+      "messages": []
+    },
+    {
+      "id": "DEMO-050",
+      "product": { "id": "MLA1924352050", "title": "Modulo ABS Chevrolet Spin 1.8", "price": 245000, "sku": "ABS-SPIN-001", "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_1924352050-O.webp" },
+      "buyer": { "id": "494949", "name": "Carolina Mendoza", "nickname": "CAROMENDOZA_TOP" },
+      "billing": { "docType": "DNI", "docNumber": "34567890", "taxpayerType": "Consumidor Final", "canReceiveFacturaA": false },
+      "shipping": { "id": "44172088050", "status": "in_transit", "carrier": "mercadoenvios", "logisticType": "cross_docking", "dateShipped": "2025-12-05T11:00:00.000Z" },
+      "scenario": { "id": "in_transit", "name": "En Transito", "description": "Envio en camino", "icon": "🚚" },
+      "createdAt": "2025-12-04T16:00:00.000Z",
+      "messages": []
+    }
+  ],
+  "metadata": {
+    "version": "2.0",
+    "created_at": "2025-12-06",
+    "description": "50 ordenes de prueba pre-cargadas para el simulador de postventa con todos los escenarios posibles",
+    "scenarios_covered": [
+      "normal_delivered",
+      "factura_a_cuit",
+      "devolucion_dentro_plazo",
+      "devolucion_fuera_plazo",
+      "flex_treggo",
+      "instalacion",
+      "pending_shipping",
+      "in_transit",
+      "agradecimiento",
+      "incompatibilidad",
+      "flex_2_visits",
+      "flex_1_visit",
+      "shipped"
+    ]
+  }
+}

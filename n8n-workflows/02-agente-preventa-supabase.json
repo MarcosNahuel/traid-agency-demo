@@ -1,0 +1,284 @@
+{
+  "name": "MarIA - Agente Preventa (Supabase)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "preventa-demo",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-preventa",
+      "name": "Webhook Preventa",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "preventa-demo"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer datos del mensaje de preventa\nconst body = $input.first().json;\nconst chatInput = body.chatInput || body.message || '';\nconst sessionId = body.sessionId || 'anonymous';\n\n// Parsear MLA ID si viene en el mensaje\nconst mlaMatch = chatInput.match(/MLA\\d+/i);\nconst productId = mlaMatch ? mlaMatch[0].toUpperCase() : null;\n\n// Extraer la pregunta (despues del guion si tiene MLA)\nlet question = chatInput;\nif (productId && chatInput.includes('-')) {\n  question = chatInput.split('-').slice(1).join('-').trim();\n} else if (productId) {\n  question = chatInput.replace(productId, '').trim();\n}\n\n// Detectar tipo de consulta\nconst msgLower = question.toLowerCase();\nlet queryType = 'general';\n\nif (msgLower.includes('stock') || msgLower.includes('disponib') || msgLower.includes('tienen')) {\n  queryType = 'stock';\n} else if (msgLower.includes('compat') || msgLower.includes('sirve') || msgLower.includes('funciona')) {\n  queryType = 'compatibilidad';\n} else if (msgLower.includes('envio') || msgLower.includes('llega') || msgLower.includes('demora')) {\n  queryType = 'envio';\n} else if (msgLower.includes('precio') || msgLower.includes('descuento') || msgLower.includes('oferta') || msgLower.includes('cuota')) {\n  queryType = 'precio';\n} else if (msgLower.includes('garantia')) {\n  queryType = 'garantia';\n} else if (msgLower.includes('factura')) {\n  queryType = 'facturacion';\n}\n\nreturn {\n  json: {\n    chatInput,\n    sessionId,\n    productId,\n    question,\n    queryType\n  }\n};"
+      },
+      "id": "parse-preventa",
+      "name": "Parsear Consulta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [470, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-product",
+              "leftValue": "={{ $json.productId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "check-product-id",
+      "name": "Tiene Product ID?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [690, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/products",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "mla_id",
+              "value": "=eq.{{ $json.productId }}"
+            },
+            {
+              "name": "select",
+              "value": "*"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-product-by-mla",
+      "name": "Buscar Producto por MLA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [910, 200],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generar respuesta de preventa\nconst inputData = $('Parsear Consulta').first().json;\nconst productData = $input.first().json;\n\nconst product = Array.isArray(productData) && productData.length > 0 ? productData[0] : null;\nconst queryType = inputData.queryType;\nconst question = inputData.question;\n\nlet response = '';\nlet needsMoreInfo = false;\n\nif (!product) {\n  response = `Hola! No encontre ese producto en nuestro catalogo. Podes decirme el nombre o codigo del producto que estas buscando?`;\n} else {\n  const productName = product.title;\n  const price = product.price?.toLocaleString() || 'consultar';\n  const stock = product.stock || 0;\n  const brand = product.brand || '';\n  \n  switch (queryType) {\n    case 'stock':\n      if (stock > 0) {\n        response = `Hola! Si, tenemos stock de ${productName}. Actualmente hay ${stock} unidades disponibles. El precio es $${price}. Te interesa?`;\n      } else {\n        response = `Hola! Lamentablemente ${productName} esta sin stock en este momento. Te gustaria que te avisemos cuando vuelva a estar disponible?`;\n      }\n      break;\n      \n    case 'compatibilidad':\n      response = `Hola! Para verificar la compatibilidad de ${productName} necesito que me indiques el modelo exacto de tu equipo. Por ejemplo, si es una placa de video necesito saber tu fuente de poder y gabinete. Si es RAM, necesito el modelo de tu motherboard. Contame mas!`;\n      needsMoreInfo = true;\n      break;\n      \n    case 'envio':\n      response = `Hola! ${productName} tiene envio disponible a todo el pais. Los tiempos son:\\n- CABA y GBA: 1-3 dias habiles\\n- Interior: 3-7 dias habiles\\n\\nEl envio es GRATIS en compras mayores a $50.000. Tambien podes retirar en nuestro local.`;\n      break;\n      \n    case 'precio':\n      response = `Hola! ${productName} tiene un precio de $${price}. Aceptamos todas las tarjetas:\\n- Hasta 6 cuotas sin interes\\n- Hasta 12 cuotas con interes\\n- 10% OFF con transferencia bancaria\\n\\nTe interesa?`;\n      break;\n      \n    case 'garantia':\n      response = `Hola! ${productName} tiene garantia oficial de 6 meses por defectos de fabrica. ${brand ? 'Es producto original ' + brand + '.' : ''} Si tenes algun problema, nos encargarmos del RMA.`;\n      break;\n      \n    case 'facturacion':\n      response = `Hola! Por la compra de ${productName} emitimos factura. Si necesitas Factura A (para monotributistas o responsables inscriptos), envianos tu CUIT al momento de la compra. Para consumidor final emitimos Factura B automaticamente.`;\n      break;\n      \n    default:\n      response = `Hola! Gracias por tu consulta sobre ${productName}. El precio es $${price} y ${stock > 0 ? 'tenemos stock disponible' : 'no tenemos stock momentaneamente'}. En que mas puedo ayudarte?`;\n  }\n}\n\nreturn {\n  json: {\n    text: response,\n    queryType,\n    productFound: !!product,\n    productTitle: product?.title || null,\n    needsMoreInfo\n  }\n};"
+      },
+      "id": "generate-preventa-response",
+      "name": "Generar Respuesta Preventa",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1130, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Respuesta cuando no hay producto especifico\nconst inputData = $input.first().json;\nconst question = inputData.question;\nconst queryType = inputData.queryType;\n\nlet response = '';\n\nswitch (queryType) {\n  case 'stock':\n    response = 'Hola! Que producto te interesa? Tenemos PCs gaming, notebooks, placas de video, monitores, perifericos y mas. Decime el nombre o codigo y te confirmo disponibilidad.';\n    break;\n  case 'envio':\n    response = 'Hola! Hacemos envios a todo el pais. CABA/GBA en 1-3 dias, interior en 3-7 dias. Envio GRATIS en compras mayores a $50.000. Que producto te interesa?';\n    break;\n  case 'precio':\n    response = 'Hola! Decime que producto te interesa y te paso el precio con todas las opciones de pago. Aceptamos hasta 12 cuotas!';\n    break;\n  default:\n    response = 'Hola! Soy Barbi de MarIA S.A., tu tienda de tecnologia gaming. En que puedo ayudarte? Tenemos PCs armadas, notebooks, placas de video, monitores, perifericos y mas!';\n}\n\nreturn {\n  json: {\n    text: response,\n    queryType,\n    productFound: false,\n    needsMoreInfo: true\n  }\n};"
+      },
+      "id": "response-no-product",
+      "name": "Respuesta Sin Producto",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [910, 400]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "all"
+      },
+      "id": "merge-preventa",
+      "name": "Unir Respuestas",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [1350, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/ai_interactions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"agent_id\": \"a0000001-0001-0001-0001-000000000001\",\n  \"input_message\": \"{{ $('Parsear Consulta').first().json.chatInput }}\",\n  \"output_message\": \"{{ $json.text }}\",\n  \"tool_used\": \"product_search\",\n  \"escalated\": false,\n  \"channel\": \"demo\"\n}",
+        "options": {}
+      },
+      "id": "log-preventa-interaction",
+      "name": "Guardar Interaccion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1570, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { text: $json.text } }}",
+        "options": {}
+      },
+      "id": "respond-preventa",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1790, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Preventa": {
+      "main": [
+        [
+          {
+            "node": "Parsear Consulta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsear Consulta": {
+      "main": [
+        [
+          {
+            "node": "Tiene Product ID?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tiene Product ID?": {
+      "main": [
+        [
+          {
+            "node": "Buscar Producto por MLA",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respuesta Sin Producto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Producto por MLA": {
+      "main": [
+        [
+          {
+            "node": "Generar Respuesta Preventa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generar Respuesta Preventa": {
+      "main": [
+        [
+          {
+            "node": "Unir Respuestas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respuesta Sin Producto": {
+      "main": [
+        [
+          {
+            "node": "Unir Respuestas",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Unir Respuestas": {
+      "main": [
+        [
+          {
+            "node": "Guardar Interaccion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardar Interaccion": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "MarIA Demo"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-12-16T00:00:00.000Z",
+  "versionId": "1"
+}

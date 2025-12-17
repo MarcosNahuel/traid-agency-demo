@@ -1,0 +1,342 @@
+{
+  "name": "MarIA - Gestor de Escalaciones",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "escalation-update",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-escalation",
+      "name": "Webhook Actualizar Escalacion",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "escalation-update"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parsear datos de la escalacion\nconst body = $input.first().json;\n\nconst escalationId = body.escalation_id;\nconst action = body.action; // 'resolve', 'dismiss', 'assign', 'respond'\nconst humanResponse = body.human_response || null;\nconst resolutionNotes = body.resolution_notes || null;\nconst assignedTo = body.assigned_to || null;\n\nif (!escalationId || !action) {\n  throw new Error('escalation_id y action son requeridos');\n}\n\nreturn {\n  json: {\n    escalationId,\n    action,\n    humanResponse,\n    resolutionNotes,\n    assignedTo\n  }\n};"
+      },
+      "id": "parse-escalation-request",
+      "name": "Parsear Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [470, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "action-resolve",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "resolve",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "switch-action",
+      "name": "Tipo de Accion",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [690, 300]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/escalations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=representation"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "=eq.{{ $json.escalationId }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"status\": \"resolved\",\n  \"human_response\": {{ $json.humanResponse ? '\"' + $json.humanResponse + '\"' : 'null' }},\n  \"resolution_notes\": {{ $json.resolutionNotes ? '\"' + $json.resolutionNotes + '\"' : 'null' }},\n  \"resolved_at\": \"{{ new Date().toISOString() }}\"\n}",
+        "options": {}
+      },
+      "id": "resolve-escalation",
+      "name": "Resolver Escalacion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [910, 140],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/escalations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=representation"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "=eq.{{ $json.escalationId }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"status\": \"dismissed\",\n  \"resolution_notes\": {{ $json.resolutionNotes ? '\"' + $json.resolutionNotes + '\"' : '\"Caso descartado\"' }},\n  \"resolved_at\": \"{{ new Date().toISOString() }}\"\n}",
+        "options": {}
+      },
+      "id": "dismiss-escalation",
+      "name": "Descartar Escalacion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [910, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/escalations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=representation"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "=eq.{{ $json.escalationId }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"status\": \"in_progress\",\n  \"assigned_to\": \"{{ $json.assignedTo }}\"\n}",
+        "options": {}
+      },
+      "id": "assign-escalation",
+      "name": "Asignar Escalacion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [910, 460],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "all"
+      },
+      "id": "merge-actions",
+      "name": "Unir Acciones",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [1130, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Preparar respuesta\nconst result = $input.first().json;\nconst updatedEscalation = Array.isArray(result) ? result[0] : result;\n\nreturn {\n  json: {\n    success: true,\n    message: 'Escalacion actualizada correctamente',\n    escalation: updatedEscalation\n  }\n};"
+      },
+      "id": "prepare-response",
+      "name": "Preparar Respuesta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1350, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "respond-escalation",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1570, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Actualizar Escalacion": {
+      "main": [
+        [
+          {
+            "node": "Parsear Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsear Request": {
+      "main": [
+        [
+          {
+            "node": "Tipo de Accion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tipo de Accion": {
+      "main": [
+        [
+          {
+            "node": "Resolver Escalacion",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Descartar Escalacion",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Asignar Escalacion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resolver Escalacion": {
+      "main": [
+        [
+          {
+            "node": "Unir Acciones",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descartar Escalacion": {
+      "main": [
+        [
+          {
+            "node": "Unir Acciones",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Asignar Escalacion": {
+      "main": [
+        [
+          {
+            "node": "Unir Acciones",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Unir Acciones": {
+      "main": [
+        [
+          {
+            "node": "Preparar Respuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar Respuesta": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "MarIA Demo"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-12-16T00:00:00.000Z",
+  "versionId": "1"
+}

@@ -1,0 +1,314 @@
+{
+  "name": "MarIA - Refresh Stock Metrics",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Cada 6 Horas",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "refresh-stock",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-manual",
+      "name": "Webhook Manual",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 480],
+      "webhookId": "refresh-stock"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "all"
+      },
+      "id": "merge-triggers",
+      "name": "Unir Triggers",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [470, 380]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/rpc/refresh_stock_metrics",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "call-refresh-metrics",
+      "name": "Ejecutar refresh_stock_metrics()",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [690, 380],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/product_metrics",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "severity",
+              "value": "eq.critical"
+            },
+            {
+              "name": "select",
+              "value": "product_id,severity,days_of_stock,reorder_date"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-critical-items",
+      "name": "Obtener Items Criticos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [910, 380],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-critical",
+              "leftValue": "={{ $json.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "check-critical",
+      "name": "Hay Items Criticos?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1130, 380]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Preparar alerta de stock critico\nconst criticalItems = $input.first().json;\nconst count = Array.isArray(criticalItems) ? criticalItems.length : 0;\n\nconst alertMessage = `ALERTA STOCK CRITICO\\n\\nSe detectaron ${count} productos con stock critico que requieren reposicion inmediata.\\n\\nVerificar en el dashboard de stock.`;\n\nreturn {\n  json: {\n    alertType: 'stock_critical',\n    criticalCount: count,\n    message: alertMessage,\n    items: criticalItems,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "prepare-alert",
+      "name": "Preparar Alerta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1350, 280]
+    },
+    {
+      "parameters": {
+        "jsCode": "// No hay items criticos\nconst refreshResult = $('Ejecutar refresh_stock_metrics()').first().json;\n\nreturn {\n  json: {\n    success: true,\n    message: 'Metricas actualizadas. No hay items criticos.',\n    result: refreshResult,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "no-alert",
+      "name": "Sin Alertas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1350, 480]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "all"
+      },
+      "id": "merge-results",
+      "name": "Unir Resultados",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [1570, 380]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "respond-result",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1790, 380]
+    }
+  ],
+  "connections": {
+    "Cada 6 Horas": {
+      "main": [
+        [
+          {
+            "node": "Unir Triggers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Manual": {
+      "main": [
+        [
+          {
+            "node": "Unir Triggers",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Unir Triggers": {
+      "main": [
+        [
+          {
+            "node": "Ejecutar refresh_stock_metrics()",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ejecutar refresh_stock_metrics()": {
+      "main": [
+        [
+          {
+            "node": "Obtener Items Criticos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Items Criticos": {
+      "main": [
+        [
+          {
+            "node": "Hay Items Criticos?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hay Items Criticos?": {
+      "main": [
+        [
+          {
+            "node": "Preparar Alerta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sin Alertas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar Alerta": {
+      "main": [
+        [
+          {
+            "node": "Unir Resultados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sin Alertas": {
+      "main": [
+        [
+          {
+            "node": "Unir Resultados",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Unir Resultados": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "MarIA Demo"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-12-16T00:00:00.000Z",
+  "versionId": "1"
+}

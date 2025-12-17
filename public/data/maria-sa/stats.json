@@ -1,0 +1,73 @@
+{
+  "total_revenue": 180000000,
+  "total_orders": 2500,
+  "avg_ticket": 72000,
+  "active_products": 65,
+  "total_products": 65,
+  "unique_customers": 2100,
+  "repeat_customers": 336,
+  "repeat_rate": 16,
+  "answered_questions": 1850,
+  "total_questions": 1890,
+  "answer_rate": 97.9,
+  "extraction_date": "2025-12-17 10:00:00",
+  "_metadata": {
+    "source": "MarIA S.A. Demo Data",
+    "filter": "status = 'paid' only",
+    "seller_id": "demo-maria-sa",
+    "seller_name": "MarIA S.A.",
+    "business_type": "Gaming & Hardware",
+    "period": "Dic 2024 - Dic 2025 (13 meses)"
+  },
+  "monthly_breakdown": {
+    "2024-12": {"orders": 165, "revenue": 11880000},
+    "2025-01": {"orders": 180, "revenue": 12960000},
+    "2025-02": {"orders": 175, "revenue": 12600000},
+    "2025-03": {"orders": 190, "revenue": 13680000},
+    "2025-04": {"orders": 185, "revenue": 13320000},
+    "2025-05": {"orders": 195, "revenue": 14040000},
+    "2025-06": {"orders": 200, "revenue": 14400000},
+    "2025-07": {"orders": 205, "revenue": 14760000},
+    "2025-08": {"orders": 210, "revenue": 15120000},
+    "2025-09": {"orders": 215, "revenue": 15480000},
+    "2025-10": {"orders": 225, "revenue": 16200000},
+    "2025-11": {"orders": 240, "revenue": 17280000},
+    "2025-12": {"orders": 115, "revenue": 8280000}
+  },
+  "top_categories": [
+    {"name": "PCs Gaming", "orders": 875, "revenue": 78750000, "percentage": 35},
+    {"name": "Placas de Video", "orders": 625, "revenue": 45000000, "percentage": 25},
+    {"name": "Notebooks", "orders": 375, "revenue": 27000000, "percentage": 15},
+    {"name": "Monitores", "orders": 250, "revenue": 13500000, "percentage": 10},
+    {"name": "Perifericos", "orders": 200, "revenue": 9000000, "percentage": 8},
+    {"name": "Sillas Gaming", "orders": 100, "revenue": 4500000, "percentage": 4},
+    {"name": "Componentes", "orders": 75, "revenue": 2250000, "percentage": 3}
+  ],
+  "top_products": [
+    {"sku": "PC-HIGH-001", "title": "PC Gamer Pro - RTX 4070", "orders": 85, "revenue": 102000000, "units": 85},
+    {"sku": "GPU-4070-001", "title": "NVIDIA RTX 4070 12GB", "orders": 120, "revenue": 90000000, "units": 120},
+    {"sku": "NB-PRO-001", "title": "MacBook Air M2", "orders": 45, "revenue": 63000000, "units": 45},
+    {"sku": "PC-MID-001", "title": "PC Gamer Mid - RTX 4060", "orders": 95, "revenue": 80750000, "units": 95},
+    {"sku": "GPU-4060-001", "title": "NVIDIA RTX 4060 8GB", "orders": 150, "revenue": 67500000, "units": 150},
+    {"sku": "MON-27-144", "title": "Monitor ASUS 27\" QHD 144Hz", "orders": 110, "revenue": 30800000, "units": 110},
+    {"sku": "NB-GAME-001", "title": "Notebook Gamer ASUS TUF", "orders": 55, "revenue": 50600000, "units": 55},
+    {"sku": "SIL-PRO-001", "title": "Silla Gamer Secretlab", "orders": 65, "revenue": 29250000, "units": 65},
+    {"sku": "TEC-MEM-001", "title": "Teclado HyperX Alloy", "orders": 180, "revenue": 15300000, "units": 180},
+    {"sku": "MOU-GAM-001", "title": "Mouse Logitech G Pro", "orders": 200, "revenue": 24000000, "units": 200}
+  ],
+  "customer_segments": [
+    {"segment": "Gamers Hardcore", "count": 420, "percentage": 20, "avg_ticket": 95000},
+    {"segment": "Streamers/Creadores", "count": 315, "percentage": 15, "avg_ticket": 110000},
+    {"segment": "Gamers Casual", "count": 840, "percentage": 40, "avg_ticket": 55000},
+    {"segment": "Profesionales", "count": 315, "percentage": 15, "avg_ticket": 85000},
+    {"segment": "Estudiantes", "count": 210, "percentage": 10, "avg_ticket": 45000}
+  ],
+  "ai_performance": {
+    "total_interactions": 3200,
+    "resolved_by_ai": 2720,
+    "escalated_to_human": 480,
+    "ai_resolution_rate": 85,
+    "avg_response_time_ms": 1200,
+    "satisfaction_score": 4.6
+  }
+}

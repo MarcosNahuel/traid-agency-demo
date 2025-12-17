@@ -1,0 +1,395 @@
+{
+  "conversations": [
+    {
+      "id": "conv-001",
+      "order_id": "ML-2000010050001001",
+      "channel": "mercadolibre",
+      "buyer_id": "123456001",
+      "buyer_name": "Martin Rodriguez",
+      "status": "resolved",
+      "case_type": "tracking",
+      "ai_handled": true,
+      "escalated": false,
+      "messages": [
+        {
+          "id": "msg-001-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Hola! Compre una RTX 4060 hace 2 dias y todavia no tengo novedades del envio. Donde esta mi pedido?",
+          "sent_at": "2024-12-12T10:30:00Z"
+        },
+        {
+          "id": "msg-001-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Martin! Gracias por escribirnos. Ya revise tu pedido de la RTX 4060 (orden ML-2000010050001001). Tu paquete salio ayer del centro de distribucion y esta en camino! El numero de seguimiento es MEL100001001AR. Segun el tracking, la entrega estimada es para manana 13/12 entre las 9hs y 18hs. Podes seguir el envio en tiempo real desde la app de MercadoLibre. Cualquier otra consulta, estoy para ayudarte!",
+          "tool_used": "tracking_lookup",
+          "sent_at": "2024-12-12T10:30:05Z"
+        },
+        {
+          "id": "msg-001-3",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Genial, gracias por la info!",
+          "sent_at": "2024-12-12T10:35:00Z"
+        },
+        {
+          "id": "msg-001-4",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "De nada Martin! Espero que disfrutes mucho tu nueva RTX 4060. Si tenes alguna consulta sobre instalacion o drivers, no dudes en escribirnos. Buen gaming!",
+          "tool_used": null,
+          "sent_at": "2024-12-12T10:35:03Z"
+        }
+      ],
+      "created_at": "2024-12-12T10:30:00Z",
+      "resolved_at": "2024-12-12T10:35:03Z"
+    },
+    {
+      "id": "conv-002",
+      "order_id": "ML-2000010050001002",
+      "channel": "mercadolibre",
+      "buyer_id": "123456002",
+      "buyer_name": "Lucia Fernandez",
+      "status": "resolved",
+      "case_type": "facturacion",
+      "ai_handled": true,
+      "escalated": false,
+      "messages": [
+        {
+          "id": "msg-002-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Hola, necesito la factura A de mi compra. Soy monotributista.",
+          "sent_at": "2024-12-13T09:00:00Z"
+        },
+        {
+          "id": "msg-002-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Lucia! Vi que compraste la PC Gamer Mid con RTX 4060, excelente eleccion! Revise tus datos y veo que registraste CUIT 20-35123002-9 como Responsable Monotributo, asi que si, te corresponde Factura A. Ya la estamos generando y te la enviamos por email a lucia.fernandez@hotmail.com en las proximas 24-48hs habiles. Si necesitas que la enviemos a otro mail, avisame!",
+          "tool_used": "billing_check",
+          "sent_at": "2024-12-13T09:00:04Z"
+        },
+        {
+          "id": "msg-002-3",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Perfecto, gracias! A ese mail esta bien.",
+          "sent_at": "2024-12-13T09:05:00Z"
+        }
+      ],
+      "created_at": "2024-12-13T09:00:00Z",
+      "resolved_at": "2024-12-13T09:05:00Z"
+    },
+    {
+      "id": "conv-003",
+      "order_id": "ML-2000010050001004",
+      "channel": "mercadolibre",
+      "buyer_id": "123456008",
+      "buyer_name": "Joaquin Alvarez",
+      "status": "resolved",
+      "case_type": "garantia",
+      "ai_handled": false,
+      "escalated": true,
+      "messages": [
+        {
+          "id": "msg-003-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Hola, el monitor que compre tiene un pixel muerto en el centro de la pantalla. Quiero hacer uso de la garantia.",
+          "sent_at": "2024-12-10T14:20:00Z"
+        },
+        {
+          "id": "msg-003-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Joaquin! Lamento mucho escuchar eso con tu monitor ASUS VG27AQ1A. Un pixel muerto es un defecto de fabrica y por supuesto esta cubierto por la garantia. Voy a escalar tu caso a nuestro equipo de soporte tecnico para que te ayuden con el proceso de RMA. Te van a contactar en las proximas horas con los pasos a seguir. Mientras tanto, te pido que nos envies una foto o video donde se vea el pixel muerto para agilizar el tramite. Disculpa las molestias!",
+          "tool_used": "escalation",
+          "sent_at": "2024-12-10T14:20:06Z"
+        },
+        {
+          "id": "msg-003-3",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Aca te mando la foto. Se ve claramente el punto blanco en el centro.",
+          "sent_at": "2024-12-10T14:30:00Z"
+        },
+        {
+          "id": "msg-003-4",
+          "direction": "outbound",
+          "sender_type": "seller",
+          "content": "Hola Joaquin, soy Marcos del equipo de soporte. Recibi tu caso y la foto. Efectivamente se ve el pixel muerto. Te ofrecemos dos opciones: 1) Cambio por una unidad nueva (demora 5-7 dias) o 2) Devolucion completa del dinero. Cual preferis?",
+          "tool_used": null,
+          "sent_at": "2024-12-10T16:00:00Z"
+        },
+        {
+          "id": "msg-003-5",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Prefiero el cambio por una unidad nueva por favor.",
+          "sent_at": "2024-12-10T16:15:00Z"
+        },
+        {
+          "id": "msg-003-6",
+          "direction": "outbound",
+          "sender_type": "seller",
+          "content": "Perfecto Joaquin! Iniciamos el proceso de cambio. Te enviamos una etiqueta de devolucion por email para que despaches el monitor. Apenas lo recibamos, te enviamos la unidad nueva. Gracias por tu paciencia!",
+          "tool_used": null,
+          "sent_at": "2024-12-10T16:20:00Z"
+        }
+      ],
+      "created_at": "2024-12-10T14:20:00Z",
+      "resolved_at": "2024-12-10T16:20:00Z",
+      "escalation_id": "esc-001"
+    },
+    {
+      "id": "conv-004",
+      "order_id": "SH-1001",
+      "channel": "shopify",
+      "buyer_id": "SH-123456004",
+      "buyer_name": "Ana Garcia",
+      "status": "resolved",
+      "case_type": "consulta_tecnica",
+      "ai_handled": true,
+      "escalated": false,
+      "messages": [
+        {
+          "id": "msg-004-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Hola! Recibi el teclado HyperX y es hermoso, pero no se como cambiar los colores del RGB. Tienen algun manual?",
+          "sent_at": "2024-12-11T18:00:00Z"
+        },
+        {
+          "id": "msg-004-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Ana! Me alegra que te haya gustado el HyperX Alloy Origins Core! Para personalizar el RGB tenes dos opciones:\n\n1. **Desde el teclado:** Presiona FN + tecla de brillo para cambiar efectos preconfigurados.\n\n2. **Con software:** Descarga HyperX NGENUITY desde la Microsoft Store (es gratis). Ahi podes crear perfiles personalizados, elegir colores por tecla, efectos y mas.\n\nTe dejo el link directo: https://www.microsoft.com/store/apps/9P1TBXR6QDCX\n\nSi tenes alguna duda con la configuracion, chiflame!",
+          "tool_used": "knowledge_base",
+          "sent_at": "2024-12-11T18:00:05Z"
+        },
+        {
+          "id": "msg-004-3",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Excelente! Ya lo descargue y funciona perfecto. Gracias!",
+          "sent_at": "2024-12-11T18:30:00Z"
+        }
+      ],
+      "created_at": "2024-12-11T18:00:00Z",
+      "resolved_at": "2024-12-11T18:30:00Z"
+    },
+    {
+      "id": "conv-005",
+      "order_id": "ML-2000010050001007",
+      "channel": "mercadolibre",
+      "buyer_id": "123456012",
+      "buyer_name": "Gonzalo Ramirez",
+      "status": "resolved",
+      "case_type": "devolucion",
+      "ai_handled": false,
+      "escalated": true,
+      "messages": [
+        {
+          "id": "msg-005-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Hola, compre la PC hace 25 dias pero me arrepenti. Quiero devolverla.",
+          "sent_at": "2024-12-15T11:00:00Z"
+        },
+        {
+          "id": "msg-005-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Gonzalo! Entiendo que queres devolver tu PC Gamer Pro con RTX 4070. Deja que revise tu caso... Veo que la compra fue hace 25 dias (20/11) y la recibiste el 25/11. Segun la politica de MercadoLibre, tenes 30 dias desde la recepcion para devolucion por arrepentimiento, asi que todavia estas dentro del plazo! Sin embargo, como es una PC armada de alto valor, necesito escalar esto a nuestro equipo para coordinar la logistica de devolucion. Te contactan en breve. La PC esta en perfectas condiciones y con todos los accesorios?",
+          "tool_used": "return_policy_check",
+          "sent_at": "2024-12-15T11:00:06Z"
+        },
+        {
+          "id": "msg-005-3",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Si, esta impecable. Solo la prendi 2 veces para probarla. Tiene todo en la caja original.",
+          "sent_at": "2024-12-15T11:10:00Z"
+        },
+        {
+          "id": "msg-005-4",
+          "direction": "outbound",
+          "sender_type": "seller",
+          "content": "Hola Gonzalo, soy Laura de atención al cliente. Entiendo que queres devolver la PC. Como esta dentro del plazo y en perfectas condiciones, podemos proceder. Te enviamos etiqueta de devolucion por correo. El reembolso se procesa dentro de los 5 dias habiles de recibir el equipo. Alguna duda?",
+          "tool_used": null,
+          "sent_at": "2024-12-15T12:30:00Z"
+        }
+      ],
+      "created_at": "2024-12-15T11:00:00Z",
+      "resolved_at": "2024-12-15T12:30:00Z",
+      "escalation_id": "esc-002"
+    },
+    {
+      "id": "conv-006",
+      "order_id": "TN-5001",
+      "channel": "tiendanube",
+      "buyer_id": "TN-123456006",
+      "buyer_name": "Pablo Martinez",
+      "status": "resolved",
+      "case_type": "agradecimiento",
+      "ai_handled": true,
+      "escalated": false,
+      "messages": [
+        {
+          "id": "msg-006-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Hola! Solo queria agradecerles. Las RAM Corsair llegaron perfectas y la PC vuela ahora. Muy buen servicio!",
+          "sent_at": "2024-12-08T20:00:00Z"
+        },
+        {
+          "id": "msg-006-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Pablo! Muchas gracias por tomarte el tiempo de escribirnos! Nos pone muy contentos saber que las Corsair Vengeance 32GB estan funcionando de 10 y que notaste la diferencia. Si en algun momento necesitas mas upgrades o tenes alguna consulta tecnica, estamos para ayudarte. Buen gaming y gracias por elegirnos!",
+          "tool_used": null,
+          "sent_at": "2024-12-08T20:00:04Z"
+        }
+      ],
+      "created_at": "2024-12-08T20:00:00Z",
+      "resolved_at": "2024-12-08T20:00:04Z"
+    },
+    {
+      "id": "conv-007",
+      "order_id": "ML-2000010050001006",
+      "channel": "mercadolibre",
+      "buyer_id": "123456010",
+      "buyer_name": "Federico Sanchez",
+      "status": "resolved",
+      "case_type": "instalacion",
+      "ai_handled": true,
+      "escalated": false,
+      "messages": [
+        {
+          "id": "msg-007-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Buenas! Llego la silla Secretlab pero no entiendo como armarla. El manual esta en ingles.",
+          "sent_at": "2024-11-28T19:00:00Z"
+        },
+        {
+          "id": "msg-007-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Federico! Felicitaciones por tu Titan Evo, es una silla espectacular! Te ayudo con el armado:\n\n**Pasos basicos:**\n1. Primero arma la base con las 5 ruedas (solo presionalas)\n2. Inserta el piston de gas en la base\n3. Arma el respaldo con el asiento usando los 4 tornillos grandes\n4. Coloca los apoyabrazos (2 tornillos cada uno)\n5. Monta el conjunto sobre el piston\n6. Ajusta el soporte lumbar magnetico\n\nTambien te dejo este video oficial de Secretlab que explica todo paso a paso: https://www.youtube.com/watch?v=Secretlab-assembly\n\nSi te trabas en algun paso, mandame foto y te guio!",
+          "tool_used": "knowledge_base",
+          "sent_at": "2024-11-28T19:00:06Z"
+        },
+        {
+          "id": "msg-007-3",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Gracias! Con el video pude armarla sin problemas. Es muy comoda!",
+          "sent_at": "2024-11-28T20:30:00Z"
+        }
+      ],
+      "created_at": "2024-11-28T19:00:00Z",
+      "resolved_at": "2024-11-28T20:30:00Z"
+    },
+    {
+      "id": "conv-008",
+      "order_id": "SH-1002",
+      "channel": "shopify",
+      "buyer_id": "SH-123456005",
+      "buyer_name": "Diego Lopez",
+      "status": "resolved",
+      "case_type": "facturacion",
+      "ai_handled": true,
+      "escalated": false,
+      "messages": [
+        {
+          "id": "msg-008-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Hola necesito factura A. CUIT 20-28123005-7. Soy responsable inscripto.",
+          "sent_at": "2024-12-13T10:00:00Z"
+        },
+        {
+          "id": "msg-008-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Diego! Perfecto, ya tengo tus datos. Como Responsable Inscripto con CUIT 20-28123005-7, te corresponde Factura A por tu compra del Mouse Logitech G Pro X Superlight 2. La factura se genera dentro de las 48hs habiles y te llega al mail diego.lopez.gamer@gmail.com. Necesitas que la enviemos a otra direccion?",
+          "tool_used": "billing_check",
+          "sent_at": "2024-12-13T10:00:04Z"
+        },
+        {
+          "id": "msg-008-3",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "No, a ese mail esta perfecto. Gracias!",
+          "sent_at": "2024-12-13T10:05:00Z"
+        }
+      ],
+      "created_at": "2024-12-13T10:00:00Z",
+      "resolved_at": "2024-12-13T10:05:00Z"
+    },
+    {
+      "id": "conv-009",
+      "order_id": "ML-2000010050001003",
+      "channel": "mercadolibre",
+      "buyer_id": "123456003",
+      "buyer_name": "Carlos Mendez",
+      "status": "in_progress",
+      "case_type": "tracking",
+      "ai_handled": true,
+      "escalated": false,
+      "messages": [
+        {
+          "id": "msg-009-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Hola, mi notebook ASUS TUF sigue en transito hace 2 dias. Cuando llega?",
+          "sent_at": "2024-12-16T09:00:00Z"
+        },
+        {
+          "id": "msg-009-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Carlos! Ya revise tu envio. Tu Notebook ASUS TUF Gaming (orden ML-2000010050001003) salio el 15/12 y esta en camino a Rosario. El tracking AND100001003AR muestra que esta en el centro de distribucion de Andreani en Santa Fe. La entrega estimada es para hoy 16/12 o manana 17/12 como maximo. Te recomiendo tener el telefono a mano porque el transportista suele llamar antes de llegar. Cualquier novedad me avisas!",
+          "tool_used": "tracking_lookup",
+          "sent_at": "2024-12-16T09:00:05Z"
+        }
+      ],
+      "created_at": "2024-12-16T09:00:00Z",
+      "resolved_at": null
+    },
+    {
+      "id": "conv-010",
+      "order_id": "ML-2000010050001008",
+      "channel": "mercadolibre",
+      "buyer_id": "123456014",
+      "buyer_name": "Camila Ortiz",
+      "status": "pending",
+      "case_type": "compatibilidad",
+      "ai_handled": false,
+      "escalated": true,
+      "messages": [
+        {
+          "id": "msg-010-1",
+          "direction": "inbound",
+          "sender_type": "buyer",
+          "content": "Hola! Compre la MacBook Air pero me di cuenta que necesito conectar 2 monitores externos para trabajar. Se puede hacer con el M2?",
+          "sent_at": "2024-12-16T10:30:00Z"
+        },
+        {
+          "id": "msg-010-2",
+          "direction": "outbound",
+          "sender_type": "ai",
+          "content": "Hola Camila! Muy buena pregunta. El chip M2 de la MacBook Air tiene una limitacion de hardware: nativamente solo soporta 1 monitor externo. Sin embargo, hay soluciones! Podes usar un dock con tecnologia DisplayLink que permite conectar multiples monitores. Te paso esto a nuestro equipo tecnico para que te recomienden las mejores opciones compatibles. Te contactan en breve!",
+          "tool_used": "escalation",
+          "sent_at": "2024-12-16T10:30:06Z"
+        }
+      ],
+      "created_at": "2024-12-16T10:30:00Z",
+      "resolved_at": null,
+      "escalation_id": "esc-003"
+    }
+  ]
+}

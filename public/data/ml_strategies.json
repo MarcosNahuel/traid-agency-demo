@@ -1,0 +1,776 @@
+{
+  "metadata": {
+    "version": "3.0",
+    "fecha_generacion": "2025-12-08 14:18:49",
+    "metodologia": "Machine Learning + RFM + Association Rules + Cohort Analysis + Time Series",
+    "periodo_datos": "2024-12-08 a 2025-12-08",
+    "total_ordenes_analizadas": 71983,
+    "total_clientes": 60716,
+    "meses_analizados": 13
+  },
+  "kpis_clave": {
+    "revenue_total": 4788490125.0,
+    "ticket_promedio": 81304.16539323554,
+    "tasa_recompra": 10.07642137163186,
+    "ordenes_por_cliente": 1.1855688780552078,
+    "clv_estimado": 96391.68814647332,
+    "clientes_champions": 3861,
+    "clientes_en_riesgo": 9715,
+    "crecimiento_mensual_ordenes": 17.07545302249536,
+    "crecimiento_mensual_revenue": 17.297082104615438
+  },
+  "serie_temporal": {
+    "datos_mensuales": [
+      {
+        "mes": "2024-12",
+        "ordenes": 1202,
+        "revenue": 79655680.0,
+        "clientes_unicos": 1145,
+        "ticket_promedio": 66269.28452579035,
+        "crecimiento_mom_ordenes": null,
+        "crecimiento_mom_revenue": null
+      },
+      {
+        "mes": "2025-01",
+        "ordenes": 2772,
+        "revenue": 133785985.0,
+        "clientes_unicos": 2603,
+        "ticket_promedio": 48263.34235209235,
+        "crecimiento_mom_ordenes": 130.6156405990017,
+        "crecimiento_mom_revenue": 67.9553611242789
+      },
+      {
+        "mes": "2025-02",
+        "ordenes": 4400,
+        "revenue": 233721351.0,
+        "clientes_unicos": 3714,
+        "ticket_promedio": 53118.48886363636,
+        "crecimiento_mom_ordenes": 58.73015873015872,
+        "crecimiento_mom_revenue": 74.6979334195581
+      },
+      {
+        "mes": "2025-03",
+        "ordenes": 5963,
+        "revenue": 277112452.0,
+        "clientes_unicos": 4824,
+        "ticket_promedio": 46471.98591313097,
+        "crecimiento_mom_ordenes": 35.52272727272727,
+        "crecimiento_mom_revenue": 18.565313273411643
+      },
+      {
+        "mes": "2025-04",
+        "ordenes": 6209,
+        "revenue": 386292283.0,
+        "clientes_unicos": 5131,
+        "ticket_promedio": 62214.89499114189,
+        "crecimiento_mom_ordenes": 4.125440214657061,
+        "crecimiento_mom_revenue": 39.39910682902117
+      },
+      {
+        "mes": "2025-05",
+        "ordenes": 5681,
+        "revenue": 438616296.0,
+        "clientes_unicos": 4933,
+        "ticket_promedio": 77207.58598838233,
+        "crecimiento_mom_ordenes": -8.503784828474792,
+        "crecimiento_mom_revenue": 13.545187233263988
+      },
+      {
+        "mes": "2025-06",
+        "ordenes": 6414,
+        "revenue": 429128583.0,
+        "clientes_unicos": 5762,
+        "ticket_promedio": 66904.98643592143,
+        "crecimiento_mom_ordenes": 12.90265798274952,
+        "crecimiento_mom_revenue": -2.163100889438907
+      },
+      {
+        "mes": "2025-07",
+        "ordenes": 6899,
+        "revenue": 481606946.0,
+        "clientes_unicos": 6053,
+        "ticket_promedio": 69808.22525003624,
+        "crecimiento_mom_ordenes": 7.561584034923596,
+        "crecimiento_mom_revenue": 12.229053267234825
+      },
+      {
+        "mes": "2025-08",
+        "ordenes": 5673,
+        "revenue": 438222390.0,
+        "clientes_unicos": 4879,
+        "ticket_promedio": 77247.02802749867,
+        "crecimiento_mom_ordenes": -17.770691404551386,
+        "crecimiento_mom_revenue": -9.00829117194668
+      },
+      {
+        "mes": "2025-09",
+        "ordenes": 6543,
+        "revenue": 525965710.0,
+        "clientes_unicos": 5873,
+        "ticket_promedio": 80386.01711753018,
+        "crecimiento_mom_ordenes": 15.335801163405606,
+        "crecimiento_mom_revenue": 20.022555214488236
+      },
+      {
+        "mes": "2025-10",
+        "ordenes": 8333,
+        "revenue": 456894247.0,
+        "clientes_unicos": 7483,
+        "ticket_promedio": 54829.50282011281,
+        "crecimiento_mom_ordenes": 27.357481277701368,
+        "crecimiento_mom_revenue": -13.132312941085079
+      },
+      {
+        "mes": "2025-11",
+        "ordenes": 9692,
+        "revenue": 755183406.0,
+        "clientes_unicos": 8734,
+        "ticket_promedio": 77918.22183243913,
+        "crecimiento_mom_ordenes": 16.308652346093844,
+        "crecimiento_mom_revenue": 65.28625846321938
+      },
+      {
+        "mes": "2025-12",
+        "ordenes": 2202,
+        "revenue": 152304796.0,
+        "clientes_unicos": 2008,
+        "ticket_promedio": 69166.5740236149,
+        "crecimiento_mom_ordenes": -77.2802311184482,
+        "crecimiento_mom_revenue": -79.83207856662041
+      }
+    ],
+    "tendencia": {
+      "direccion": "crecimiento",
+      "pendiente_ordenes": 319.8791208791211,
+      "pendiente_revenue": 29280131.99450551
+    },
+    "records": {
+      "mejor_mes_ordenes": "2025-11",
+      "mejor_mes_ordenes_cantidad": 9692,
+      "mejor_mes_revenue": "2025-11",
+      "mejor_mes_revenue_cantidad": 755183406.0,
+      "peor_mes_ordenes": "2024-12",
+      "peor_mes_ordenes_cantidad": 1202
+    }
+  },
+  "cohort_analysis": {
+    "tasa_recompra_global": 10.07642137163186,
+    "ordenes_promedio_por_cliente": 1.1855688780552078,
+    "clv_simple": 96391.68814647332,
+    "insight": "El 10% de clientes vuelven a comprar. CLV estimado: $96,392"
+  },
+  "productos_top": [
+    {
+      "item_id": "MLA2223422548",
+      "titulo": "Bicicleta Mountain Mtb R29 21 Vel Freno Disco Suspensión Hp",
+      "ordenes": 512,
+      "revenue": 159559190.0,
+      "unidades": 512
+    },
+    {
+      "item_id": "MLA1991814548",
+      "titulo": "Cubre Alfombra Termoformadas Ford Territory Oe",
+      "ordenes": 506,
+      "revenue": 123554144.0,
+      "unidades": 509
+    },
+    {
+      "item_id": "MLA2034636172",
+      "titulo": "Carburador Renault R12 1 Boca Oe",
+      "ordenes": 711,
+      "revenue": 68847248.0,
+      "unidades": 718
+    },
+    {
+      "item_id": "MLA1893222204",
+      "titulo": "Cubre Alfombra Termoformadas Volkswagen Amarok Oe",
+      "ordenes": 316,
+      "revenue": 67672355.0,
+      "unidades": 316
+    },
+    {
+      "item_id": "MLA1991775706",
+      "titulo": "Cubre Alfombra Termoformadas Volkswagen Taos Oe",
+      "ordenes": 226,
+      "revenue": 57551720.0,
+      "unidades": 227
+    },
+    {
+      "item_id": "MLA2009267058",
+      "titulo": "Funda Cubre Asiento Fundas Auto Universal Cuero + Volante",
+      "ordenes": 395,
+      "revenue": 56372106.0,
+      "unidades": 396
+    },
+    {
+      "item_id": "MLA2415998246",
+      "titulo": "Cubre Alfombra Termoformadas Ford Territory 2023+ Oe Negro",
+      "ordenes": 217,
+      "revenue": 55798400.0,
+      "unidades": 217
+    },
+    {
+      "item_id": "MLA1482761781",
+      "titulo": "Carburador Pwk 28 30 32 34 Cortina Plana Competición Japón",
+      "ordenes": 1042,
+      "revenue": 51601554.0,
+      "unidades": 1073
+    },
+    {
+      "item_id": "MLA2072310728",
+      "titulo": "Carburador Ford Falcon F100 221 40mm Varilla Oe",
+      "ordenes": 265,
+      "revenue": 47994565.0,
+      "unidades": 265
+    },
+    {
+      "item_id": "MLA1991762616",
+      "titulo": "Cubre Alfombra Termoformadas Toyota Corolla 2020+ Oe",
+      "ordenes": 172,
+      "revenue": 44025468.0,
+      "unidades": 172
+    },
+    {
+      "item_id": "MLA1432633411",
+      "titulo": "Carburador Keihin Pwk Cortina Plana Moto Japón 24mm - 34mm",
+      "ordenes": 626,
+      "revenue": 43885845.0,
+      "unidades": 647
+    },
+    {
+      "item_id": "MLA2128434892",
+      "titulo": "Cubre Alfombra Termoformadas Peugeot 2008 Gen 2 2024+ Oe",
+      "ordenes": 166,
+      "revenue": 43775200.0,
+      "unidades": 166
+    },
+    {
+      "item_id": "MLA2128201130",
+      "titulo": "Cubre Alfombra Termoformadas Peugeot 208 Gen 2 2020+ Oe",
+      "ordenes": 181,
+      "revenue": 43218000.0,
+      "unidades": 181
+    },
+    {
+      "item_id": "MLA2128472386",
+      "titulo": "Cubre Alfombra Termoformadas Toyota Corolla Cross Oe",
+      "ordenes": 162,
+      "revenue": 41750400.0,
+      "unidades": 162
+    },
+    {
+      "item_id": "MLA2036487166",
+      "titulo": "Estereo Stereo Doble Din 7 Táctil Mirror Waze Camara Rev",
+      "ordenes": 854,
+      "revenue": 41250737.0,
+      "unidades": 885
+    }
+  ],
+  "segmentacion_clientes": [
+    {
+      "segmento": "At Risk",
+      "cantidad": 9715,
+      "ticket_promedio": 68474.93,
+      "frecuencia_promedio": 1.4,
+      "estrategia": "ALERTA: Campaña de reactivación inmediata, descuentos agresivos, contacto directo."
+    },
+    {
+      "segmento": "Cant Lose Them",
+      "cantidad": 5724,
+      "ticket_promedio": 114729.46,
+      "frecuencia_promedio": 1.0,
+      "estrategia": "CRÍTICO: Contacto VIP directo, ofertas irresistibles, resolver cualquier problema pendiente."
+    },
+    {
+      "segmento": "Champions",
+      "cantidad": 3861,
+      "ticket_promedio": 181598.08,
+      "frecuencia_promedio": 1.78,
+      "estrategia": "Programa VIP, acceso anticipado a ofertas, descuentos exclusivos. CLV alto - prioridad máxima."
+    },
+    {
+      "segmento": "Hibernating",
+      "cantidad": 6597,
+      "ticket_promedio": 57080.36,
+      "frecuencia_promedio": 1.0,
+      "estrategia": "Win-back campaign con descuento especial, mostrar novedades desde su última compra."
+    },
+    {
+      "segmento": "Loyal Customers",
+      "cantidad": 10195,
+      "ticket_promedio": 49101.62,
+      "frecuencia_promedio": 1.19,
+      "estrategia": "Programa de fidelización, referidos con beneficios, cross-selling premium. Potencial de upgrade."
+    },
+    {
+      "segmento": "Need Attention",
+      "cantidad": 10259,
+      "ticket_promedio": 44988.32,
+      "frecuencia_promedio": 1.11,
+      "estrategia": "Engagement campaign, contenido de valor, recordatorio de beneficios."
+    },
+    {
+      "segmento": "New Customers",
+      "cantidad": 10355,
+      "ticket_promedio": 80595.76,
+      "frecuencia_promedio": 1.0,
+      "estrategia": "Welcome pack, seguimiento post-venta a las 48hs, incentivo primera recompra dentro de 30 días."
+    },
+    {
+      "segmento": "Potential Loyalists",
+      "cantidad": 4010,
+      "ticket_promedio": 147665.9,
+      "frecuencia_promedio": 1.34,
+      "estrategia": "Ofertas personalizadas basadas en historial, incentivos de segunda compra urgentes."
+    }
+  ],
+  "reglas_cross_selling": [
+    {
+      "producto_trigger": "Intercomunicador Casco Moto Zerog Q28-2x Bt 5.0 Cámara 1080p",
+      "producto_sugerido": "Intercomunicador Casco Moto Zerog Q58max Bluetooth Radio Luz",
+      "frecuencia_compra_conjunta": 3,
+      "lift": 1059.33,
+      "confianza": 1.0,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Intercomunicador Casco Moto Ze...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Tapa Valvulas Volkswagen Amarok Q7 3.0 V6 Acompañante Oe",
+      "producto_sugerido": "Tapa Valvulas Volkswagen Amarok Q7 3.0 V6 Lado Conductor Oe",
+      "frecuencia_compra_conjunta": 5,
+      "lift": 635.6,
+      "confianza": 1.0,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Tapa Valvulas Volkswagen Amaro...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Enfriador De Gases Egr Ford Ranger Transit 2.2 3.2 Tdci Oe",
+      "producto_sugerido": "Valvula Egr Ford Ranger Transit Puma 3.2 - 2.2 Oe",
+      "frecuencia_compra_conjunta": 4,
+      "lift": 635.6,
+      "confianza": 1.0,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Valvula Egr Ford Ranger Transi...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Conjunto Núcleo Turbo Chico Vw Amarok Biturbo 180hp R2s Kp35",
+      "producto_sugerido": "Turbo Núcleo Vw Amarok 2.0 Tdi 180hp Grande K04 R2s Oe",
+      "frecuencia_compra_conjunta": 5,
+      "lift": 397.25,
+      "confianza": 1.0,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Turbo Núcleo Vw Amarok 2.0 Tdi...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Conjunto Núcleo Turbo Chico Vw Amarok Biturbo 180hp R2s Kp35",
+      "producto_sugerido": "Turbo Núcleo Vw Amarok 2.0 Tdi 163hp Grande K04 R2s Oe",
+      "frecuencia_compra_conjunta": 3,
+      "lift": 397.25,
+      "confianza": 1.0,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Turbo Núcleo Vw Amarok 2.0 Tdi...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Bocha Palanca Cambio Honda New Civic Lxs Exs 2006 A 2011 Oe",
+      "producto_sugerido": "Palanca De Freno De Mano Honda Civic 2006 A 2011 Exs Lxs Oe",
+      "frecuencia_compra_conjunta": 7,
+      "lift": 288.91,
+      "confianza": 1.0,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Palanca De Freno De Mano Honda...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Bocha Palanca Cambio Honda New Civic Lxs Exs 2006 A 2011 Oe ",
+      "producto_sugerido": "Palanca De Freno De Mano Honda Civic 2006 A 2011 Exs Lxs Oe",
+      "frecuencia_compra_conjunta": 3,
+      "lift": 288.91,
+      "confianza": 1.0,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Palanca De Freno De Mano Honda...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Remera Algodón Ftx Blanca Gris Manga Corta Wings Unisex",
+      "producto_sugerido": "Remera Algodón Ftx Negra Gris Manga Corta Pistons Unisex",
+      "frecuencia_compra_conjunta": 4,
+      "lift": 227.0,
+      "confianza": 0.5714,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Remera Algodón Ftx Negra Gris ...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Sensor Map Chevrolet Corsa 1.4 1.6 Renault Clio Megane 2.0",
+      "producto_sugerido": "Sonda Lambda Para Chevrolet Corsa 1.6 1.4 De 1 Cable Oe",
+      "frecuencia_compra_conjunta": 6,
+      "lift": 211.87,
+      "confianza": 1.0,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Sonda Lambda Para Chevrolet Co...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Marcadores Doble Punta De Alcohol 60u  Estuche + Blender",
+      "producto_sugerido": "Marcadores Doble Punta De Alcohol 80u  Estuche + Blender",
+      "frecuencia_compra_conjunta": 9,
+      "lift": 185.73,
+      "confianza": 0.8182,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Marcadores Doble Punta De Alco...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Funda Cubre Asiento Auto Mascota Perro Estampado + Cierre",
+      "producto_sugerido": "Funda Cubre Asiento Auto Mascota Perro Negro + 2 Cinturones",
+      "frecuencia_compra_conjunta": 4,
+      "lift": 149.55,
+      "confianza": 0.8,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Funda Cubre Asiento Auto Masco...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Remera Algodón Ftx Blanca Negra Manga Corta Connect Unisex",
+      "producto_sugerido": "Remera La Epicante 2 Negra Algodón Manga Corta Unisex",
+      "frecuencia_compra_conjunta": 6,
+      "lift": 144.45,
+      "confianza": 0.5455,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Remera La Epicante 2 Negra Alg...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Remera Algodón Ftx Blanca Gris Manga Corta Wings Unisex",
+      "producto_sugerido": "Remera Algodón Ftx Blanca Negra Manga Corta Connect Unisex",
+      "frecuencia_compra_conjunta": 4,
+      "lift": 144.45,
+      "confianza": 0.5,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Remera Algodón Ftx Blanca Negr...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Tecla Levantavidrios Peugeot 206 207 One Touch Espejos",
+      "producto_sugerido": "Tecla Levantavidrios Peugeot 206 207 Sin One Touch Espejos",
+      "frecuencia_compra_conjunta": 3,
+      "lift": 144.45,
+      "confianza": 0.5,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Tecla Levantavidrios Peugeot 2...' junto con este producto."
+    },
+    {
+      "producto_trigger": "Remera Algodón Ftx Blanca Negra Manga Corta Connect Unisex",
+      "producto_sugerido": "Remera Algodón Ftx Negra Gris Manga Corta Pistons Unisex",
+      "frecuencia_compra_conjunta": 3,
+      "lift": 123.82,
+      "confianza": 0.4286,
+      "mensaje_sugerido": "Muchos clientes también llevan 'Remera Algodón Ftx Negra Gris ...' junto con este producto."
+    }
+  ],
+  "oportunidades_upselling": [
+    {
+      "producto_base": "Turbo Ford Ranger 3.2 Tdci Puma Duratorq Oe",
+      "producto_premium": "Kit X4 Inyector S10 Blazer Frontier Xterra 2.8 Mwm Oe",
+      "incremento_precio": 41.4,
+      "diferencia_precio": 410000.0,
+      "mensaje_sugerido": "¿Te interesa la versión premium por solo $410,000 más?"
+    },
+    {
+      "producto_base": "Turbo Toyota Hilux Sw4 3.0 D4d 1kd Ct16v Oe",
+      "producto_premium": "Turbo Ford Ranger 3.2 Tdci Puma Duratorq Oe",
+      "incremento_precio": 25.3,
+      "diferencia_precio": 200000.0,
+      "mensaje_sugerido": "¿Te interesa la versión premium por solo $200,000 más?"
+    },
+    {
+      "producto_base": "Scanner Escaner Multimarca Bluetooth Obd2 Oe V1.5",
+      "producto_premium": "Pinceles X 20 Pintura Acrílico Acuarela Óleo Arte Kleur Nara",
+      "incremento_precio": 34.2,
+      "diferencia_precio": 2370.0,
+      "mensaje_sugerido": "¿Te interesa la versión premium por solo $2,370 más?"
+    },
+    {
+      "producto_base": "Soporte Radiador Anodizado Honda Civic 92-95 Colores",
+      "producto_premium": "Scanner Escaner Multimarca Bluetooth Obd2 Oe V1.5",
+      "incremento_precio": 21.5,
+      "diferencia_precio": 1224.0,
+      "mensaje_sugerido": "¿Te interesa la versión premium por solo $1,224 más?"
+    },
+    {
+      "producto_base": "Scanner Escaner Automotriz Lectura Bluetooth Obd2 Obdii V2.1",
+      "producto_premium": "Sujetador Paragolpes Universal Auto Aluminio Jdm Colores",
+      "incremento_precio": 29.8,
+      "diferencia_precio": 1179.0,
+      "mensaje_sugerido": "¿Te interesa la versión premium por solo $1,179 más?"
+    }
+  ],
+  "pain_points_prioritarios": [
+    {
+      "pain_point": "compatibilidad",
+      "frecuencia": 220,
+      "porcentaje": 21.0,
+      "respuesta_sugerida": "Siempre verificar modelo exacto antes de confirmar. Ofrecer asesoramiento tecnico."
+    },
+    {
+      "pain_point": "stock",
+      "frecuencia": 73,
+      "porcentaje": 7.0,
+      "respuesta_sugerida": "Confirmar stock en tiempo real. Si no hay, ofrecer alternativas similares."
+    },
+    {
+      "pain_point": "instalacion",
+      "frecuencia": 30,
+      "porcentaje": 2.9,
+      "respuesta_sugerida": "Ofrecer guias de instalacion. Recomendar instalacion profesional si es complejo."
+    },
+    {
+      "pain_point": "calidad",
+      "frecuencia": 23,
+      "porcentaje": 2.2,
+      "respuesta_sugerida": "Destacar especificaciones tecnicas. Mencionar garantia de 6 meses."
+    },
+    {
+      "pain_point": "precio",
+      "frecuencia": 19,
+      "porcentaje": 1.8,
+      "respuesta_sugerida": "Ofrecer combos o kits con mejor precio por unidad. Mencionar beneficios."
+    },
+    {
+      "pain_point": "garantia",
+      "frecuencia": 5,
+      "porcentaje": 0.5,
+      "respuesta_sugerida": "Explicar politica de 6 meses. Proceso de reclamo simple."
+    },
+    {
+      "pain_point": "factura",
+      "frecuencia": 4,
+      "porcentaje": 0.4,
+      "respuesta_sugerida": "Explicar proceso de facturacion. Solicitar datos fiscales si aplica."
+    },
+    {
+      "pain_point": "envio_urgente",
+      "frecuencia": 1,
+      "porcentaje": 0.1,
+      "respuesta_sugerida": "Informar tiempos reales de envio. Ofrecer opciones express si disponible."
+    }
+  ],
+  "patrones_temporales": {
+    "mejor_dia": "Lunes",
+    "peor_dia": "Domingo",
+    "patrones_diarios": [
+      {
+        "dia": "Lunes",
+        "ordenes": 12525,
+        "revenue": 850861564.0
+      },
+      {
+        "dia": "Martes",
+        "ordenes": 12299,
+        "revenue": 833132711.0
+      },
+      {
+        "dia": "Miércoles",
+        "ordenes": 12087,
+        "revenue": 803133983.0
+      },
+      {
+        "dia": "Jueves",
+        "ordenes": 10931,
+        "revenue": 720149058.0
+      },
+      {
+        "dia": "Viernes",
+        "ordenes": 9367,
+        "revenue": 648376885.0
+      },
+      {
+        "dia": "Sábado",
+        "ordenes": 7420,
+        "revenue": 483822797.0
+      },
+      {
+        "dia": "Domingo",
+        "ordenes": 7354,
+        "revenue": 449013127.0
+      }
+    ],
+    "recomendacion": "Enfocar promociones y stock en días de mayor demanda"
+  },
+  "agent_insights": {
+    "tendencia_general": {
+      "direccion": "crecimiento",
+      "tasa_mensual": 17.1,
+      "mejor_mes": "2025-11",
+      "record_ordenes": 9692,
+      "record_revenue": 755183406.0
+    },
+    "retention_insights": {
+      "tasa_recompra": 10.1,
+      "ordenes_por_cliente": 1.19,
+      "clv_estimado": 96392.0,
+      "mensaje_agente": "El 10% de nuestros clientes vuelven a comprar. Un cliente promedio realiza 1.2 compras con nosotros."
+    },
+    "mejores_dias": {
+      "mejor_dia": "Lunes",
+      "peor_dia": "Domingo",
+      "diferencia_pct": 70.3
+    },
+    "productos_estrella": [
+      {
+        "titulo": "Bicicleta Mountain Mtb R29 21 Vel Freno Disco Suspensión Hp",
+        "ordenes": 512,
+        "revenue": 159559190.0
+      },
+      {
+        "titulo": "Cubre Alfombra Termoformadas Ford Territory Oe",
+        "ordenes": 506,
+        "revenue": 123554144.0
+      },
+      {
+        "titulo": "Carburador Renault R12 1 Boca Oe",
+        "ordenes": 711,
+        "revenue": 68847248.0
+      },
+      {
+        "titulo": "Cubre Alfombra Termoformadas Volkswagen Amarok Oe",
+        "ordenes": 316,
+        "revenue": 67672355.0
+      },
+      {
+        "titulo": "Cubre Alfombra Termoformadas Volkswagen Taos Oe",
+        "ordenes": 226,
+        "revenue": 57551720.0
+      },
+      {
+        "titulo": "Funda Cubre Asiento Fundas Auto Universal Cuero + Volante",
+        "ordenes": 395,
+        "revenue": 56372106.0
+      },
+      {
+        "titulo": "Cubre Alfombra Termoformadas Ford Territory 2023+ Oe Negro",
+        "ordenes": 217,
+        "revenue": 55798400.0
+      },
+      {
+        "titulo": "Carburador Pwk 28 30 32 34 Cortina Plana Competición Japón",
+        "ordenes": 1042,
+        "revenue": 51601554.0
+      },
+      {
+        "titulo": "Carburador Ford Falcon F100 221 40mm Varilla Oe",
+        "ordenes": 265,
+        "revenue": 47994565.0
+      },
+      {
+        "titulo": "Cubre Alfombra Termoformadas Toyota Corolla 2020+ Oe",
+        "ordenes": 172,
+        "revenue": 44025468.0
+      }
+    ],
+    "tips_conversion": [
+      "Los Lunes son nuestro mejor día - programar promociones especiales",
+      "Ticket promedio actual: $81,304 - buscar oportunidades de cross-sell en órdenes menores",
+      "Tasa de recompra 10% - enfocarse en primera experiencia excelente",
+      "CLV de $96,392 justifica inversión en retención de clientes champions"
+    ]
+  },
+  "estrategias_conversion": {
+    "aumentar_ticket": [
+      "Cross-sell en checkout: Sugerir productos complementarios con datos de co-compra reales",
+      "Up-sell inteligente: Ofrecer versiones premium cuando el cliente pregunta por básico",
+      "Bundles: Crear combos basados en las 30 reglas de asociación identificadas",
+      "Threshold shipping: Incentivar compras mayores para envío gratis (ticket actual $81,304)"
+    ],
+    "aumentar_conversion": [
+      "Respuesta rápida: Contestar preguntas en menos de 30 minutos aumenta conversión 40%",
+      "Confirmar compatibilidad: El pain point #1 es compatibilidad - resolverlo proactivamente",
+      "Generar urgencia: Mencionar stock limitado o última unidad cuando aplica",
+      "Día óptimo: Intensificar esfuerzos los Lunes"
+    ],
+    "retener_clientes": [
+      "Champions (3861): Trato VIP, acceso anticipado, agradecimiento personalizado",
+      "At Risk (9715): Reactivación urgente con descuento especial",
+      "Follow-up post-venta: Contactar a las 48hs para asegurar satisfacción",
+      "Programa referidos: CLV de $96,392 justifica inversión en adquisición"
+    ]
+  },
+  "few_shots": [
+    {
+      "tipo": "cross_selling",
+      "contexto": "Cliente comprando Lápiz 3D",
+      "mensaje_cliente": "Hola, quiero comprar el lápiz 3D para mi hijo",
+      "respuesta_agente": "¡Hola! Excelente elección, el Lápiz 3D Kleur es ideal para niños por su baja temperatura y seguridad. Te cuento que el 25% de los clientes que lo llevan también agregan el Pack de Filamentos x20 ($9.900) para tener variedad de colores y no quedarse sin material. ¿Te gustaría agregarlo al pedido? También viene con 3 filamentos incluidos para empezar.",
+      "tecnica": "Datos de co-compra + beneficio claro"
+    },
+    {
+      "tipo": "cross_selling",
+      "contexto": "Cliente comprando Scanner OBD2",
+      "mensaje_cliente": "Me sirve el scanner para un Corsa 2010?",
+      "respuesta_agente": "¡Sí! El Scanner OBD2 V2.1 es compatible con Corsa 2010 y todos los vehículos con puerto OBD2 (post 1996). Te comento que muchos clientes también llevan el cable USB de diagnóstico para tener doble opción de conexión. ¿Tenés alguna falla específica que quieras diagnosticar? Así te asesoro mejor.",
+      "tecnica": "Confirmar compatibilidad + cross-sell relacionado + pregunta consultiva"
+    },
+    {
+      "tipo": "cross_selling",
+      "contexto": "Cliente comprando Set de Arte",
+      "mensaje_cliente": "El set de 288 piezas incluye pinceles?",
+      "respuesta_agente": "Sí, el Set Arte 288 incluye pinceles básicos, pero son de práctica. Si buscás resultados más profesionales, el 15% de los clientes agregan el Set de 20 Pinceles Kleur ($9.300) que son de pelo sintético premium para acrílico y óleo. ¿Lo agregamos?",
+      "tecnica": "Responder + upgrade con dato de compra"
+    },
+    {
+      "tipo": "upselling",
+      "contexto": "Cliente viendo marcadores 60u",
+      "mensaje_cliente": "Cuántos marcadores tiene el set?",
+      "respuesta_agente": "El set que estás viendo tiene 60 marcadores doble punta ($19.800). Te cuento que el de 80 unidades ($25.900) es el más vendido porque incluye 20 colores adicionales (pasteles y neones) + un blender por solo $6.100 más. Muchos artistas prefieren esa variedad. ¿Cuál te gustaría?",
+      "tecnica": "Presentar opción premium con beneficio concreto"
+    },
+    {
+      "tipo": "upselling",
+      "contexto": "Cliente comprando funda de mascotas básica",
+      "mensaje_cliente": "Viene con cinturón para el perro?",
+      "respuesta_agente": "La funda que estás viendo no incluye cinturón. Pero la versión con cierre y estampado ($23.000) incluye cierre central para que tu mascota no pase adelante + bolsillos laterales. Es la preferida por el 60% de los clientes con perros medianos/grandes. ¿La vemos?",
+      "tecnica": "Identificar necesidad + ofrecer solución premium"
+    },
+    {
+      "tipo": "objecion_precio",
+      "contexto": "Cliente pregunta por precio",
+      "mensaje_cliente": "Es muy caro el estereo, vi otros más baratos",
+      "respuesta_agente": "Entiendo la preocupación por el precio. Te cuento las diferencias: este estéreo incluye cámara de reversa ($15.000 valor), pantalla táctil de 7\" (no resistiva), mirror link para Android/iOS, y 6 meses de garantía directa. Los más económicos suelen ser pantalla resistiva sin cámara. ¿Qué es lo más importante para vos: la cámara o el mirror link?",
+      "tecnica": "Justificar valor + pregunta para entender necesidad"
+    },
+    {
+      "tipo": "objecion_precio",
+      "contexto": "Cliente regateo",
+      "mensaje_cliente": "Me haces un descuento si llevo 2?",
+      "respuesta_agente": "Por políticas de MercadoLibre no puedo modificar el precio publicado, pero te cuento: si llevás 2 unidades, el envío se unifica y ahorrás el segundo flete. Además, te puedo incluir un regalo sorpresa del local. ¿Te parece?",
+      "tecnica": "Ofrecer valor adicional sin bajar precio"
+    },
+    {
+      "tipo": "compatibilidad",
+      "contexto": "Duda de compatibilidad automotriz",
+      "mensaje_cliente": "Los inyectores sirven para Gol Trend 2012?",
+      "respuesta_agente": "¡Sí! Los inyectores IWP-044 son compatibles con Gol Trend 2012 motor 1.6 8v. Código original VW: 036906031G. Te recomiendo verificar que tu motor sea el 1.6 (no 1.0). Si llevás el kit x4, te conviene cambiarlo completo para un funcionamiento parejo. ¿Querés que te arme el kit?",
+      "tecnica": "Confirmar con datos técnicos + cross-sell kit"
+    },
+    {
+      "tipo": "stock_agotado",
+      "contexto": "Producto sin stock",
+      "mensaje_cliente": "Tienen stock del lapiz 3D azul?",
+      "respuesta_agente": "El azul se agotó ayer (es el color más pedido). Tenemos disponible en violeta y verde que también son muy lindos. El violeta llega mañana si querés que te avise cuando entre. ¿O preferís llevarte otro color ahora?",
+      "tecnica": "Informar + ofrecer alternativas + crear urgencia"
+    },
+    {
+      "tipo": "postventa_envio",
+      "contexto": "Consulta post-compra envío",
+      "mensaje_cliente": "Cuando me llega el pedido?",
+      "respuesta_agente": "Tu pedido #[ORDER_ID] ya fue despachado. Según Mercado Envíos, llega entre el [FECHA_MIN] y [FECHA_MAX]. Podés seguirlo en tiempo real desde la app de MercadoLibre. ¿Necesitás algo más?",
+      "tecnica": "Info concreta + facilitar seguimiento"
+    },
+    {
+      "tipo": "postventa_factura",
+      "contexto": "Solicitud de factura",
+      "mensaje_cliente": "Necesito factura A, soy monotributista",
+      "respuesta_agente": "¡Hola! Por favor enviame: 1) CUIT, 2) Razón Social, 3) Domicilio fiscal, 4) Condición IVA (Monotributista). Te la envío por mail en 24-48hs hábiles. Recordá que como monotributista corresponde Factura B o C según mi condición.",
+      "tecnica": "Solicitar datos completos + aclaración fiscal"
+    },
+    {
+      "tipo": "postventa_problema",
+      "contexto": "Problema con producto",
+      "mensaje_cliente": "El scanner no enciende",
+      "respuesta_agente": "Lamento que tengas ese inconveniente. Te pido que pruebes: 1) Verificar que el vehículo esté con contacto (llave en ON), 2) Probar en otro vehículo si es posible, 3) Revisar que el conector OBD esté bien enchufado. Si sigue sin funcionar, tenés 6 meses de garantía. ¿Podés enviarme un video del problema para agilizar el proceso?",
+      "tecnica": "Troubleshooting + garantía + evidencia"
+    },
+    {
+      "tipo": "cliente_recurrente",
+      "contexto": "Cliente identificado como recurrente",
+      "mensaje_cliente": "Hola, quiero comprar más filamentos",
+      "respuesta_agente": "¡Hola de nuevo! Veo que ya nos compraste antes, gracias por volver. Para vos tengo el Pack x20 filamentos a precio especial si llevás 2 packs. ¿Querés que te arme el combo?",
+      "tecnica": "Reconocer cliente + beneficio exclusivo"
+    },
+    {
+      "tipo": "cliente_nuevo",
+      "contexto": "Primera compra del cliente",
+      "mensaje_cliente": "Es confiable el producto?",
+      "respuesta_agente": "¡Totalmente! Somos MercadoLíder Platinum con +10.000 ventas y 98% de satisfacción. Todos nuestros productos tienen 6 meses de garantía directa con nosotros. Además, con MercadoPago tu compra está protegida. ¿Tenés alguna duda específica del producto?",
+      "tecnica": "Generar confianza + garantía + protección"
+    }
+  ]
+}

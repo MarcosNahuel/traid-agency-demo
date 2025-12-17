@@ -1,0 +1,132 @@
+{
+  "name": "MarIA Demo - Herramienta Soporte",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"razon_envio\": \"Motivo de derivacion\",\n  \"buyer_id\": \"123456789\",\n  \"buyer_nickname\": \"CLIENTE_DEMO\",\n  \"buyer_first_name\": \"Juan\",\n  \"buyer_last_name\": \"Perez\",\n  \"pack_id\": \"2000010000000000\",\n  \"order_id\": \"2000010000000001\",\n  \"date_created\": \"2025-12-17T10:00:00.000-03:00\",\n  \"original_message\": \"Mensaje del cliente\",\n  \"case_type\": \"CONSULTA_GENERAL\",\n  \"product_id\": \"MLA1234567890\",\n  \"product_title\": \"PC Gamer Pro RTX 4070\",\n  \"product_sku\": \"PC-HIGH-001\",\n  \"product_price\": 1200000,\n  \"product_warranty\": \"6 meses\",\n  \"product_category\": \"PCs Gaming\",\n  \"envio_id\": \"44000000000\",\n  \"envio_status\": \"delivered\",\n  \"envio_status_mensaje\": \"ENTREGADO\",\n  \"envio_logistic_type\": \"cross_docking\",\n  \"envio_fecha_entrega\": \"2025-12-15T14:30:00.000-03:00\",\n  \"envio_dias_desde_entrega\": 2,\n  \"envio_tracking\": null,\n  \"fiscal_doc_type\": \"DNI\",\n  \"fiscal_doc_number\": \"40123456\",\n  \"fiscal_taxpayer_type\": \"Consumidor Final\",\n  \"fiscal_puede_factura_a\": false,\n  \"fiscal_cuit\": null,\n  \"fiscal_mensaje\": \"Consumidor Final. Solo Factura B.\",\n  \"tiene_factura\": false,\n  \"order_status\": \"paid\",\n  \"order_total_amount\": 1200000,\n  \"order_paid_amount\": 1200000\n}"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [80, -272],
+      "id": "trigger-soporte",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\n\n// Detectar urgencia basado en tipo de caso\nconst casosUrgentes = ['GARANTIA', 'PRODUCTO_EQUIVOCADO', 'FACTURA_A', 'DEVOLUCION'];\nconst isUrgent = casosUrgentes.includes(data.case_type?.toUpperCase());\n\n// Calcular prioridad (1=alta, 2=media, 3=baja)\nlet priority = 3;\nif (data.case_type === 'GARANTIA' || data.case_type === 'PRODUCTO_EQUIVOCADO') {\n  priority = 1;\n} else if (data.case_type === 'FACTURA_A' || data.case_type === 'DEVOLUCION') {\n  priority = 2;\n}\n\n// Generar resumen del caso\nconst resumen = `${data.case_type}: ${data.razon_envio}. Producto: ${data.product_title}. Cliente: ${data.buyer_first_name} ${data.buyer_last_name}`;\n\nreturn {\n  json: {\n    // Datos originales\n    ...data,\n    // Campos calculados\n    reason: data.razon_envio,\n    is_urgent: isUrgent,\n    priority: priority,\n    resumen_caso: resumen,\n    created_at: new Date().toISOString()\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [320, -272],
+      "id": "procesar-urgencia",
+      "name": "Procesar y Calcular Urgencia"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "tableId": "support_escalations",
+        "fieldsUi": {
+          "fieldValues": [
+            {"fieldId": "channel", "fieldValue": "demo"},
+            {"fieldId": "buyer_id", "fieldValue": "={{ $json.buyer_id }}"},
+            {"fieldId": "buyer_name", "fieldValue": "={{ $json.buyer_first_name }} {{ $json.buyer_last_name }}"},
+            {"fieldId": "original_message", "fieldValue": "={{ $json.original_message }}"},
+            {"fieldId": "reason", "fieldValue": "={{ $json.reason }}"},
+            {"fieldId": "case_type", "fieldValue": "={{ $json.case_type }}"},
+            {"fieldId": "priority", "fieldValue": "={{ $json.priority }}"},
+            {"fieldId": "status", "fieldValue": "pending"},
+            {"fieldId": "pack_id", "fieldValue": "={{ $json.pack_id }}"},
+            {"fieldId": "order_id", "fieldValue": "={{ $json.order_id }}"},
+            {"fieldId": "product_sku", "fieldValue": "={{ $json.product_sku }}"},
+            {"fieldId": "product_title", "fieldValue": "={{ $json.product_title }}"},
+            {"fieldId": "product_price", "fieldValue": "={{ $json.product_price }}"},
+            {"fieldId": "envio_status", "fieldValue": "={{ $json.envio_status }}"},
+            {"fieldId": "envio_fecha_entrega", "fieldValue": "={{ $json.envio_fecha_entrega }}"},
+            {"fieldId": "envio_dias_desde_entrega", "fieldValue": "={{ $json.envio_dias_desde_entrega }}"},
+            {"fieldId": "fiscal_doc_type", "fieldValue": "={{ $json.fiscal_doc_type }}"},
+            {"fieldId": "fiscal_doc_number", "fieldValue": "={{ $json.fiscal_doc_number }}"},
+            {"fieldId": "fiscal_taxpayer_type", "fieldValue": "={{ $json.fiscal_taxpayer_type }}"},
+            {"fieldId": "fiscal_puede_factura_a", "fieldValue": "={{ $json.fiscal_puede_factura_a }}"},
+            {"fieldId": "order_total_amount", "fieldValue": "={{ $json.order_total_amount }}"},
+            {"fieldId": "ai_suggested_response", "fieldValue": "={{ $json.resumen_caso }}"}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [560, -272],
+      "id": "supabase-escalation",
+      "name": "Supabase Support Escalations",
+      "credentials": {
+        "supabaseApi": {"id": "supabase-credentials", "name": "Supabase MarIA Demo"}
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $('Procesar y Calcular Urgencia').first().json;\n\n// Mensajes segun tipo de caso\nconst mensajes = {\n  'GARANTIA': `Tu caso de garantia fue registrado con prioridad ${data.priority === 1 ? 'ALTA' : 'MEDIA'}. Un especialista te contacta en las proximas 24hs para coordinar la revision de ${data.product_title}.`,\n  \n  'FACTURA_A': `Tu solicitud de Factura A fue derivada al equipo contable. Te enviamos la factura por email en 24-48hs habiles.`,\n  \n  'DEVOLUCION': `Tu pedido de devolucion fue derivado. Te contactamos para coordinar el retiro de ${data.product_title} y gestionar el reembolso.`,\n  \n  'PRODUCTO_EQUIVOCADO': `Registramos el problema con tu pedido (${data.product_title}). Un agente te contacta URGENTE para resolver el envio del producto correcto.`,\n  \n  'TRACKING': `Tu consulta de envio fue derivada a logistica. Te contactamos con novedades sobre tu paquete.`,\n  \n  'CONSULTA_GENERAL': `Tu consulta fue derivada a un agente humano. Te contactamos a la brevedad.`\n};\n\nconst tipoCase = data.case_type?.toUpperCase() || 'CONSULTA_GENERAL';\nconst respuesta = mensajes[tipoCase] || mensajes['CONSULTA_GENERAL'];\n\nreturn {\n  json: {\n    response: respuesta,\n    escalation_created: true,\n    case_type: data.case_type,\n    priority: data.priority,\n    is_urgent: data.is_urgent,\n    buyer_name: `${data.buyer_first_name} ${data.buyer_last_name}`\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [800, -272],
+      "id": "preparar-respuesta",
+      "name": "Preparar Respuesta"
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [[{"node": "Procesar y Calcular Urgencia", "type": "main", "index": 0}]]
+    },
+    "Procesar y Calcular Urgencia": {
+      "main": [[{"node": "Supabase Support Escalations", "type": "main", "index": 0}]]
+    },
+    "Supabase Support Escalations": {
+      "main": [[{"node": "Preparar Respuesta", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {"executionOrder": "v1"},
+  "tags": [{"name": "MarIA Demo"}],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "razon_envio": "Cliente solicita Factura A pero tiene DNI registrado",
+        "buyer_id": "435647618",
+        "buyer_nickname": "VENTURAAGOSTINA",
+        "buyer_first_name": "Agostina",
+        "buyer_last_name": "Ventura",
+        "pack_id": "2000010040054648",
+        "order_id": "2000010040054648",
+        "date_created": "2025-12-17T10:00:00.000-03:00",
+        "original_message": "Hola necesito factura A",
+        "case_type": "FACTURA_A",
+        "product_id": "MLA1924352882",
+        "product_title": "PC Gamer Pro - RTX 4070 | Ryzen 7 5800X | 32GB RAM",
+        "product_sku": "PC-HIGH-001",
+        "product_price": 1200000,
+        "product_warranty": "6 meses",
+        "product_category": "PCs Gaming",
+        "envio_id": "44172088895",
+        "envio_status": "delivered",
+        "envio_status_mensaje": "ENTREGADO",
+        "envio_logistic_type": "cross_docking",
+        "envio_fecha_entrega": "2025-12-05T14:30:00.000-03:00",
+        "envio_dias_desde_entrega": 12,
+        "envio_tracking": "44172088895",
+        "fiscal_doc_type": "DNI",
+        "fiscal_doc_number": "40123456",
+        "fiscal_taxpayer_type": "Consumidor Final",
+        "fiscal_puede_factura_a": false,
+        "fiscal_cuit": null,
+        "fiscal_mensaje": "Consumidor Final. Solo Factura B.",
+        "tiene_factura": true,
+        "order_status": "delivered",
+        "order_total_amount": 1200000,
+        "order_paid_amount": 1200000
+      }
+    ]
+  },
+  "meta": {
+    "instanceId": "demo"
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "productos_estrella": [
+    {
+      "revenue": 143558934,
+      "unidades": 461,
+      "sku": "HPP-RYDER-S1-XL-XI",
+      "ordenes": 461,
+      "compradores_unicos": 444,
+      "titulo": "Bicicleta Mountain Mtb R29 21 Vel Freno Disco Suspensión Hp"
+    },
+    {
+      "revenue": 123856362,
+      "unidades": 481,
+      "sku": "OE-MAT-TERRG2-KIT-XI",
+      "ordenes": 478,
+      "compradores_unicos": 471,
+      "titulo": "Cubre Alfombra Termoformadas Ford Territory Oe"
+    },
+    {
+      "revenue": 116396939,
+      "unidades": 443,
+      "sku": "OE-MAT-AMAG1-KIT-XI",
+      "ordenes": 443,
+      "compradores_unicos": 438,
+      "titulo": "Cubre Alfombra Termoformadas Volkswagen Amarok Oe"
+    },
+    {
+      "revenue": 87400802,
+      "unidades": 1281,
+      "sku": "LU-7018B-XI",
+      "ordenes": 1238,
+      "compradores_unicos": 1214,
+      "titulo": "Estereo Stereo Doble Din 7 Táctil Mirror Waze Camara Rev"
+    },
+    {
+      "revenue": 66259339,
+      "unidades": 691,
+      "sku": "OE-CAR-REN121B-XI",
+      "ordenes": 684,
+      "compradores_unicos": 676,
+      "titulo": "Carburador Renault R12 1 Boca Oe"
+    },
+    {
+      "revenue": 61806798,
+      "unidades": 234,
+      "sku": "OE-MAT-CROG1-KIT-XI",
+      "ordenes": 233,
+      "compradores_unicos": 233,
+      "titulo": "Cubre Alfombras Termoformadas Fiat Cronos"
+    },
+    {
+      "revenue": 56358400,
+      "unidades": 221,
+      "sku": "OE-MAT-TERRG2-KIT-XI",
+      "ordenes": 221,
+      "compradores_unicos": 219,
+      "titulo": "Cubre Alfombra Termoformadas Ford Territory 2023+ Oe Negro"
+    },
+    {
+      "revenue": 53895520,
+      "unidades": 213,
+      "sku": "OE-MAT-TAOSG1-KIT-XI",
+      "ordenes": 212,
+      "compradores_unicos": 205,
+      "titulo": "Cubre Alfombra Termoformadas Volkswagen Taos Oe"
+    },
+    {
+      "revenue": 52523405,
+      "unidades": 369,
+      "sku": "LU-SCV1-GB-XI",
+      "ordenes": 368,
+      "compradores_unicos": 354,
+      "titulo": "Funda Cubre Asiento Fundas Auto Universal Cuero + Volante"
+    },
+    {
+      "revenue": 49362828,
+      "unidades": 1564,
+      "sku": "KL-3DPEN-VT-XI",
+      "ordenes": 1461,
+      "compradores_unicos": 1341,
+      "titulo": "Lápiz 3d Con Batería Filamentos Baja Temperatura Niños Kleur"
+    },
+    {
+      "revenue": 46533368,
+      "unidades": 918,
+      "sku": "OSK30-XI",
+      "ordenes": 888,
+      "compradores_unicos": 874,
+      "titulo": "Carburador Pwk 28 30 32 34 Cortina Plana Competición Japón"
+    },
+    {
+      "revenue": 45708385,
+      "unidades": 174,
+      "sku": "OE-MAT-208G2-KIT-XI",
+      "ordenes": 174,
+      "compradores_unicos": 174,
+      "titulo": "Cubre Alfombra Termoformadas Peugeot 208 Gen 2 2020+ Oe"
+    },
+    {
+      "revenue": 45687139,
+      "unidades": 411,
+      "sku": "OE-EVC005-XI",
+      "ordenes": 411,
+      "compradores_unicos": 405,
+      "titulo": "Tapa Valvulas Aluminio Astra Vectra Zafira 2.0 2.2 2.4 16v"
+    },
+    {
+      "revenue": 44572710,
+      "unidades": 246,
+      "sku": "OE-CAR-FORD221H-XI",
+      "ordenes": 246,
+      "compradores_unicos": 246,
+      "titulo": "Carburador Ford Falcon F100 221 40mm Varilla Oe"
+    },
+    {
+      "revenue": 39790500,
+      "unidades": 149,
+      "sku": "OE-OMT-HILVigo-KIT-XI",
+      "ordenes": 149,
+      "compradores_unicos": 145,
+      "titulo": "Cubre Alfombra Termoformada Toyota Hilux 2005 2015 Premium"
+    }
+  ],
+  "recomendaciones_venta": [
+    "CROSS-SELL: 'Lápiz 3d Con Batería Filamentos Baja Temperatura Niños Kleur' + 'Filamento Para Lapiz 3d Pcl Baja Temperatura Pack X20 Kleur' se venden juntos 482 veces. Crear bundle con descuento.",
+    "UP-SELL: 22419 ventas son de productos bajo $20k. Ofrecer upgrades a versiones premium.",
+    "FIDELIZACION: 4540 clientes compraron 2+ veces (7.9%). Implementar programa de recompensas.",
+    "BUNDLE PACKS: 1690 ordenes contienen 2+ productos diferentes. Destacar ahorro en envio.",
+    "PRODUCTOS PREMIUM: 13945 ventas de productos +$100k generan margen alto. Priorizar stock."
+  ],
+  "data_source": "MercadoLibre Orders API - Solo ordenes PAID",
+  "generated_at": "2025-12-08 22:47:17",
+  "resumen_general": {
+    "total_ordenes": 66180,
+    "clientes_recurrentes": 4540,
+    "productos_activos": 762,
+    "ticket_promedio": 73622,
+    "tasa_fidelizacion": 7.9,
+    "total_clientes": 57297,
+    "revenue_total": 4872302555
+  },
+  "segmentos_clientes": [
+    {
+      "ticket_promedio": 750000,
+      "clientes": 376,
+      "segmento": "Premium (> $500k gastado)"
+    },
+    {
+      "ticket_promedio": 49296,
+      "clientes": 4540,
+      "segmento": "Recurrentes (2+ compras)"
+    },
+    {
+      "ticket_promedio": 81801,
+      "clientes": 52757,
+      "segmento": "Nuevos (1 compra)"
+    }
+  ],
+  "productos_frecuentemente_juntos": [
+    {
+      "veces": 482,
+      "producto_1": "Lápiz 3d Con Batería Filamentos Baja Temperatura Niños Kleur",
+      "precio_combo": 43249,
+      "producto_2": "Filamento Para Lapiz 3d Pcl Baja Temperatura Pack X20 Kleur"
+    },
+    {
+      "veces": 271,
+      "producto_1": "Lápiz 3d Con Batería Filamentos Baja Temperatura Niños Kleur",
+      "precio_combo": 40589,
+      "producto_2": "Filamento Para Lapiz 3d Pcl Baja Temperatura Pack X10 Kleur Surtidos"
+    },
+    {
+      "veces": 51,
+      "producto_1": "Scanner Escaner Automotriz Lectura Bluetooth Obd2 Obdii V2.1",
+      "precio_combo": 10126,
+      "producto_2": "Scanner Escaner Multimarca Bluetooth Obd2 Oe V1.5"
+    },
+    {
+      "veces": 46,
+      "producto_1": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 Colores Jdm",
+      "precio_combo": 7172,
+      "producto_2": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 D1-spec"
+    },
+    {
+      "veces": 46,
+      "producto_1": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 Colores Jdm",
+      "precio_combo": 7594,
+      "producto_2": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 Hp Factory"
+    },
+    {
+      "veces": 45,
+      "producto_1": "Marcadores Punta De Alcohol 60u Estuche",
+      "precio_combo": 19948,
+      "producto_2": "Marcadores Doble Punta De Alcohol 48u Estuche"
+    },
+    {
+      "veces": 41,
+      "producto_1": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 Hp Factory",
+      "precio_combo": 7594,
+      "producto_2": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 D1-spec"
+    },
+    {
+      "veces": 18,
+      "producto_1": "Marcadores Punta De Alcohol 60u Estuche",
+      "precio_combo": 20499,
+      "producto_2": "Marcadores Doble Punta De Alcohol 36u Estuche"
+    },
+    {
+      "veces": 17,
+      "producto_1": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 Hp Factory",
+      "precio_combo": 7296,
+      "producto_2": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X8 Hp Factory"
+    },
+    {
+      "veces": 14,
+      "producto_1": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X8 Hp Factory",
+      "precio_combo": 7296,
+      "producto_2": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 D1-spec"
+    },
+    {
+      "veces": 13,
+      "producto_1": "Marcadores Doble Punta De Alcohol 48u Estuche",
+      "precio_combo": 17499,
+      "producto_2": "Marcadores Doble Punta De Alcohol 36u Estuche"
+    },
+    {
+      "veces": 12,
+      "producto_1": "Marcadores Doble Punta De Alcohol 60u  Estuche + Blender",
+      "precio_combo": 41520,
+      "producto_2": "Marcadores Doble Punta De Alcohol 80u  Estuche + Blender"
+    },
+    {
+      "veces": 12,
+      "producto_1": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 Colores Jdm",
+      "precio_combo": 7361,
+      "producto_2": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X8 Hp Factory"
+    },
+    {
+      "veces": 11,
+      "producto_1": "Marcadores Doble Punta De Alcohol 80u Estuche Base + Blender",
+      "precio_combo": 28498,
+      "producto_2": "Marcadores Doble Punta De Alcohol 48u Estuche"
+    },
+    {
+      "veces": 10,
+      "producto_1": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 Colores Jdm",
+      "precio_combo": 7517,
+      "producto_2": "Arandela Anodizada Aluminio Moto Auto 6mm M6 X10 Colores Jdm"
+    }
+  ]
+}

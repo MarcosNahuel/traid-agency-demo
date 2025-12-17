@@ -1,0 +1,151 @@
+{
+  "name": "MarIA Demo - Agente Postventa",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "demo-postventa",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300],
+      "id": "webhook-postventa",
+      "name": "Webhook",
+      "webhookId": "demo-postventa"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst sim = body._simulation || body;\n\nconst context = `Cliente: ${sim.buyer?.first_name || 'Cliente'}\nProducto: ${sim.product?.title || 'N/A'} - $${(sim.product?.price || 0).toLocaleString()}\nEnvio: ${sim.shipping?.status || 'pending'}\nDias desde entrega: ${sim.days_since_delivery ?? 'N/A'}\nPuede Factura A: ${sim.billing?.can_receive_factura_a ? 'Si' : 'No'}`;\n\nreturn {\n  json: {\n    context,\n    message: sim.message || '',\n    buyerName: sim.buyer?.first_name || 'Cliente',\n    orderId: sim.order_id || '',\n    productTitle: sim.product?.title || '',\n    shippingStatus: sim.shipping?.status || 'pending',\n    daysSinceDelivery: sim.days_since_delivery,\n    canFacturaA: sim.billing?.can_receive_factura_a || false\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [400, 300],
+      "id": "parse-context",
+      "name": "Parsear"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "CONTEXTO:\n{{ $json.context }}\n\nMENSAJE DEL CLIENTE:\n{{ $json.message }}",
+        "options": {
+          "systemMessage": "Sos Tomi, soporte postventa de MarIA S.A. (tienda gaming Argentina).\n\nReglas:\n- Respuestas cortas (2-3 oraciones)\n- Lenguaje argentino casual\n- USA SOLO los datos del contexto, no inventes\n\nCasos comunes:\n- Tracking: informa segun estado del envio\n- Factura A: solo si 'Puede Factura A: Si', sino explica que necesita CUIT\n- Devolucion: hasta 30 dias desde entrega\n- Garantia: 6 meses, deriva a soporte\n\nPara casos complejos (garantia, factura A, devolucion, producto equivocado) usa 'soporte'.\n\nFirma: Tomi de MarIA S.A."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [620, 300],
+      "id": "agent-postventa",
+      "name": "Agente Postventa"
+    },
+    {
+      "parameters": {
+        "model": "claude-sonnet-4-20250514",
+        "options": {"temperature": 0.5, "maxTokensToSample": 512}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [480, 520],
+      "id": "claude-model",
+      "name": "Claude",
+      "credentials": {
+        "anthropicApi": {"id": "anthropic-credentials", "name": "Anthropic API"}
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=postventa-{{ $json.orderId || 'default' }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.2,
+      "position": [620, 520],
+      "id": "memory",
+      "name": "Memoria"
+    },
+    {
+      "parameters": {
+        "name": "soporte",
+        "description": "Deriva a soporte humano. OBLIGATORIO para: garantia, factura A, devoluciones, productos equivocados.",
+        "workflowId": {"__rl": true, "value": "WORKFLOW_SOPORTE_ID", "mode": "id"},
+        "specifyInputSchema": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "razon": {"type": "string", "description": "Motivo de derivacion"},
+            "tipo": {"type": "string", "description": "GARANTIA, FACTURA_A, DEVOLUCION, OTRO"},
+            "mensaje_cliente": {"type": "string", "description": "Mensaje original"}
+          },
+          "required": ["razon", "tipo"]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [760, 520],
+      "id": "tool-soporte",
+      "name": "soporte"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "tableId": "agent_interactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {"fieldId": "agent_type", "fieldValue": "postventa"},
+            {"fieldId": "input_message", "fieldValue": "={{ $('Parsear').item.json.message }}"},
+            {"fieldId": "output_message", "fieldValue": "={{ $json.output }}"},
+            {"fieldId": "order_id", "fieldValue": "={{ $('Parsear').item.json.orderId }}"},
+            {"fieldId": "buyer_name", "fieldValue": "={{ $('Parsear').item.json.buyerName }}"}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [840, 300],
+      "id": "log-interaction",
+      "name": "Log Supabase",
+      "credentials": {
+        "supabaseApi": {"id": "supabase-credentials", "name": "Supabase"}
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {output: $json.output, toolUsed: null, escalated: false} }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1060, 300],
+      "id": "respond",
+      "name": "Responder"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{"node": "Parsear", "type": "main", "index": 0}]]
+    },
+    "Parsear": {
+      "main": [[{"node": "Agente Postventa", "type": "main", "index": 0}]]
+    },
+    "Claude": {
+      "ai_languageModel": [[{"node": "Agente Postventa", "type": "ai_languageModel", "index": 0}]]
+    },
+    "Memoria": {
+      "ai_memory": [[{"node": "Agente Postventa", "type": "ai_memory", "index": 0}]]
+    },
+    "soporte": {
+      "ai_tool": [[{"node": "Agente Postventa", "type": "ai_tool", "index": 0}]]
+    },
+    "Agente Postventa": {
+      "main": [[{"node": "Log Supabase", "type": "main", "index": 0}]]
+    },
+    "Log Supabase": {
+      "main": [[{"node": "Responder", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {"executionOrder": "v1"},
+  "tags": [{"name": "MarIA Demo"}]
+}

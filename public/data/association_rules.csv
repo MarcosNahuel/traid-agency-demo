@@ -1,0 +1,31 @@
+producto_A,producto_B,frecuencia,support,confidence_A_to_B,confidence_B_to_A,lift
+Intercomunicador Casco Moto Zerog Q28-2x Bt 5.0 Cámara 1080p,Intercomunicador Casco Moto Zerog Q58max Bluetooth Radio Luz,3,0.0009,1.0,1.0,1059.33
+Tapa Valvulas Volkswagen Amarok Q7 3.0 V6 Acompañante Oe,Tapa Valvulas Volkswagen Amarok Q7 3.0 V6 Lado Conductor Oe,5,0.0016,1.0,1.0,635.6
+Enfriador De Gases Egr Ford Ranger Transit 2.2 3.2 Tdci Oe,Valvula Egr Ford Ranger Transit Puma 3.2 - 2.2 Oe,4,0.0013,0.8,1.0,635.6
+Conjunto Núcleo Turbo Chico Vw Amarok Biturbo 180hp R2s Kp35,Turbo Núcleo Vw Amarok 2.0 Tdi 180hp Grande K04 R2s Oe,5,0.0016,0.625,1.0,397.25
+Conjunto Núcleo Turbo Chico Vw Amarok Biturbo 180hp R2s Kp35,Turbo Núcleo Vw Amarok 2.0 Tdi 163hp Grande K04 R2s Oe,3,0.0009,0.375,1.0,397.25
+Bocha Palanca Cambio Honda New Civic Lxs Exs 2006 A 2011 Oe,Palanca De Freno De Mano Honda Civic 2006 A 2011 Exs Lxs Oe,7,0.0022,1.0,0.6364,288.91
+Bocha Palanca Cambio Honda New Civic Lxs Exs 2006 A 2011 Oe ,Palanca De Freno De Mano Honda Civic 2006 A 2011 Exs Lxs Oe,3,0.0009,1.0,0.2727,288.91
+Remera Algodón Ftx Blanca Gris Manga Corta Wings Unisex,Remera Algodón Ftx Negra Gris Manga Corta Pistons Unisex,4,0.0013,0.5,0.5714,227.0
+Sensor Map Chevrolet Corsa 1.4 1.6 Renault Clio Megane 2.0,Sonda Lambda Para Chevrolet Corsa 1.6 1.4 De 1 Cable Oe,6,0.0019,1.0,0.4,211.87
+Marcadores Doble Punta De Alcohol 60u  Estuche + Blender,Marcadores Doble Punta De Alcohol 80u  Estuche + Blender,9,0.0028,0.8182,0.6429,185.73
+Funda Cubre Asiento Auto Mascota Perro Estampado + Cierre,Funda Cubre Asiento Auto Mascota Perro Negro + 2 Cinturones,4,0.0013,0.2353,0.8,149.55
+Remera Algodón Ftx Blanca Negra Manga Corta Connect Unisex,Remera La Epicante 2 Negra Algodón Manga Corta Unisex,6,0.0019,0.5455,0.5,144.45
+Remera Algodón Ftx Blanca Gris Manga Corta Wings Unisex,Remera Algodón Ftx Blanca Negra Manga Corta Connect Unisex,4,0.0013,0.5,0.3636,144.45
+Tecla Levantavidrios Peugeot 206 207 One Touch Espejos,Tecla Levantavidrios Peugeot 206 207 Sin One Touch Espejos,3,0.0009,0.2727,0.5,144.45
+Remera Algodón Ftx Blanca Negra Manga Corta Connect Unisex,Remera Algodón Ftx Negra Gris Manga Corta Pistons Unisex,3,0.0009,0.2727,0.4286,123.82
+Bujía Iridium Grado 8 Bkr8eix Ngk X 4 Unidades,Kit X4 Bobina Roja Red Audi Vw 2.0 Tsi Tfsi Vento Gti Oe,4,0.0013,0.5714,0.2667,121.07
+Bujía Iridium Grado 7 Bkr7eix Ngk X 4 Unidades,Kit X4 Bobina Roja Red Audi Vw 2.0 Tsi Tfsi Vento Gti Oe,6,0.0019,0.5455,0.4,115.56
+Marcadores Blancos Doble Punta De Alcohol 36u + Blender,Marcadores Blancos Doble Punta De Alcohol 48u + Blender,6,0.0019,0.5,0.4,105.93
+Marcadores Blancos Doble Punta De Alcohol 100u,Marcadores Blancos Doble Punta De Alcohol 60u,9,0.0028,0.45,0.6429,102.15
+Marcadores Doble Punta Alcohol 60u Kleur Estuche + Blender S,Marcadores Doble Punta Pincel Alcohol 60u Kleur + Blender Bl,3,0.0009,0.25,0.375,99.31
+Marcadores Acrilico Doble Punta 60u Pincel + Blanco Kleur Su,Marcadores Doble Punta Alcohol 80u Kleur Touch + Blender Bas,3,0.0009,0.1875,0.5,99.31
+Marcadores Blancos Doble Punta De Alcohol 48u Surtido,Set Marcadores Doble Punta 60 Pcs Punta Pincel Al Agua Kleur,3,0.0009,0.4286,0.1875,85.12
+Set Arte 145pcs Lápices Fibra Crayón Acuarela Valija Kleur L,Set Arte 288 Pcs Lápices Fibras Crayones Acuarelas Estuche L,3,0.0009,0.3333,0.2143,75.67
+Marcadores Blancos Doble Punta De Alcohol 36u,Marcadores Blancos Doble Punta De Alcohol 48u,3,0.0009,0.3,0.2,63.56
+Marcadores Blancos Doble Punta De Alcohol 80u + Blender,Marcadores Doble Punta De Alcohol 100u Estuche,8,0.0025,0.5333,0.2857,60.53
+Pinceles X 20 Pintura Acrílico Acuarela Óleo Arte Kleur Nara,Set Arte 288 Pcs Lápices Fibras Crayones Acuarelas Estuche L,7,0.0022,0.2414,0.5,54.79
+Marcadores Blancos Doble Punta De Alcohol 100u + Blender,Marcadores Doble Punta De Alcohol 60u Estuche Base + Blender,10,0.0031,0.3571,0.4762,54.05
+Marcadores Blancos Doble Punta De Alcohol 100u,Marcadores Blancos Doble Punta De Alcohol 36u,3,0.0009,0.15,0.3,47.67
+Marcadores Blancos Doble Punta De Alcohol 100u,Marcadores Blancos Doble Punta De Alcohol 48u,4,0.0013,0.2,0.2667,42.37
+Marcadores Blancos Doble Punta De Alcohol 60u,Marcadores Doble Punta De Alcohol 36u Estuche,7,0.0022,0.5,0.1628,36.95

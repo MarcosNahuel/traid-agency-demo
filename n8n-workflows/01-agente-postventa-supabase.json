@@ -1,0 +1,433 @@
+{
+  "name": "MarIA - Agente Postventa (Supabase)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "postventa-demo",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-postventa",
+      "name": "Webhook Postventa",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "postventa-demo"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer datos del mensaje entrante\nconst body = $input.first().json.body || $input.first().json;\nconst simulation = body._simulation || body;\n\n// Datos del mensaje\nconst message = simulation.message || '';\nconst orderId = simulation.order_id || '';\nconst buyerName = simulation.buyer?.first_name || 'Cliente';\nconst buyerId = simulation.buyer?.id || '';\n\n// Datos del producto\nconst productTitle = simulation.product?.title || '';\nconst productSku = simulation.product?.sku || '';\nconst productPrice = simulation.product?.price || 0;\n\n// Datos del envio\nconst shippingStatus = simulation.shipping?.status || 'unknown';\nconst trackingNumber = simulation.shipping?.tracking_number || '';\nconst carrier = simulation.shipping?.carrier || '';\nconst dateDelivered = simulation.shipping?.date_delivered || null;\n\n// Datos de facturacion\nconst docType = simulation.billing?.doc_type || 'DNI';\nconst canReceiveFacturaA = simulation.billing?.can_receive_factura_a || false;\n\n// Calcular dias desde entrega\nlet daysSinceDelivery = null;\nif (dateDelivered) {\n  const delivered = new Date(dateDelivered);\n  const now = new Date();\n  daysSinceDelivery = Math.floor((now - delivered) / (1000 * 60 * 60 * 24));\n}\n\n// Detectar tipo de consulta\nconst msgLower = message.toLowerCase();\nlet queryType = 'general';\nlet toolToUse = null;\n\nif (msgLower.includes('donde') && (msgLower.includes('pedido') || msgLower.includes('envio') || msgLower.includes('paquete'))) {\n  queryType = 'tracking';\n  toolToUse = 'tracking_lookup';\n} else if (msgLower.includes('factura')) {\n  queryType = 'facturacion';\n  toolToUse = 'billing_check';\n} else if (msgLower.includes('devol') || msgLower.includes('reembolso')) {\n  queryType = 'devolucion';\n  toolToUse = 'return_policy_check';\n} else if (msgLower.includes('garantia') || msgLower.includes('falla') || msgLower.includes('defecto') || msgLower.includes('roto')) {\n  queryType = 'garantia';\n  toolToUse = 'warranty_check';\n} else if (msgLower.includes('instala') || msgLower.includes('armar') || msgLower.includes('configur')) {\n  queryType = 'instalacion';\n  toolToUse = 'knowledge_base';\n} else if (msgLower.includes('gracias') || msgLower.includes('excelente') || msgLower.includes('genial')) {\n  queryType = 'agradecimiento';\n  toolToUse = null;\n}\n\nreturn {\n  json: {\n    // Datos originales\n    rawMessage: message,\n    orderId,\n    buyerName,\n    buyerId,\n    \n    // Producto\n    product: {\n      title: productTitle,\n      sku: productSku,\n      price: productPrice\n    },\n    \n    // Envio\n    shipping: {\n      status: shippingStatus,\n      trackingNumber,\n      carrier,\n      dateDelivered,\n      daysSinceDelivery\n    },\n    \n    // Facturacion\n    billing: {\n      docType,\n      canReceiveFacturaA\n    },\n    \n    // Analisis\n    queryType,\n    toolToUse,\n    \n    // Para el prompt\n    contextForAI: `\nCliente: ${buyerName}\nProducto: ${productTitle} (${productSku})\nPrecio: $${productPrice?.toLocaleString()}\nEstado envio: ${shippingStatus}\nTracking: ${trackingNumber || 'N/A'}\nDias desde entrega: ${daysSinceDelivery !== null ? daysSinceDelivery : 'No entregado'}\nTipo doc: ${docType}\nPuede Factura A: ${canReceiveFacturaA ? 'Si' : 'No'}\nTipo consulta detectada: ${queryType}\n`\n  }\n};"
+      },
+      "id": "parse-message",
+      "name": "Parsear Mensaje",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [470, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "tracking",
+              "leftValue": "={{ $json.queryType }}",
+              "rightValue": "tracking",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "switch-query-type",
+      "name": "Tipo de Consulta",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [690, 300],
+      "onFalse": "continue"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generar respuesta de tracking\nconst data = $input.first().json;\nconst shipping = data.shipping;\nconst buyerName = data.buyerName;\nconst productTitle = data.product.title;\n\nlet response = '';\n\nswitch (shipping.status) {\n  case 'delivered':\n    response = `Hola ${buyerName}! Tu pedido de ${productTitle} ya fue entregado hace ${shipping.daysSinceDelivery} dias. Si no lo recibiste o tenes algun problema, por favor avisanos para ayudarte.`;\n    break;\n  case 'in_transit':\n    response = `Hola ${buyerName}! Tu pedido de ${productTitle} esta en camino. El numero de seguimiento es ${shipping.trackingNumber || 'pendiente de asignacion'}. Podes seguirlo desde la app. La entrega estimada es en los proximos 2-3 dias habiles.`;\n    break;\n  case 'pending':\n    response = `Hola ${buyerName}! Tu pedido de ${productTitle} esta siendo preparado en nuestro deposito. En las proximas 24-48hs te enviamos el numero de seguimiento. Gracias por tu paciencia!`;\n    break;\n  case 'shipped':\n    response = `Hola ${buyerName}! Tu pedido de ${productTitle} ya salio de nuestro deposito! El tracking es ${shipping.trackingNumber}. Transportista: ${shipping.carrier}. Seguilo en tiempo real desde la app.`;\n    break;\n  default:\n    response = `Hola ${buyerName}! Dejame verificar el estado de tu pedido de ${productTitle}. En breve te doy una actualizacion.`;\n}\n\nreturn {\n  json: {\n    ...data,\n    aiResponse: response,\n    toolUsed: 'tracking_lookup',\n    shouldEscalate: false\n  }\n};"
+      },
+      "id": "response-tracking",
+      "name": "Respuesta Tracking",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [910, 140]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generar respuesta de facturacion\nconst data = $input.first().json;\nconst billing = data.billing;\nconst buyerName = data.buyerName;\nconst productTitle = data.product.title;\n\nlet response = '';\nlet shouldEscalate = false;\n\nif (data.rawMessage.toLowerCase().includes('factura a')) {\n  if (billing.canReceiveFacturaA) {\n    response = `Hola ${buyerName}! Revise tus datos y confirmo que te corresponde Factura A por tu compra de ${productTitle}. La estamos generando y te la enviamos por email en las proximas 24-48hs habiles. Si necesitas que la enviemos a otro mail, avisame!`;\n  } else {\n    response = `Hola ${buyerName}! Vi que pedis Factura A, pero segun tus datos registrados (${billing.docType}), corresponde Factura B para Consumidor Final. Si sos monotributista o responsable inscripto, por favor envianos tu CUIT y razon social para actualizar la facturacion.`;\n  }\n} else {\n  response = `Hola ${buyerName}! Tu factura por la compra de ${productTitle} se genera automaticamente y se envia por email. Si necesitas Factura A, indicame tu CUIT y condicion fiscal.`;\n}\n\nreturn {\n  json: {\n    ...data,\n    aiResponse: response,\n    toolUsed: 'billing_check',\n    shouldEscalate\n  }\n};"
+      },
+      "id": "response-facturacion",
+      "name": "Respuesta Facturacion",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [910, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generar respuesta de devolucion\nconst data = $input.first().json;\nconst shipping = data.shipping;\nconst buyerName = data.buyerName;\nconst productTitle = data.product.title;\n\nlet response = '';\nlet shouldEscalate = false;\n\nconst daysSinceDelivery = shipping.daysSinceDelivery;\n\nif (daysSinceDelivery !== null && daysSinceDelivery <= 30) {\n  response = `Hola ${buyerName}! Entiendo que queres devolver ${productTitle}. Como la compra tiene ${daysSinceDelivery} dias desde la entrega, estas dentro del plazo de devolucion (30 dias). Para proceder, necesito saber: El producto esta en su empaque original? Esta en las mismas condiciones que lo recibiste?`;\n  shouldEscalate = true; // Devoluciones siempre escalan para revision humana\n} else if (daysSinceDelivery !== null && daysSinceDelivery > 30) {\n  response = `Hola ${buyerName}! Lamentablemente el plazo de devolucion por arrepentimiento (30 dias) ya vencio para tu compra de ${productTitle} (hace ${daysSinceDelivery} dias). Sin embargo, si el producto tiene algun defecto, la garantia de 6 meses sigue vigente. Contame que paso con el producto?`;\n} else {\n  response = `Hola ${buyerName}! Para ayudarte con la devolucion de ${productTitle}, necesito verificar el estado de tu pedido. Dame un momento...`;\n  shouldEscalate = true;\n}\n\nreturn {\n  json: {\n    ...data,\n    aiResponse: response,\n    toolUsed: 'return_policy_check',\n    shouldEscalate\n  }\n};"
+      },
+      "id": "response-devolucion",
+      "name": "Respuesta Devolucion",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [910, 460]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generar respuesta de garantia\nconst data = $input.first().json;\nconst shipping = data.shipping;\nconst buyerName = data.buyerName;\nconst productTitle = data.product.title;\n\nlet response = '';\nlet shouldEscalate = true; // Garantias siempre escalan\n\nconst daysSinceDelivery = shipping.daysSinceDelivery;\n\nif (daysSinceDelivery !== null && daysSinceDelivery <= 180) {\n  response = `Hola ${buyerName}! Lamento escuchar que tenes un problema con ${productTitle}. El producto tiene garantia de 6 meses y estas dentro del plazo (${daysSinceDelivery} dias desde la entrega). Para ayudarte, necesito que me cuentes: Cual es el problema especifico? Si podes, enviame fotos o un video del defecto para documentar el caso y agilizar el proceso de garantia.`;\n} else if (daysSinceDelivery !== null && daysSinceDelivery > 180) {\n  response = `Hola ${buyerName}! El periodo de garantia de 6 meses (180 dias) ya finalizo para tu ${productTitle} (hace ${daysSinceDelivery} dias). De todas formas, contame que problema tenes y vemos si hay alguna solucion que podamos ofrecerte.`;\n  shouldEscalate = true;\n} else {\n  response = `Hola ${buyerName}! Para ayudarte con la garantia de ${productTitle}, contame que problema tenes con el producto?`;\n}\n\nreturn {\n  json: {\n    ...data,\n    aiResponse: response,\n    toolUsed: 'warranty_check',\n    shouldEscalate,\n    escalationReason: 'Reclamo de garantia - requiere evaluacion tecnica'\n  }\n};"
+      },
+      "id": "response-garantia",
+      "name": "Respuesta Garantia",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [910, 620]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generar respuesta generica o agradecimiento\nconst data = $input.first().json;\nconst buyerName = data.buyerName;\nconst productTitle = data.product.title;\nconst queryType = data.queryType;\n\nlet response = '';\n\nif (queryType === 'agradecimiento') {\n  response = `Hola ${buyerName}! Muchas gracias por tu mensaje! Nos alegra mucho saber que estas conforme. Si en el futuro necesitas algo mas o tenes alguna consulta sobre ${productTitle}, estamos para ayudarte. Buen gaming! 🎮`;\n} else if (queryType === 'instalacion') {\n  response = `Hola ${buyerName}! Con gusto te ayudo con la instalacion/configuracion de ${productTitle}. Contame especificamente que necesitas saber o en que paso estas trabado y te guio paso a paso.`;\n} else {\n  response = `Hola ${buyerName}! Gracias por escribirnos. Estoy revisando tu consulta sobre ${productTitle}. En que puedo ayudarte especificamente?`;\n}\n\nreturn {\n  json: {\n    ...data,\n    aiResponse: response,\n    toolUsed: queryType === 'instalacion' ? 'knowledge_base' : null,\n    shouldEscalate: false\n  }\n};"
+      },
+      "id": "response-general",
+      "name": "Respuesta General",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [910, 780]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "all"
+      },
+      "id": "merge-responses",
+      "name": "Unir Respuestas",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [1130, 460]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "should-escalate",
+              "leftValue": "={{ $json.shouldEscalate }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "check-escalation",
+      "name": "Requiere Escalacion?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1350, 460]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/escalations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=representation"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"channel\": \"demo\",\n  \"buyer_id\": \"{{ $json.buyerId }}\",\n  \"buyer_name\": \"{{ $json.buyerName }}\",\n  \"original_message\": \"{{ $json.rawMessage }}\",\n  \"reason\": \"{{ $json.escalationReason || 'Requiere atencion humana' }}\",\n  \"case_type\": \"{{ $json.queryType }}\",\n  \"priority\": 3,\n  \"product_sku\": \"{{ $json.product.sku }}\",\n  \"product_title\": \"{{ $json.product.title }}\",\n  \"product_price\": {{ $json.product.price || 0 }},\n  \"ai_suggested_response\": \"{{ $json.aiResponse }}\",\n  \"status\": \"pending\"\n}",
+        "options": {}
+      },
+      "id": "create-escalation",
+      "name": "Crear Escalacion en Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1570, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/ai_interactions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"agent_id\": \"a0000001-0001-0001-0001-000000000002\",\n  \"input_message\": \"{{ $json.rawMessage }}\",\n  \"output_message\": \"{{ $json.aiResponse }}\",\n  \"tool_used\": \"{{ $json.toolUsed }}\",\n  \"escalated\": {{ $json.shouldEscalate }},\n  \"escalation_reason\": {{ $json.escalationReason ? '\"' + $json.escalationReason + '\"' : 'null' }},\n  \"channel\": \"demo\",\n  \"buyer_id\": \"{{ $json.buyerId }}\"\n}",
+        "options": {}
+      },
+      "id": "log-interaction",
+      "name": "Guardar Interaccion IA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1570, 620],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Preparar respuesta final\nconst data = $input.first().json;\n\nreturn {\n  json: {\n    output: data.aiResponse,\n    toolUsed: data.toolUsed,\n    escalated: data.shouldEscalate,\n    queryType: data.queryType,\n    metadata: {\n      orderId: data.orderId,\n      buyerName: data.buyerName,\n      product: data.product.title\n    }\n  }\n};"
+      },
+      "id": "prepare-response",
+      "name": "Preparar Respuesta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1790, 460]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "respond-webhook",
+      "name": "Responder Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [2010, 460]
+    }
+  ],
+  "connections": {
+    "Webhook Postventa": {
+      "main": [
+        [
+          {
+            "node": "Parsear Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsear Mensaje": {
+      "main": [
+        [
+          {
+            "node": "Tipo de Consulta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tipo de Consulta": {
+      "main": [
+        [
+          {
+            "node": "Respuesta Tracking",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respuesta Facturacion",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respuesta Devolucion",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respuesta Garantia",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respuesta General",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respuesta Tracking": {
+      "main": [
+        [
+          {
+            "node": "Unir Respuestas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respuesta Facturacion": {
+      "main": [
+        [
+          {
+            "node": "Unir Respuestas",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Respuesta Devolucion": {
+      "main": [
+        [
+          {
+            "node": "Unir Respuestas",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Respuesta Garantia": {
+      "main": [
+        [
+          {
+            "node": "Unir Respuestas",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Respuesta General": {
+      "main": [
+        [
+          {
+            "node": "Unir Respuestas",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Unir Respuestas": {
+      "main": [
+        [
+          {
+            "node": "Requiere Escalacion?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Requiere Escalacion?": {
+      "main": [
+        [
+          {
+            "node": "Crear Escalacion en Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Guardar Interaccion IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear Escalacion en Supabase": {
+      "main": [
+        [
+          {
+            "node": "Guardar Interaccion IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardar Interaccion IA": {
+      "main": [
+        [
+          {
+            "node": "Preparar Respuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar Respuesta": {
+      "main": [
+        [
+          {
+            "node": "Responder Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "MarIA Demo",
+      "createdAt": "2024-12-16T00:00:00.000Z",
+      "updatedAt": "2024-12-16T00:00:00.000Z"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-12-16T00:00:00.000Z",
+  "versionId": "1"
+}

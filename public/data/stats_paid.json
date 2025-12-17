@@ -1,0 +1,55 @@
+{
+  "totals": {
+    "total_revenue": 4872302555,
+    "multi_product_buyers": 3160,
+    "unique_customers": 57297,
+    "cancelled_orders": 5636,
+    "repeat_rate": 7.92,
+    "other_status": 100,
+    "paid_orders": 66180,
+    "repeat_customers": 4540,
+    "total_rows": 71916,
+    "avg_ticket": 73622,
+    "unique_products": 762
+  },
+  "cross_selling": {
+    "total_combos_found": 554,
+    "multi_item_packs": 1690
+  },
+  "date_range": {
+    "months": 13,
+    "from": "2024-12-08",
+    "to": "2025-12-08"
+  },
+  "price_distribution": {
+    "medio": {
+      "pct": 27,
+      "count": 17876,
+      "range": "-"
+    },
+    "premium": {
+      "pct": 21.1,
+      "count": 13945,
+      "range": "> "
+    },
+    "bajo": {
+      "pct": 33.9,
+      "count": 22419,
+      "range": "< "
+    },
+    "alto": {
+      "pct": 18,
+      "count": 11940,
+      "range": "-"
+    }
+  },
+  "metadata": {
+    "seller_id": "1074767186",
+    "source": "MercadoLibre Orders API",
+    "filter_applied": "status = 'paid' only",
+    "generated_at": "2025-12-08 22:47:17",
+    "extraction_method": "OAuth2 API + PowerShell Script",
+    "seller_name": "Tienda Lubbi",
+    "file": "orders_full.csv"
+  }
+}

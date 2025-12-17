@@ -1,0 +1,208 @@
+{
+  "name": "Sync Stock ML - Daily (v2)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Cada 6 horas",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "melipablo",
+        "options": {}
+      },
+      "id": "redis-token",
+      "name": "Redis - Get Token ML",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [400, 300],
+      "credentials": {
+        "redis": {
+          "id": "HQzKm3HsLa8ODBdx",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// =============================================\n// OBTENER TODOS LOS ITEMS DE ML (con paginación)\n// =============================================\n\nconst token = $input.first().json.propertyName;\nconst sellerId = '1074767186';\nconst baseUrl = `https://api.mercadolibre.com/users/${sellerId}/items/search`;\n\nlet allItemIds = [];\nlet scrollId = null;\nlet hasMore = true;\nlet pageCount = 0;\n\n// Paso 1: Obtener todos los IDs con paginación scroll\nwhile (hasMore) {\n  let url = `${baseUrl}?search_type=scan&limit=100`;\n  if (scrollId) {\n    url += `&scroll_id=${scrollId}`;\n  }\n  \n  const response = await this.helpers.httpRequest({\n    method: 'GET',\n    url: url,\n    headers: { 'Authorization': `Bearer ${token}` }\n  });\n  \n  if (response.results && response.results.length > 0) {\n    allItemIds = allItemIds.concat(response.results);\n  }\n  \n  scrollId = response.scroll_id;\n  hasMore = !!scrollId && response.results && response.results.length > 0;\n  pageCount++;\n  \n  // Safety limit\n  if (pageCount > 20) break;\n}\n\n// Paso 2: Obtener detalles en batches de 20\nconst allItems = [];\nfor (let i = 0; i < allItemIds.length; i += 20) {\n  const batchIds = allItemIds.slice(i, i + 20).join(',');\n  \n  const detailResponse = await this.helpers.httpRequest({\n    method: 'GET',\n    url: `https://api.mercadolibre.com/items?ids=${batchIds}`,\n    headers: { 'Authorization': `Bearer ${token}` }\n  });\n  \n  for (const item of detailResponse) {\n    if (item.code === 200 && item.body) {\n      const body = item.body;\n      \n      // Buscar SKU\n      let sku = body.seller_custom_field;\n      if (!sku && body.attributes) {\n        const skuAttr = body.attributes.find(a => a.id === 'SELLER_SKU');\n        if (skuAttr) sku = skuAttr.value_name;\n      }\n      \n      allItems.push({\n        item_id: body.id,\n        title: body.title,\n        permalink: body.permalink,\n        thumbnail: body.thumbnail,\n        price: body.price,\n        available_quantity: body.available_quantity || 0,\n        status: body.status,\n        sku: sku || null,\n        category_id: body.category_id,\n        seller_id: body.seller_id?.toString()\n      });\n    }\n  }\n  \n  // Pequeña pausa para no saturar API\n  await new Promise(r => setTimeout(r, 100));\n}\n\nreturn [{ json: { items: allItems, total: allItems.length, token: token } }];"
+      },
+      "id": "get-all-items",
+      "name": "1. Obtener TODOS los Items",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [600, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://horsepower-supabase.e5l6dk.easypanel.host/rest/v1/ml_items?on_conflict=item_id",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=representation,resolution=merge-duplicates"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.items) }}",
+        "options": {}
+      },
+      "id": "upsert-items",
+      "name": "2. Upsert ml_items",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [800, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "Bjo1rbDdp4dLUimX",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "melipablo",
+        "options": {}
+      },
+      "id": "redis-token-2",
+      "name": "Redis - Get Token (Orders)",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [1000, 300],
+      "credentials": {
+        "redis": {
+          "id": "HQzKm3HsLa8ODBdx",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// =============================================\n// OBTENER ORDENES RECIENTES (últimos 7 días)\n// Para sync incremental - no full sync\n// =============================================\n\nconst token = $input.first().json.propertyName;\nconst sellerId = '1074767186';\nconst baseUrl = 'https://api.mercadolibre.com/orders/search';\n\n// Solo últimos 7 días para sync incremental\nconst fromDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();\n\nlet allOrderItems = [];\nlet offset = 0;\nconst limit = 50;\nlet hasMore = true;\nlet totalFetched = 0;\n\nwhile (hasMore) {\n  const url = `${baseUrl}?seller=${sellerId}&order.status=paid&order.date_created.from=${fromDate}&limit=${limit}&offset=${offset}`;\n  \n  const response = await this.helpers.httpRequest({\n    method: 'GET',\n    url: url,\n    headers: { 'Authorization': `Bearer ${token}` }\n  });\n  \n  const orders = response.results || [];\n  \n  // Extraer items de cada orden\n  for (const order of orders) {\n    if (order.order_items) {\n      for (const item of order.order_items) {\n        allOrderItems.push({\n          order_id: order.id.toString(),\n          item_id: item.item.id,\n          quantity: item.quantity,\n          unit_price: item.unit_price,\n          order_date: order.date_created\n        });\n      }\n    }\n  }\n  \n  totalFetched += orders.length;\n  offset += limit;\n  \n  // Verificar si hay más\n  const total = response.paging?.total || 0;\n  hasMore = orders.length === limit && offset < total;\n  \n  // Safety limit (max 500 orders = 10 pages)\n  if (offset > 500) break;\n}\n\nreturn allOrderItems.map(item => ({ json: item }));"
+      },
+      "id": "get-orders",
+      "name": "3. Obtener Ordenes (7 días)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://horsepower-supabase.e5l6dk.easypanel.host/rest/v1/ml_orders_items?on_conflict=order_id,item_id",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=representation,resolution=merge-duplicates"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "upsert-orders",
+      "name": "4. Upsert Ordenes",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1400, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "Bjo1rbDdp4dLUimX",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://horsepower-supabase.e5l6dk.easypanel.host/rest/v1/rpc/refresh_stock_metrics",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "recalc-metrics",
+      "name": "5. Recalcular Métricas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1600, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "Bjo1rbDdp4dLUimX",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Cada 6 horas": {
+      "main": [[{ "node": "Redis - Get Token ML", "type": "main", "index": 0 }]]
+    },
+    "Redis - Get Token ML": {
+      "main": [[{ "node": "1. Obtener TODOS los Items", "type": "main", "index": 0 }]]
+    },
+    "1. Obtener TODOS los Items": {
+      "main": [[{ "node": "2. Upsert ml_items", "type": "main", "index": 0 }]]
+    },
+    "2. Upsert ml_items": {
+      "main": [[{ "node": "Redis - Get Token (Orders)", "type": "main", "index": 0 }]]
+    },
+    "Redis - Get Token (Orders)": {
+      "main": [[{ "node": "3. Obtener Ordenes (7 días)", "type": "main", "index": 0 }]]
+    },
+    "3. Obtener Ordenes (7 días)": {
+      "main": [[{ "node": "4. Upsert Ordenes", "type": "main", "index": 0 }]]
+    },
+    "4. Upsert Ordenes": {
+      "main": [[{ "node": "5. Recalcular Métricas", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

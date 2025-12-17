@@ -1,0 +1,63 @@
+{
+  "name": "Webhook - Get ML Token",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "get-ml-token",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook GET /get-ml-token",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "get-ml-token"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "melipablo",
+        "options": {}
+      },
+      "id": "redis-get-token",
+      "name": "Redis - Get Token",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "credentials": {
+        "redis": {
+          "id": "HQzKm3HsLa8ODBdx",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { token: $json.propertyName || null } }}",
+        "options": {}
+      },
+      "id": "respond-token",
+      "name": "Respond with Token",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Webhook GET /get-ml-token": {
+      "main": [[{ "node": "Redis - Get Token", "type": "main", "index": 0 }]]
+    },
+    "Redis - Get Token": {
+      "main": [[{ "node": "Respond with Token", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

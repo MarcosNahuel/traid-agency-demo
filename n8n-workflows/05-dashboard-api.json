@@ -1,0 +1,300 @@
+{
+  "name": "MarIA - Dashboard API",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "dashboard-stats",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-dashboard",
+      "name": "GET Dashboard Stats",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "dashboard-stats"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/orders",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "select",
+              "value": "id,channel,status,total,created_at"
+            },
+            {
+              "name": "created_at",
+              "value": "=gte.{{ new Date(Date.now() - 30*24*60*60*1000).toISOString() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-orders-30d",
+      "name": "Ordenes 30 dias",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [470, 140],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/escalations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "select",
+              "value": "id,status,priority,case_type,channel,created_at"
+            },
+            {
+              "name": "status",
+              "value": "in.(pending,in_progress)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-active-escalations",
+      "name": "Escalaciones Activas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [470, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/product_metrics",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "select",
+              "value": "product_id,severity,days_of_stock,avg_daily_sales"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-stock-metrics",
+      "name": "Metricas Stock",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [470, 460],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/ai_interactions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            }
+          ]
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "select",
+              "value": "id,escalated,tool_used,created_at"
+            },
+            {
+              "name": "created_at",
+              "value": "=gte.{{ new Date(Date.now() - 24*60*60*1000).toISOString() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-ai-interactions-24h",
+      "name": "Interacciones IA 24h",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [470, 620],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "supabase-auth",
+          "name": "Supabase Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Compilar estadisticas del dashboard\nconst orders = $('Ordenes 30 dias').first().json || [];\nconst escalations = $('Escalaciones Activas').first().json || [];\nconst stockMetrics = $('Metricas Stock').first().json || [];\nconst aiInteractions = $('Interacciones IA 24h').first().json || [];\n\n// Calcular metricas de ordenes\nconst ordersArray = Array.isArray(orders) ? orders : [];\nconst totalOrders = ordersArray.length;\nconst totalRevenue = ordersArray.reduce((sum, o) => sum + (o.total || 0), 0);\nconst ordersByChannel = {\n  mercadolibre: ordersArray.filter(o => o.channel === 'mercadolibre').length,\n  shopify: ordersArray.filter(o => o.channel === 'shopify').length,\n  tiendanube: ordersArray.filter(o => o.channel === 'tiendanube').length\n};\n\n// Calcular metricas de escalaciones\nconst escalationsArray = Array.isArray(escalations) ? escalations : [];\nconst pendingEscalations = escalationsArray.filter(e => e.status === 'pending').length;\nconst urgentEscalations = escalationsArray.filter(e => e.priority === 1).length;\n\n// Calcular metricas de stock\nconst stockArray = Array.isArray(stockMetrics) ? stockMetrics : [];\nconst criticalStock = stockArray.filter(s => s.severity === 'critical').length;\nconst warningStock = stockArray.filter(s => s.severity === 'warning').length;\n\n// Calcular metricas de IA\nconst aiArray = Array.isArray(aiInteractions) ? aiInteractions : [];\nconst totalAI = aiArray.length;\nconst resolvedByAI = aiArray.filter(i => !i.escalated).length;\nconst aiResolutionRate = totalAI > 0 ? (resolvedByAI / totalAI * 100).toFixed(1) : 0;\n\nreturn {\n  json: {\n    orders: {\n      total_30d: totalOrders,\n      revenue_30d: totalRevenue,\n      by_channel: ordersByChannel\n    },\n    escalations: {\n      pending: pendingEscalations,\n      urgent: urgentEscalations,\n      total_active: escalationsArray.length\n    },\n    stock: {\n      critical: criticalStock,\n      warning: warningStock,\n      total_products: stockArray.length\n    },\n    ai_performance: {\n      interactions_24h: totalAI,\n      resolved_by_ai: resolvedByAI,\n      resolution_rate: aiResolutionRate + '%'\n    },\n    generated_at: new Date().toISOString()\n  }\n};"
+      },
+      "id": "compile-stats",
+      "name": "Compilar Estadisticas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [910, 380]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "respond-dashboard",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1130, 380]
+    }
+  ],
+  "connections": {
+    "GET Dashboard Stats": {
+      "main": [
+        [
+          {
+            "node": "Ordenes 30 dias",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Escalaciones Activas",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Metricas Stock",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Interacciones IA 24h",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ordenes 30 dias": {
+      "main": [
+        [
+          {
+            "node": "Compilar Estadisticas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escalaciones Activas": {
+      "main": [
+        [
+          {
+            "node": "Compilar Estadisticas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Metricas Stock": {
+      "main": [
+        [
+          {
+            "node": "Compilar Estadisticas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Interacciones IA 24h": {
+      "main": [
+        [
+          {
+            "node": "Compilar Estadisticas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compilar Estadisticas": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "MarIA Demo"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-12-16T00:00:00.000Z",
+  "versionId": "1"
+}

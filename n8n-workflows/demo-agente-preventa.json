@@ -1,0 +1,160 @@
+{
+  "name": "MarIA Demo - Agente Preventa",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "demo-preventa",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300],
+      "id": "webhook-preventa",
+      "name": "Webhook",
+      "webhookId": "demo-preventa"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.chatInput || $json.chatInput }}",
+        "options": {
+          "systemMessage": "Sos Barbi, asistente de ventas de MarIA S.A. (tienda gaming Argentina).\n\nVendes: PCs gaming, notebooks, placas de video RTX, monitores, perifericos, sillas gaming.\n\nReglas:\n- Respuestas cortas (2-3 oraciones)\n- Lenguaje argentino casual\n- Si no sabes algo, decilo\n- Para consultas complejas usa la herramienta 'soporte'\n\nInfo basica:\n- Envio gratis +$50k\n- Hasta 12 cuotas\n- 6 meses garantia\n\nFirma: Barbi de MarIA S.A."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [500, 300],
+      "id": "agent-preventa",
+      "name": "Agente Preventa"
+    },
+    {
+      "parameters": {
+        "model": "claude-sonnet-4-20250514",
+        "options": {"temperature": 0.7, "maxTokensToSample": 512}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [360, 520],
+      "id": "claude-model",
+      "name": "Claude",
+      "credentials": {
+        "anthropicApi": {"id": "anthropic-credentials", "name": "Anthropic API"}
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.sessionId || $json.sessionId || 'default' }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.2,
+      "position": [500, 520],
+      "id": "memory",
+      "name": "Memoria"
+    },
+    {
+      "parameters": {
+        "name": "buscar_productos",
+        "description": "Busca productos en el catalogo. Parametro: query (texto de busqueda)",
+        "method": "GET",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/products",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "specifyQuery": "json",
+        "jsonQuery": "={\"select\": \"*\", \"or\": \"(title.ilike.*{{ $fromAI('query') }}*,category.ilike.*{{ $fromAI('query') }}*)\", \"limit\": \"5\"}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [640, 520],
+      "id": "tool-buscar-productos",
+      "name": "buscar_productos",
+      "credentials": {
+        "httpHeaderAuth": {"id": "supabase-header", "name": "Supabase Header Auth"}
+      }
+    },
+    {
+      "parameters": {
+        "name": "soporte",
+        "description": "Deriva a soporte humano. Usa para consultas complejas o cuando no puedas ayudar.",
+        "workflowId": {"__rl": true, "value": "WORKFLOW_SOPORTE_ID", "mode": "id"},
+        "specifyInputSchema": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "razon": {"type": "string", "description": "Motivo de derivacion"},
+            "consulta": {"type": "string", "description": "Consulta del cliente"}
+          },
+          "required": ["razon", "consulta"]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [780, 520],
+      "id": "tool-soporte",
+      "name": "soporte"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "tableId": "agent_interactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {"fieldId": "agent_type", "fieldValue": "preventa"},
+            {"fieldId": "input_message", "fieldValue": "={{ $('Webhook').item.json.body.chatInput || $('Webhook').item.json.chatInput }}"},
+            {"fieldId": "output_message", "fieldValue": "={{ $json.output }}"},
+            {"fieldId": "session_id", "fieldValue": "={{ $('Webhook').item.json.body.sessionId || $('Webhook').item.json.sessionId }}"}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [720, 300],
+      "id": "log-interaction",
+      "name": "Log Supabase",
+      "credentials": {
+        "supabaseApi": {"id": "supabase-credentials", "name": "Supabase"}
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {text: $json.output} }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [940, 300],
+      "id": "respond",
+      "name": "Responder"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{"node": "Agente Preventa", "type": "main", "index": 0}]]
+    },
+    "Claude": {
+      "ai_languageModel": [[{"node": "Agente Preventa", "type": "ai_languageModel", "index": 0}]]
+    },
+    "Memoria": {
+      "ai_memory": [[{"node": "Agente Preventa", "type": "ai_memory", "index": 0}]]
+    },
+    "buscar_productos": {
+      "ai_tool": [[{"node": "Agente Preventa", "type": "ai_tool", "index": 0}]]
+    },
+    "soporte": {
+      "ai_tool": [[{"node": "Agente Preventa", "type": "ai_tool", "index": 0}]]
+    },
+    "Agente Preventa": {
+      "main": [[{"node": "Log Supabase", "type": "main", "index": 0}]]
+    },
+    "Log Supabase": {
+      "main": [[{"node": "Responder", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {"executionOrder": "v1"},
+  "tags": [{"name": "MarIA Demo"}]
+}
