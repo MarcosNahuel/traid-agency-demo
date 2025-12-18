@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
-const POSTVENTA_WEBHOOK_URL = 'https://horsepower-n8n.e5l6dk.easypanel.host/webhook/postventa-demo'
+const POSTVENTA_WEBHOOK_URL = 'https://n8n.italicia.com/webhook/demo-postventa'
 
 // Toggle para habilitar n8n (false = solo mock, true = intenta n8n)
 const USE_N8N = process.env.USE_N8N_WEBHOOKS === 'true'
