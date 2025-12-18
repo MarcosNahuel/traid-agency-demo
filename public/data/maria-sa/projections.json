@@ -13,17 +13,45 @@
         "Mantenimiento de precios relativos actuales",
         "Sin cambios significativos en competencia"
       ]
+    },
+    "alcance": {
+      "incluye": [
+        "Analisis de 12 meses de ventas",
+        "Estacionalidad por categoria",
+        "Proyeccion de demanda 2026",
+        "Identificacion de riesgos macro"
+      ],
+      "limitaciones": [
+        "No incluye factores externos no lineales",
+        "Precision reducida en productos nuevos",
+        "Dependencia de la estabilidad del dolar"
+      ]
     }
   },
   "datos_historicos": {
     "2024": {
-      "Q4": {"ordenes": 165, "revenue": 11880000}
+      "Q4": {
+        "ordenes": 165,
+        "revenue": 11880000
+      }
     },
     "2025": {
-      "Q1": {"ordenes": 545, "revenue": 39240000},
-      "Q2": {"ordenes": 580, "revenue": 41760000},
-      "Q3": {"ordenes": 630, "revenue": 45360000},
-      "Q4": {"ordenes": 580, "revenue": 41760000},
+      "Q1": {
+        "ordenes": 545,
+        "revenue": 39240000
+      },
+      "Q2": {
+        "ordenes": 580,
+        "revenue": 41760000
+      },
+      "Q3": {
+        "ordenes": 630,
+        "revenue": 45360000
+      },
+      "Q4": {
+        "ordenes": 580,
+        "revenue": 41760000
+      },
       "total_ordenes": 2335,
       "total_revenue": 168120000
     },
@@ -46,37 +74,192 @@
       "nivel_confianza": "85%"
     },
     "proyeccion_diaria": [
-      {"dia": 1, "ordenes": 8, "tipo": "real", "acumulado_ordenes": 8},
-      {"dia": 2, "ordenes": 7, "tipo": "real", "acumulado_ordenes": 15},
-      {"dia": 3, "ordenes": 9, "tipo": "real", "acumulado_ordenes": 24},
-      {"dia": 4, "ordenes": 8, "tipo": "real", "acumulado_ordenes": 32},
-      {"dia": 5, "ordenes": 10, "tipo": "real", "acumulado_ordenes": 42},
-      {"dia": 6, "ordenes": 9, "tipo": "real", "acumulado_ordenes": 51},
-      {"dia": 7, "ordenes": 8, "tipo": "real", "acumulado_ordenes": 59},
-      {"dia": 8, "ordenes": 11, "tipo": "real", "acumulado_ordenes": 70},
-      {"dia": 9, "ordenes": 9, "tipo": "real", "acumulado_ordenes": 79},
-      {"dia": 10, "ordenes": 8, "tipo": "real", "acumulado_ordenes": 87},
-      {"dia": 11, "ordenes": 10, "tipo": "real", "acumulado_ordenes": 97},
-      {"dia": 12, "ordenes": 9, "tipo": "real", "acumulado_ordenes": 106},
-      {"dia": 13, "ordenes": 8, "tipo": "real", "acumulado_ordenes": 114},
-      {"dia": 14, "ordenes": 11, "tipo": "real", "acumulado_ordenes": 125},
-      {"dia": 15, "ordenes": 7, "tipo": "real", "acumulado_ordenes": 132},
-      {"dia": 16, "ordenes": 6, "tipo": "real", "acumulado_ordenes": 138},
-      {"dia": 17, "ordenes": 7, "tipo": "real", "acumulado_ordenes": 145},
-      {"dia": 18, "ordenes": 8, "tipo": "proyectado", "acumulado_ordenes": 153},
-      {"dia": 19, "ordenes": 9, "tipo": "proyectado", "acumulado_ordenes": 162},
-      {"dia": 20, "ordenes": 10, "tipo": "proyectado", "acumulado_ordenes": 172},
-      {"dia": 21, "ordenes": 11, "tipo": "proyectado", "acumulado_ordenes": 183},
-      {"dia": 22, "ordenes": 12, "tipo": "proyectado", "acumulado_ordenes": 195},
-      {"dia": 23, "ordenes": 14, "tipo": "proyectado", "acumulado_ordenes": 209},
-      {"dia": 24, "ordenes": 8, "tipo": "proyectado", "acumulado_ordenes": 217},
-      {"dia": 25, "ordenes": 3, "tipo": "proyectado", "acumulado_ordenes": 220},
-      {"dia": 26, "ordenes": 7, "tipo": "proyectado", "acumulado_ordenes": 227},
-      {"dia": 27, "ordenes": 8, "tipo": "proyectado", "acumulado_ordenes": 235},
-      {"dia": 28, "ordenes": 9, "tipo": "proyectado", "acumulado_ordenes": 244},
-      {"dia": 29, "ordenes": 8, "tipo": "proyectado", "acumulado_ordenes": 252},
-      {"dia": 30, "ordenes": 7, "tipo": "proyectado", "acumulado_ordenes": 259},
-      {"dia": 31, "ordenes": 6, "tipo": "proyectado", "acumulado_ordenes": 265}
+      {
+        "dia": 1,
+        "ordenes": 8,
+        "tipo": "real",
+        "acumulado_ordenes": 8
+      },
+      {
+        "dia": 2,
+        "ordenes": 7,
+        "tipo": "real",
+        "acumulado_ordenes": 15
+      },
+      {
+        "dia": 3,
+        "ordenes": 9,
+        "tipo": "real",
+        "acumulado_ordenes": 24
+      },
+      {
+        "dia": 4,
+        "ordenes": 8,
+        "tipo": "real",
+        "acumulado_ordenes": 32
+      },
+      {
+        "dia": 5,
+        "ordenes": 10,
+        "tipo": "real",
+        "acumulado_ordenes": 42
+      },
+      {
+        "dia": 6,
+        "ordenes": 9,
+        "tipo": "real",
+        "acumulado_ordenes": 51
+      },
+      {
+        "dia": 7,
+        "ordenes": 8,
+        "tipo": "real",
+        "acumulado_ordenes": 59
+      },
+      {
+        "dia": 8,
+        "ordenes": 11,
+        "tipo": "real",
+        "acumulado_ordenes": 70
+      },
+      {
+        "dia": 9,
+        "ordenes": 9,
+        "tipo": "real",
+        "acumulado_ordenes": 79
+      },
+      {
+        "dia": 10,
+        "ordenes": 8,
+        "tipo": "real",
+        "acumulado_ordenes": 87
+      },
+      {
+        "dia": 11,
+        "ordenes": 10,
+        "tipo": "real",
+        "acumulado_ordenes": 97
+      },
+      {
+        "dia": 12,
+        "ordenes": 9,
+        "tipo": "real",
+        "acumulado_ordenes": 106
+      },
+      {
+        "dia": 13,
+        "ordenes": 8,
+        "tipo": "real",
+        "acumulado_ordenes": 114
+      },
+      {
+        "dia": 14,
+        "ordenes": 11,
+        "tipo": "real",
+        "acumulado_ordenes": 125
+      },
+      {
+        "dia": 15,
+        "ordenes": 7,
+        "tipo": "real",
+        "acumulado_ordenes": 132
+      },
+      {
+        "dia": 16,
+        "ordenes": 6,
+        "tipo": "real",
+        "acumulado_ordenes": 138
+      },
+      {
+        "dia": 17,
+        "ordenes": 7,
+        "tipo": "real",
+        "acumulado_ordenes": 145
+      },
+      {
+        "dia": 18,
+        "ordenes": 8,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 153
+      },
+      {
+        "dia": 19,
+        "ordenes": 9,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 162
+      },
+      {
+        "dia": 20,
+        "ordenes": 10,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 172
+      },
+      {
+        "dia": 21,
+        "ordenes": 11,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 183
+      },
+      {
+        "dia": 22,
+        "ordenes": 12,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 195
+      },
+      {
+        "dia": 23,
+        "ordenes": 14,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 209
+      },
+      {
+        "dia": 24,
+        "ordenes": 8,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 217
+      },
+      {
+        "dia": 25,
+        "ordenes": 3,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 220
+      },
+      {
+        "dia": 26,
+        "ordenes": 7,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 227
+      },
+      {
+        "dia": 27,
+        "ordenes": 8,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 235
+      },
+      {
+        "dia": 28,
+        "ordenes": 9,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 244
+      },
+      {
+        "dia": 29,
+        "ordenes": 8,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 252
+      },
+      {
+        "dia": 30,
+        "ordenes": 7,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 259
+      },
+      {
+        "dia": 31,
+        "ordenes": 6,
+        "tipo": "proyectado",
+        "acumulado_ordenes": 265
+      }
     ]
   },
   "proyeccion_2026": {
@@ -88,24 +271,104 @@
       "ticket_promedio_proyectado": 76500
     },
     "proyecciones_mensuales": [
-      {"mes": "2026-01", "ordenes": 235, "revenue": 18000000, "crecimiento_yoy": 32},
-      {"mes": "2026-02", "ordenes": 225, "revenue": 17200000, "crecimiento_yoy": 28},
-      {"mes": "2026-03", "ordenes": 250, "revenue": 19100000, "crecimiento_yoy": 35},
-      {"mes": "2026-04", "ordenes": 245, "revenue": 18700000, "crecimiento_yoy": 30},
-      {"mes": "2026-05", "ordenes": 260, "revenue": 19900000, "crecimiento_yoy": 38},
-      {"mes": "2026-06", "ordenes": 270, "revenue": 20650000, "crecimiento_yoy": 42},
-      {"mes": "2026-07", "ordenes": 275, "revenue": 21000000, "crecimiento_yoy": 40},
-      {"mes": "2026-08", "ordenes": 280, "revenue": 21400000, "crecimiento_yoy": 38},
-      {"mes": "2026-09", "ordenes": 285, "revenue": 21800000, "crecimiento_yoy": 36},
-      {"mes": "2026-10", "ordenes": 295, "revenue": 22550000, "crecimiento_yoy": 44},
-      {"mes": "2026-11", "ordenes": 320, "revenue": 24500000, "crecimiento_yoy": 52},
-      {"mes": "2026-12", "ordenes": 260, "revenue": 20200000, "crecimiento_yoy": 45}
+      {
+        "mes": "2026-01",
+        "ordenes": 235,
+        "revenue": 18000000,
+        "crecimiento_yoy": 32
+      },
+      {
+        "mes": "2026-02",
+        "ordenes": 225,
+        "revenue": 17200000,
+        "crecimiento_yoy": 28
+      },
+      {
+        "mes": "2026-03",
+        "ordenes": 250,
+        "revenue": 19100000,
+        "crecimiento_yoy": 35
+      },
+      {
+        "mes": "2026-04",
+        "ordenes": 245,
+        "revenue": 18700000,
+        "crecimiento_yoy": 30
+      },
+      {
+        "mes": "2026-05",
+        "ordenes": 260,
+        "revenue": 19900000,
+        "crecimiento_yoy": 38
+      },
+      {
+        "mes": "2026-06",
+        "ordenes": 270,
+        "revenue": 20650000,
+        "crecimiento_yoy": 42
+      },
+      {
+        "mes": "2026-07",
+        "ordenes": 275,
+        "revenue": 21000000,
+        "crecimiento_yoy": 40
+      },
+      {
+        "mes": "2026-08",
+        "ordenes": 280,
+        "revenue": 21400000,
+        "crecimiento_yoy": 38
+      },
+      {
+        "mes": "2026-09",
+        "ordenes": 285,
+        "revenue": 21800000,
+        "crecimiento_yoy": 36
+      },
+      {
+        "mes": "2026-10",
+        "ordenes": 295,
+        "revenue": 22550000,
+        "crecimiento_yoy": 44
+      },
+      {
+        "mes": "2026-11",
+        "ordenes": 320,
+        "revenue": 24500000,
+        "crecimiento_yoy": 52
+      },
+      {
+        "mes": "2026-12",
+        "ordenes": 260,
+        "revenue": 20200000,
+        "crecimiento_yoy": 45
+      }
     ],
     "trimestres_2026": [
-      {"trimestre": "Q1 2026", "ordenes": 710, "revenue": 54300000, "porcentaje_anual": 22},
-      {"trimestre": "Q2 2026", "ordenes": 775, "revenue": 59250000, "porcentaje_anual": 24},
-      {"trimestre": "Q3 2026", "ordenes": 840, "revenue": 64200000, "porcentaje_anual": 26},
-      {"trimestre": "Q4 2026", "ordenes": 875, "revenue": 67250000, "porcentaje_anual": 28}
+      {
+        "trimestre": "Q1 2026",
+        "ordenes": 710,
+        "revenue": 54300000,
+        "porcentaje_anual": 22
+      },
+      {
+        "trimestre": "Q2 2026",
+        "ordenes": 775,
+        "revenue": 59250000,
+        "porcentaje_anual": 24
+      },
+      {
+        "trimestre": "Q3 2026",
+        "ordenes": 840,
+        "revenue": 64200000,
+        "porcentaje_anual": 26
+      },
+      {
+        "trimestre": "Q4 2026",
+        "ordenes": 875,
+        "revenue": 67250000,
+        "porcentaje_anual": 28
+      }
     ]
   },
   "metricas_crecimiento": {
@@ -138,61 +401,251 @@
       "ganancia_top_20_estimada": 47000000
     },
     "top_20_productos": [
-      {"rank": 1, "titulo": "PC Gamer Pro - RTX 4070 | Ryzen 7 5800X | 32GB", "ordenes": 85, "revenue": 102000000, "ganancia_estimada": 25500000, "velocidad_rotacion": "muy_alta", "recomendacion_stock": "15+ unidades"},
-      {"rank": 2, "titulo": "RTX 4070 12GB - Gigabyte Gaming OC", "ordenes": 120, "revenue": 90000000, "ganancia_estimada": 22500000, "velocidad_rotacion": "muy_alta", "recomendacion_stock": "25+ unidades"},
-      {"rank": 3, "titulo": "MacBook Air M2 - 8GB RAM | 256GB SSD", "ordenes": 45, "revenue": 63000000, "ganancia_estimada": 15750000, "velocidad_rotacion": "alta", "recomendacion_stock": "8+ unidades"},
-      {"rank": 4, "titulo": "PC Gamer Mid - RTX 4060 | Ryzen 5 5600 | 16GB", "ordenes": 95, "revenue": 80750000, "ganancia_estimada": 20187500, "velocidad_rotacion": "muy_alta", "recomendacion_stock": "20+ unidades"},
-      {"rank": 5, "titulo": "RTX 4060 8GB - MSI Ventus 2X", "ordenes": 150, "revenue": 67500000, "ganancia_estimada": 16875000, "velocidad_rotacion": "muy_alta", "recomendacion_stock": "30+ unidades"},
-      {"rank": 6, "titulo": "Monitor ASUS ROG 27\" 144Hz QHD", "ordenes": 78, "revenue": 39000000, "ganancia_estimada": 9750000, "velocidad_rotacion": "alta", "recomendacion_stock": "15+ unidades"},
-      {"rank": 7, "titulo": "Notebook ASUS TUF Gaming A15", "ordenes": 42, "revenue": 37800000, "ganancia_estimada": 9450000, "velocidad_rotacion": "alta", "recomendacion_stock": "10+ unidades"},
-      {"rank": 8, "titulo": "Silla Secretlab Titan Evo 2024", "ordenes": 65, "revenue": 32500000, "ganancia_estimada": 8125000, "velocidad_rotacion": "media", "recomendacion_stock": "12+ unidades"},
-      {"rank": 9, "titulo": "RTX 4080 16GB SUPER - ASUS TUF", "ordenes": 18, "revenue": 28800000, "ganancia_estimada": 7200000, "velocidad_rotacion": "media", "recomendacion_stock": "5+ unidades"},
-      {"rank": 10, "titulo": "Teclado HyperX Alloy Origins Core", "ordenes": 180, "revenue": 18000000, "ganancia_estimada": 4500000, "velocidad_rotacion": "muy_alta", "recomendacion_stock": "40+ unidades"}
+      {
+        "rank": 1,
+        "titulo": "PC Gamer Pro - RTX 4070 | Ryzen 7 5800X | 32GB",
+        "ordenes": 85,
+        "revenue": 102000000,
+        "ganancia_estimada": 25500000,
+        "velocidad_rotacion": "muy_alta",
+        "recomendacion_stock": "15+ unidades"
+      },
+      {
+        "rank": 2,
+        "titulo": "RTX 4070 12GB - Gigabyte Gaming OC",
+        "ordenes": 120,
+        "revenue": 90000000,
+        "ganancia_estimada": 22500000,
+        "velocidad_rotacion": "muy_alta",
+        "recomendacion_stock": "25+ unidades"
+      },
+      {
+        "rank": 3,
+        "titulo": "MacBook Air M2 - 8GB RAM | 256GB SSD",
+        "ordenes": 45,
+        "revenue": 63000000,
+        "ganancia_estimada": 15750000,
+        "velocidad_rotacion": "alta",
+        "recomendacion_stock": "8+ unidades"
+      },
+      {
+        "rank": 4,
+        "titulo": "PC Gamer Mid - RTX 4060 | Ryzen 5 5600 | 16GB",
+        "ordenes": 95,
+        "revenue": 80750000,
+        "ganancia_estimada": 20187500,
+        "velocidad_rotacion": "muy_alta",
+        "recomendacion_stock": "20+ unidades"
+      },
+      {
+        "rank": 5,
+        "titulo": "RTX 4060 8GB - MSI Ventus 2X",
+        "ordenes": 150,
+        "revenue": 67500000,
+        "ganancia_estimada": 16875000,
+        "velocidad_rotacion": "muy_alta",
+        "recomendacion_stock": "30+ unidades"
+      },
+      {
+        "rank": 6,
+        "titulo": "Monitor ASUS ROG 27\" 144Hz QHD",
+        "ordenes": 78,
+        "revenue": 39000000,
+        "ganancia_estimada": 9750000,
+        "velocidad_rotacion": "alta",
+        "recomendacion_stock": "15+ unidades"
+      },
+      {
+        "rank": 7,
+        "titulo": "Notebook ASUS TUF Gaming A15",
+        "ordenes": 42,
+        "revenue": 37800000,
+        "ganancia_estimada": 9450000,
+        "velocidad_rotacion": "alta",
+        "recomendacion_stock": "10+ unidades"
+      },
+      {
+        "rank": 8,
+        "titulo": "Silla Secretlab Titan Evo 2024",
+        "ordenes": 65,
+        "revenue": 32500000,
+        "ganancia_estimada": 8125000,
+        "velocidad_rotacion": "media",
+        "recomendacion_stock": "12+ unidades"
+      },
+      {
+        "rank": 9,
+        "titulo": "RTX 4080 16GB SUPER - ASUS TUF",
+        "ordenes": 18,
+        "revenue": 28800000,
+        "ganancia_estimada": 7200000,
+        "velocidad_rotacion": "media",
+        "recomendacion_stock": "5+ unidades"
+      },
+      {
+        "rank": 10,
+        "titulo": "Teclado HyperX Alloy Origins Core",
+        "ordenes": 180,
+        "revenue": 18000000,
+        "ganancia_estimada": 4500000,
+        "velocidad_rotacion": "muy_alta",
+        "recomendacion_stock": "40+ unidades"
+      }
     ]
   },
   "sugerencias_stock": {
     "criticos_para_navidad": [
-      {"producto": "RTX 4060 8GB MSI", "sku": "GPU-4060-001", "stock_sugerido": 45, "demanda_dic_proyectada": 35, "motivo": "Alta demanda Black Friday, liderar pre-navidad"},
-      {"producto": "PC Gamer Mid RTX 4060", "sku": "PC-MID-001", "stock_sugerido": 25, "demanda_dic_proyectada": 18, "motivo": "Regalo premium navidad, no puede faltar"},
-      {"producto": "Monitor ASUS 27\" 144Hz", "sku": "MON-27-144", "stock_sugerido": 20, "demanda_dic_proyectada": 15, "motivo": "Combo con PCs, cross-sell clave"},
-      {"producto": "Teclado HyperX Alloy", "sku": "KB-HYP-001", "stock_sugerido": 50, "demanda_dic_proyectada": 40, "motivo": "Regalo accesible, alta rotacion"}
+      {
+        "producto": "RTX 4060 8GB MSI",
+        "sku": "GPU-4060-001",
+        "stock_sugerido": 45,
+        "demanda_dic_proyectada": 35,
+        "motivo": "Alta demanda Black Friday, liderar pre-navidad"
+      },
+      {
+        "producto": "PC Gamer Mid RTX 4060",
+        "sku": "PC-MID-001",
+        "stock_sugerido": 25,
+        "demanda_dic_proyectada": 18,
+        "motivo": "Regalo premium navidad, no puede faltar"
+      },
+      {
+        "producto": "Monitor ASUS 27\" 144Hz",
+        "sku": "MON-27-144",
+        "stock_sugerido": 20,
+        "demanda_dic_proyectada": 15,
+        "motivo": "Combo con PCs, cross-sell clave"
+      },
+      {
+        "producto": "Teclado HyperX Alloy",
+        "sku": "KB-HYP-001",
+        "stock_sugerido": 50,
+        "demanda_dic_proyectada": 40,
+        "motivo": "Regalo accesible, alta rotacion"
+      }
     ],
     "productos_alto_rotacion_2026": [
-      {"producto": "RTX 4060/4070 - Todas las marcas", "crecimiento_esperado": 45, "stock_mensual_sugerido": 40, "motivo": "GPUs mainstream dominan el mercado gamer argentino"},
-      {"producto": "PCs Gaming armadas (Mid/Pro)", "crecimiento_esperado": 38, "stock_mensual_sugerido": 30, "motivo": "Conveniencia de comprar armado + garantia"},
-      {"producto": "Monitores 144Hz+ 27\"", "crecimiento_esperado": 35, "stock_mensual_sugerido": 25, "motivo": "Upgrade natural de gamers a mayor refresh rate"},
-      {"producto": "Perifericos Gaming (Teclados/Mouse)", "crecimiento_esperado": 42, "stock_mensual_sugerido": 60, "motivo": "Entry point mas accesible, alta recurrencia"}
+      {
+        "producto": "RTX 4060/4070 - Todas las marcas",
+        "crecimiento_esperado": 45,
+        "stock_mensual_sugerido": 40,
+        "motivo": "GPUs mainstream dominan el mercado gamer argentino"
+      },
+      {
+        "producto": "PCs Gaming armadas (Mid/Pro)",
+        "crecimiento_esperado": 38,
+        "stock_mensual_sugerido": 30,
+        "motivo": "Conveniencia de comprar armado + garantia"
+      },
+      {
+        "producto": "Monitores 144Hz+ 27\"",
+        "crecimiento_esperado": 35,
+        "stock_mensual_sugerido": 25,
+        "motivo": "Upgrade natural de gamers a mayor refresh rate"
+      },
+      {
+        "producto": "Perifericos Gaming (Teclados/Mouse)",
+        "crecimiento_esperado": 42,
+        "stock_mensual_sugerido": 60,
+        "motivo": "Entry point mas accesible, alta recurrencia"
+      }
     ]
   },
   "insights_prescriptivos": {
     "acciones_inmediatas": [
-      {"prioridad": 1, "accion": "Reponer stock RTX 4060", "detalle": "Stock critico (8 unidades). Reponer minimo 30 unidades antes del 20/12 para cubrir demanda navidad.", "impacto_estimado": 13500000, "fecha_limite": "20 Dic 2025"},
-      {"prioridad": 2, "accion": "Lanzar bundle Navidad Gaming", "detalle": "PC Gamer Mid + Monitor 144Hz + Teclado con 10% descuento. Ticket alto con margen atractivo.", "impacto_estimado": 8500000, "fecha_limite": "18 Dic 2025"},
-      {"prioridad": 3, "accion": "Activar financiacion 12 cuotas", "detalle": "Productos +$500k tienen menor conversion. Cuotas sin interes aumenta 20% conversion en ticket alto.", "impacto_estimado": 6000000, "fecha_limite": "Permanente"}
+      {
+        "prioridad": 1,
+        "accion": "Reponer stock RTX 4060",
+        "detalle": "Stock critico (8 unidades). Reponer minimo 30 unidades antes del 20/12 para cubrir demanda navidad.",
+        "impacto_estimado": 13500000,
+        "fecha_limite": "20 Dic 2025"
+      },
+      {
+        "prioridad": 2,
+        "accion": "Lanzar bundle Navidad Gaming",
+        "detalle": "PC Gamer Mid + Monitor 144Hz + Teclado con 10% descuento. Ticket alto con margen atractivo.",
+        "impacto_estimado": 8500000,
+        "fecha_limite": "18 Dic 2025"
+      },
+      {
+        "prioridad": 3,
+        "accion": "Activar financiacion 12 cuotas",
+        "detalle": "Productos +$500k tienen menor conversion. Cuotas sin interes aumenta 20% conversion en ticket alto.",
+        "impacto_estimado": 6000000,
+        "fecha_limite": "Permanente"
+      }
     ],
     "oportunidades_identificadas": [
-      {"oportunidad": "Expansion a streaming gear", "potencial_revenue": 25000000, "plazo": "Q1 2026", "detalle": "Microfonos, camaras, iluminacion. Mercado creciendo 40% anual."},
-      {"oportunidad": "Programa armado a medida", "potencial_revenue": 18000000, "plazo": "Q2 2026", "detalle": "Servicio PCs custom con margen premium del 25%. Alto valor percibido."},
-      {"oportunidad": "Canal mayorista B2B", "potencial_revenue": 35000000, "plazo": "Q3 2026", "detalle": "Venta a cybercafes, universidades, empresas. Volumen con menor margen pero mayor estabilidad."}
+      {
+        "oportunidad": "Expansion a streaming gear",
+        "potencial_revenue": 25000000,
+        "inversion_requerida": 5000000,
+        "roi_estimado": 400,
+        "detalle": "Microfonos, camaras, iluminacion. Mercado creciendo 40% anual."
+      },
+      {
+        "oportunidad": "Programa armado a medida",
+        "potencial_revenue": 18000000,
+        "inversion_requerida": 2000000,
+        "roi_estimado": 800,
+        "detalle": "Servicio PCs custom con margen premium del 25%. Alto valor percibido."
+      },
+      {
+        "oportunidad": "Canal mayorista B2B",
+        "potencial_revenue": 35000000,
+        "inversion_requerida": 10000000,
+        "roi_estimado": 250,
+        "detalle": "Venta a cybercafes, universidades, empresas. Volumen con menor margen pero mayor estabilidad."
+      }
     ],
-    "riesgos_2026": [
-      {"riesgo": "Fluctuacion dolar", "impacto": "alto", "mitigacion": "Stock buffer de 60 dias en productos clave"},
-      {"riesgo": "Nuevos competidores online", "impacto": "medio", "mitigacion": "Diferenciacion por servicio y garantia extendida"},
-      {"riesgo": "Cambios en MercadoLibre", "impacto": "medio", "mitigacion": "Diversificar canales (Shopify, TiendaNube)"}
+    "riesgos_identificados": [
+      {
+        "riesgo": "Fluctuacion dolar",
+        "impacto": "alto",
+        "probabilidad": "alta",
+        "mitigacion": "Stock buffer de 60 dias en productos clave"
+      },
+      {
+        "riesgo": "Nuevos competidores online",
+        "impacto": "medio",
+        "probabilidad": "media",
+        "mitigacion": "Diferenciacion por servicio y garantia extendida"
+      },
+      {
+        "riesgo": "Cambios en MercadoLibre",
+        "impacto": "medio",
+        "probabilidad": "media",
+        "mitigacion": "Diversificar canales (Shopify, TiendaNube)"
+      }
     ]
   },
-  "indices_estacionales": [
-    {"month": "Enero", "index": 0.95, "factor": "Post-fiestas, menor consumo"},
-    {"month": "Febrero", "index": 0.90, "factor": "Mes mas bajo del ano"},
-    {"month": "Marzo", "index": 1.02, "factor": "Inicio de clases, demanda notebooks"},
-    {"month": "Abril", "index": 0.98, "factor": "Mes tranquilo"},
-    {"month": "Mayo", "index": 1.05, "factor": "Hot Sale, promociones"},
-    {"month": "Junio", "index": 1.10, "factor": "Cyber Monday, alta demanda"},
-    {"month": "Julio", "index": 1.12, "factor": "Vacaciones invierno, gaming peak"},
-    {"month": "Agosto", "index": 1.15, "factor": "Mes fuerte, previo a fiestas"},
-    {"month": "Septiembre", "index": 1.18, "factor": "Alta demanda sostenida"},
-    {"month": "Octubre", "index": 1.22, "factor": "Preparacion Black Friday"},
-    {"month": "Noviembre", "index": 1.35, "factor": "Black Friday, pico anual"},
-    {"month": "Diciembre", "index": 1.05, "factor": "Fiestas, cierre de ano"}
-  ]
+  "indices_estacionales": {
+    "indices": {
+      "Enero": 0.95,
+      "Febrero": 0.90,
+      "Marzo": 1.02,
+      "Abril": 0.98,
+      "Mayo": 1.05,
+      "Junio": 1.10,
+      "Julio": 1.12,
+      "Agosto": 1.15,
+      "Septiembre": 1.18,
+      "Octubre": 1.22,
+      "Noviembre": 1.35,
+      "Diciembre": 1.05
+    },
+    "insights": {
+      "meses_pico": [
+        "Noviembre",
+        "Octubre",
+        "Septiembre"
+      ],
+      "meses_valle": [
+        "Febrero",
+        "Enero",
+        "Abril"
+      ],
+      "factor_noviembre": "Alta demanda por Black Friday"
+    }
+  }
 }

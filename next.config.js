@@ -9,6 +9,19 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/conversations',
+        destination: '/conversaciones',
+      },
+      {
+        source: '/support',
+        destination: '/soporte',
+      },
+    ]
+  },
 }
+
 
 module.exports = nextConfig

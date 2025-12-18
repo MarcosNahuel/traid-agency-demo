@@ -19,45 +19,55 @@
     {
       "rank": 1,
       "sku": "PC-HIGH-001",
-      "title": "PC Gamer Pro - RTX 4070 | Ryzen 7 5800X | 32GB RAM",
-      "orders": 85,
+      "titulo": "PC Gamer Pro - RTX 4070 | Ryzen 7 5800X | 32GB RAM",
+      "ordenes": 85,
       "revenue": 102000000,
+      "unidades": 85,
+      "compradores_unicos": 82,
       "margin": "18%",
       "trend": "up"
     },
     {
       "rank": 2,
       "sku": "GPU-4070-001",
-      "title": "NVIDIA GeForce RTX 4070 12GB - Gigabyte Gaming OC",
-      "orders": 120,
+      "titulo": "NVIDIA GeForce RTX 4070 12GB - Gigabyte Gaming OC",
+      "ordenes": 120,
       "revenue": 90000000,
+      "unidades": 125,
+      "compradores_unicos": 110,
       "margin": "15%",
       "trend": "stable"
     },
     {
       "rank": 3,
       "sku": "NB-PRO-001",
-      "title": "MacBook Air M2 - 8GB RAM | 256GB SSD",
-      "orders": 45,
+      "titulo": "MacBook Air M2 - 8GB RAM | 256GB SSD",
+      "ordenes": 45,
       "revenue": 63000000,
+      "unidades": 45,
+      "compradores_unicos": 45,
       "margin": "12%",
       "trend": "up"
     },
     {
       "rank": 4,
       "sku": "PC-MID-001",
-      "title": "PC Gamer Mid - RTX 4060 | Ryzen 5 5600 | 16GB RAM",
-      "orders": 95,
+      "titulo": "PC Gamer Mid - RTX 4060 | Ryzen 5 5600 | 16GB RAM",
+      "ordenes": 95,
       "revenue": 80750000,
+      "unidades": 95,
+      "compradores_unicos": 92,
       "margin": "20%",
       "trend": "up"
     },
     {
       "rank": 5,
       "sku": "GPU-4060-001",
-      "title": "NVIDIA GeForce RTX 4060 8GB - MSI Ventus 2X",
-      "orders": 150,
+      "titulo": "NVIDIA GeForce RTX 4060 8GB - MSI Ventus 2X",
+      "ordenes": 150,
       "revenue": 67500000,
+      "unidades": 160,
+      "compradores_unicos": 145,
       "margin": "14%",
       "trend": "stable"
     }
@@ -106,35 +116,55 @@
       "clientes": 420,
       "porcentaje": 20,
       "ticket_promedio": 95000,
-      "caracteristicas": ["Compran hardware premium", "Alta frecuencia de compra", "Buscan ultimas novedades"]
+      "caracteristicas": [
+        "Compran hardware premium",
+        "Alta frecuencia de compra",
+        "Buscan ultimas novedades"
+      ]
     },
     {
       "segmento": "Streamers/Creadores",
       "clientes": 315,
       "porcentaje": 15,
       "ticket_promedio": 110000,
-      "caracteristicas": ["Priorizan calidad de video", "Compran accesorios de streaming", "Presupuesto alto"]
+      "caracteristicas": [
+        "Priorizan calidad de video",
+        "Compran accesorios de streaming",
+        "Presupuesto alto"
+      ]
     },
     {
       "segmento": "Gamers Casual",
       "clientes": 840,
       "porcentaje": 40,
       "ticket_promedio": 55000,
-      "caracteristicas": ["Buscan buena relacion precio/calidad", "Compran perifericos mid-range", "Sensibles a ofertas"]
+      "caracteristicas": [
+        "Buscan buena relacion precio/calidad",
+        "Compran perifericos mid-range",
+        "Sensibles a ofertas"
+      ]
     },
     {
       "segmento": "Profesionales",
       "clientes": 315,
       "porcentaje": 15,
       "ticket_promedio": 85000,
-      "caracteristicas": ["Notebooks para trabajo", "Valoran garantia", "Compran para empresas"]
+      "caracteristicas": [
+        "Notebooks para trabajo",
+        "Valoran garantia",
+        "Compran para empresas"
+      ]
     },
     {
       "segmento": "Estudiantes",
       "clientes": 210,
       "porcentaje": 10,
       "ticket_promedio": 45000,
-      "caracteristicas": ["Presupuesto limitado", "Buscan ofertas", "Compran en fechas especiales"]
+      "caracteristicas": [
+        "Presupuesto limitado",
+        "Buscan ofertas",
+        "Compran en fechas especiales"
+      ]
     }
   ],
   "recomendaciones_venta": [
@@ -170,12 +200,36 @@
     "tiempo_respuesta_promedio": "1.2 segundos",
     "satisfaccion_cliente": 4.6,
     "principales_consultas": [
-      {"tipo": "tracking", "cantidad": 1280, "porcentaje": 40},
-      {"tipo": "compatibilidad", "cantidad": 640, "porcentaje": 20},
-      {"tipo": "facturacion", "cantidad": 480, "porcentaje": 15},
-      {"tipo": "garantia", "cantidad": 384, "porcentaje": 12},
-      {"tipo": "devolucion", "cantidad": 256, "porcentaje": 8},
-      {"tipo": "otros", "cantidad": 160, "porcentaje": 5}
+      {
+        "tipo": "tracking",
+        "cantidad": 1280,
+        "porcentaje": 40
+      },
+      {
+        "tipo": "compatibilidad",
+        "cantidad": 640,
+        "porcentaje": 20
+      },
+      {
+        "tipo": "facturacion",
+        "cantidad": 480,
+        "porcentaje": 15
+      },
+      {
+        "tipo": "garantia",
+        "cantidad": 384,
+        "porcentaje": 12
+      },
+      {
+        "tipo": "devolucion",
+        "cantidad": 256,
+        "porcentaje": 8
+      },
+      {
+        "tipo": "otros",
+        "cantidad": 160,
+        "porcentaje": 5
+      }
     ]
   }
 }

@@ -50,19 +50,20 @@ export interface StockResponse {
 // Mock data for development/testing when Supabase tables don't exist
 function generateMockData(): StockResponse['data'] {
   const mockProducts = [
-    { id: 'MLA1234567890', title: 'Kit Inyectores Chevrolet Corsa 1.6 MPFI x4', sku: 'INY-CORSA-X4', price: 85000, stock: 12, sold30: 45, sold90: 120 },
-    { id: 'MLA1234567891', title: 'Bomba de Combustible Universal 12V', sku: 'BOM-UNIV-12V', price: 35000, stock: 8, sold30: 38, sold90: 95 },
-    { id: 'MLA1234567892', title: 'Sensor MAP VW Gol/Voyage', sku: 'SEN-MAP-VW', price: 28000, stock: 3, sold30: 25, sold90: 72 },
-    { id: 'MLA1234567893', title: 'Bobina Encendido Ford Focus 2.0', sku: 'BOB-FOCUS-20', price: 42000, stock: 15, sold30: 22, sold90: 58 },
-    { id: 'MLA1234567894', title: 'Kit Cables Bujia Fiat Palio 1.4', sku: 'CAB-PALIO-14', price: 18000, stock: 25, sold30: 35, sold90: 90 },
-    { id: 'MLA1234567895', title: 'Inyector Diesel Hilux 3.0', sku: 'INY-HILUX-30', price: 125000, stock: 5, sold30: 12, sold90: 30 },
-    { id: 'MLA1234567896', title: 'Sensor Oxigeno Renault Clio', sku: 'SEN-O2-CLIO', price: 32000, stock: 2, sold30: 18, sold90: 48 },
-    { id: 'MLA1234567897', title: 'Regulador Presion Fiat Uno', sku: 'REG-PRES-UNO', price: 22000, stock: 20, sold30: 15, sold90: 42 },
-    { id: 'MLA1234567898', title: 'Bomba Aceite Peugeot 206 1.6', sku: 'BOM-ACE-206', price: 55000, stock: 7, sold30: 8, sold90: 22 },
-    { id: 'MLA1234567899', title: 'Sensor Temperatura VW Golf', sku: 'SEN-TEMP-GOLF', price: 15000, stock: 30, sold30: 28, sold90: 75 },
-    { id: 'MLA1234567900', title: 'Kit Distribuccion Ford Ka', sku: 'DIS-KA-KIT', price: 48000, stock: 4, sold30: 20, sold90: 55 },
-    { id: 'MLA1234567901', title: 'Valvula EGR Chevrolet S10', sku: 'EGR-S10', price: 68000, stock: 6, sold30: 5, sold90: 14 },
+    { id: 'ITM-001', title: 'PC Gamer MarIA Nitro - RTX 4060', sku: 'PC-NITRO-001', price: 1200000, stock: 5, sold30: 12, sold90: 30 },
+    { id: 'ITM-002', title: 'NVIDIA RTX 4070 12GB Galax', sku: 'GPU-4070-012', price: 750000, stock: 3, sold30: 15, sold90: 40 },
+    { id: 'ITM-003', title: 'Monitor LG 27\" UltraGear 144Hz', sku: 'MON-LG-27', price: 380000, stock: 12, sold30: 25, sold90: 60 },
+    { id: 'ITM-004', title: 'Auriculares HyperX Cloud II', sku: 'PER-HYP-CLOU', price: 120000, stock: 2, sold30: 40, sold90: 110 },
+    { id: 'ITM-005', title: 'Teclado Logitech G915 TKL', sku: 'PER-KEY-037', price: 280000, stock: 8, sold30: 10, sold90: 25 },
+    { id: 'ITM-006', title: 'Mouse Razer DeathAdder V3 Pro', sku: 'PER-MOU-038', price: 110000, stock: 15, sold30: 30, sold90: 80 },
+    { id: 'ITM-007', title: 'SSD WD Black 2TB NVMe', sku: 'SSD-WD-050', price: 220000, stock: 20, sold30: 18, sold90: 45 },
+    { id: 'ITM-008', title: 'Silla Gaming Secretlab Titan', sku: 'FUR-SEC-TIT', price: 850000, stock: 4, sold30: 5, sold90: 12 },
+    { id: 'ITM-009', title: 'Microfono HyperX QuadCast S', sku: 'PER-MIC-040', price: 160000, stock: 6, sold30: 14, sold90: 35 },
+    { id: 'ITM-010', title: 'Placa Madre ASUS ROG Strix Z790', sku: 'MB-ASU-Z790', price: 550000, stock: 3, sold30: 8, sold90: 20 },
+    { id: 'ITM-011', title: 'Fuente Corsair 850W Gold', sku: 'PSU-COR-850', price: 180000, stock: 10, sold30: 22, sold90: 55 },
+    { id: 'ITM-012', title: 'Gabinete NZXT H7 Flow White', sku: 'CASE-NZXT-H7', price: 210000, stock: 7, sold30: 11, sold90: 28 },
   ];
+
 
   const calculateMetrics = (item: typeof mockProducts[0]) => {
     const avgDaily = item.sold30 / 30;
